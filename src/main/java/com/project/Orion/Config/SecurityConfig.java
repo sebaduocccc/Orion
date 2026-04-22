@@ -45,7 +45,7 @@ public class SecurityConfig {
         UserDetails adminUser = User.builder()
                 .username("admin")
                 .password(passwordEncoder.encode("admin123"))
-                .roles("ADMIN") 
+                .roles("ADMIN")
                 .authorities("ROLE_ADMIN","READ","POST","UPDATE","DELETE")
                 .build();
 
