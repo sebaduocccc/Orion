@@ -28,7 +28,7 @@ public class HelloController {
     @GetMapping("/admin")
     @PreAuthorize("hasAnyRole('ADMIN','DEVELOPER')")
     public String HelloAdmin() {
-        return "Hello World admin || developer";
+        return "Hello World admin || developer  ";
     }
 
 
