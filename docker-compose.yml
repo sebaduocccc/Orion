@@ -8,7 +8,7 @@ services:
       MYSQL_DATABASE: orion_db
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3306:3306"
+      - "33306:33306"
     healthcheck:
       test: ["CMD","mysqladmin","ping","-h","localhost"]
       timeout: 20s
@@ -18,11 +18,11 @@ services:
     build: .
     container_name: orion_app
     ports:
-      - "8080:8080"
+      - "9090:9090"
     depends_on:
       db:
         condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/orion_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:33306/orion_db?allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
