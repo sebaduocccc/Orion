@@ -21,23 +21,22 @@ CREATE TABLE usuario_profile(
     FOREIGN KEY (user_id) REFERENCES usuario(id)
 );
 
-
-
-
 --Microservicio Posts
 --
 CREATE TABLE posts (
-                       id BIGSERIAL PRIMARY KEY,
-                       user_id BIGINT NOT NULL,
-                       content TEXT,
-                       media_url TEXT, -- 1 imagen/video simple
-                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+       id BIGSERIAL PRIMARY KEY,
+       user_id BIGINT NOT NULL,
+       content TEXT,
+       media_url TEXT, -- 1 imagen/video simple
+       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+       FOREIGN KEY (user_id) REFERENCES usuario(id)
+
 );
 
 CREATE TABLE likes (
-                       post_id BIGINT,
-                       user_id BIGINT,
-                       PRIMARY KEY (post_id, user_id)
+           post_id BIGINT,
+           user_id BIGINT,
+           PRIMARY KEY (post_id, user_id),
 );
 
 CREATE TABLE comments (
