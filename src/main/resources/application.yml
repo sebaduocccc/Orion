@@ -4,6 +4,8 @@ spring:
   application:
     name: Orion
 
+server:
+  port: 9090
 
 #  datasource:
 #    url: ${SPRING_DATASOURCE_URL}
