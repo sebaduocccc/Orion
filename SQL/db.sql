@@ -20,3 +20,30 @@ CREATE TABLE usuario_profile(
     birth_date DATE,
     FOREIGN KEY (user_id) REFERENCES usuario(id)
 );
+
+
+
+
+--Microservicio Posts
+--
+CREATE TABLE posts (
+                       id BIGSERIAL PRIMARY KEY,
+                       user_id BIGINT NOT NULL,
+                       content TEXT,
+                       media_url TEXT, -- 1 imagen/video simple
+                       created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE likes (
+                       post_id BIGINT,
+                       user_id BIGINT,
+                       PRIMARY KEY (post_id, user_id)
+);
+
+CREATE TABLE comments (
+                          id BIGSERIAL PRIMARY KEY,
+                          post_id BIGINT,
+                          user_id BIGINT,
+                          content TEXT,
+                          created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
