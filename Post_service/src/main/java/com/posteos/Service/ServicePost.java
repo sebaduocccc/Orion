@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class ServicePost {
@@ -24,9 +27,20 @@ public class ServicePost {
 
 
     }
-    @Transactional(readOnly =true)
-    public Post buscarPostId(Long id){
-        Post post = ;
+
+    public List<PostResponseDTO> buscarPostId(Long id){
+        // trae todos los posts del usuario de la BD
+        List<Post> posts = repo.findByUserid(id);
+
+        // crea una lista vacía donde guardarás los DTOs
+        List<PostResponseDTO> lista = new ArrayList<>();
+        // recorre cada Post de la lista uno por uno
+        for (Post post : posts){
+
+            // convierte ese Post a PostResponseDTO y lo agrega a la lista
+            lista.add(mapper.response(post));
+        }
+        return lista;
 
 
     }
