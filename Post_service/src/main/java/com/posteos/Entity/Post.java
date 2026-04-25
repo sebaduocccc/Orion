@@ -6,27 +6,33 @@ import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
 
-import java.awt.*;
-import java.sql.Timestamp;
+
+
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Data
-@Table(name="post")
+@Table(name="post" , indexes = {
+        @Index(name = "idx_post_userid", columnList = "userid")
+})
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @NotNull
-    @Column(unique = true, length = 13,nullable = false)
+    @Column( length = 13,nullable = false)
+
     private Long userid;
     @NotBlank(message = "CONTENIDO REQUERIDO")
     private String content;
     private String mediaUrl;
     @NotNull
-    @Column(nullable = false)
-    private Timestamp creado_el;
+    @Column(nullable = false, updatable = false)
+    @CreationTimestamp
+    private LocalDateTime creado_el;
 
 }
