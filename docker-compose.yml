@@ -1,6 +1,4 @@
-version: '3.8'
 services:
-
 
   db:
     image: mysql:8.0
@@ -11,6 +9,10 @@ services:
       - "3306:3306"
     volumes:
       - ./init:/docker-entrypoint-initdb.d
+    healthcheck:
+      test: ["CMD","mysqladmin","ping","-h","localhost"]
+      timeout: 20s
+      retries: 10
 
 #  db:
 #    image: mysql:8.0
@@ -30,21 +32,24 @@ services:
     container_name: users-service
     ports:
       - "9090:9090"
+    depends_on:
+      db:
+        condition: service_healthy
     environment:
         SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/usuario_db?allowPublicKeyRetrieval=true&useSSL=false
         SPRING_DATASOURCE_USERNAME: root
         SPRING_DATASOURCE_PASSWORD: root
 
 
-  app:
-    build: .
-    container_name: orion_app
-    ports:
-      - "9090:9090"
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:33306/orion_db?allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+#  app:
+#    build: .
+#    container_name: orion_app
+#    ports:
+#      - "9090:9090"
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:33306/orion_db?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
