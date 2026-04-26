@@ -30,7 +30,7 @@ public class Post {
     @NotBlank(message = "CONTENIDO REQUERIDO")
     private String content;
     private String mediaUrl;
-    @NotNull
+
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime creado_el;

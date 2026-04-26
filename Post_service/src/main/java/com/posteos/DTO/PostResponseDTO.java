@@ -1,13 +1,13 @@
 package com.posteos.DTO;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
 
-// PARA DEVOLVER DATOS //
+//De BDD a afuera //
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

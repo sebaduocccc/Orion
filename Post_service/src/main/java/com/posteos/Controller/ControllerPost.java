@@ -1,5 +1,6 @@
 package com.posteos.Controller;
 
+import com.posteos.DTO.PostRequestDTO;
 import com.posteos.DTO.PostResponseDTO;
 import com.posteos.Entity.Post;
 import com.posteos.Service.ServicePost;
@@ -17,9 +18,10 @@ public class ControllerPost {
     private  ServicePost service;
 
     @PostMapping
-    public String post(@RequestBody Post post){
+    public ResponseEntity<PostResponseDTO> guardar (@RequestBody PostRequestDTO dto ){
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dto));
 
-        return "ingresado posteado";
+
     }
 
     @GetMapping

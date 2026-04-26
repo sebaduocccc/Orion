@@ -7,7 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-//PARA RECIBIR DATOS
+//De PUT a BDD
 
 @Data
 @NoArgsConstructor
@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class PostRequestDTO {
     @NotNull(message = "El userId es requerido")
-    private Long userId;
+    private Long userid;
 
     @NotBlank(message = "El contenido es requerido")
     @Size(max = 500, message = "Máximo 500 caracteres")

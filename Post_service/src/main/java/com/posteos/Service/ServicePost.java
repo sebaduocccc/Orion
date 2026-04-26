@@ -1,11 +1,11 @@
 package com.posteos.Service;
-
+import org.springframework.transaction.annotation.Transactional;
 import com.posteos.DTO.PostMapper;
 import com.posteos.DTO.PostRequestDTO;
 import com.posteos.DTO.PostResponseDTO;
 import com.posteos.Entity.Post;
 import com.posteos.Repository.Repository_Post;
-import jakarta.transaction.Transactional;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +27,7 @@ public class ServicePost {
 
 
     }
-
+    @Transactional(readOnly = true)
     public List<PostResponseDTO> buscarUser(Long id){
         // trae todos los posts del usuario de la BD
         List<Post> posts = repo.findByUserid(id);
@@ -43,7 +43,7 @@ public class ServicePost {
         return lista;
 
     }
-
+    @Transactional(readOnly = true)
     public List<PostResponseDTO> obtenerTodos() {
         return repo.findAll()
                 .stream()

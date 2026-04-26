@@ -11,7 +11,7 @@ public class PostMapper {
     public Post aEntidad(PostRequestDTO pdto)
     {
         Post post = new Post(); //Se crea una entidad
-        post.setUserid(pdto.getUserId());
+        post.setUserid(pdto.getUserid());
         post.setContent(pdto.getContent());
         post.setMediaUrl(pdto.getMediaUrl());
 
