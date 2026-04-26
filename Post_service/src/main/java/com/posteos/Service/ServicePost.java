@@ -7,11 +7,11 @@ import com.posteos.Entity.Post;
 import com.posteos.Repository.Repository_Post;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +28,7 @@ public class ServicePost {
 
     }
 
-    public List<PostResponseDTO> buscarPostId(Long id){
+    public List<PostResponseDTO> buscarUser(Long id){
         // trae todos los posts del usuario de la BD
         List<Post> posts = repo.findByUserid(id);
 
@@ -42,7 +42,21 @@ public class ServicePost {
         }
         return lista;
 
+    }
+
+    public List<PostResponseDTO> obtenerTodos() {
+        return repo.findAll()
+                .stream()
+                .map(mapper::response)
+                .collect(Collectors.toList());
+    }
+    @Transactional
+    public void eliminar(Long id) {
+        Post post = repo.findById(id)
+                .orElseThrow(() -> new RuntimeException("Post no encontrado"));
+        repo.deleteById(id);
 
     }
+
 
 }
