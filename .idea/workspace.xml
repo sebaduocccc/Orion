@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Config/DataInitializer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Entity/Permiso.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Entity/Rol.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Repository/PermisoRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Repository/RolRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Model/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Entity/Usuario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Repository/UsuarioRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Repository/UsuarioRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/init/init.sql" beforeDir="false" afterPath="$PROJECT_DIR$/init/init.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,26 +44,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;UsuarioService&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ssaav/Proyectos/Orion&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "junie.onboarding.icon.badge.shown": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ssaav/Proyectos/Orion",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "to.speed.mode.migration.done": "true",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -94,6 +82,7 @@
       <workItem from="1777090669054" duration="1644000" />
       <workItem from="1777154004408" duration="5741000" />
       <workItem from="1777181438436" duration="7000" />
+      <workItem from="1777186982016" duration="324000" />
     </task>
     <servers />
   </component>
