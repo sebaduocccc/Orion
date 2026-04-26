@@ -5,14 +5,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Post_service/Dockerfile" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Config/SecurityConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Security/JwtValidationFilter.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Controller/PostController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/DTO/PostRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Repository/PostRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Post_service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Controller/ControllerPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Controller/ControllerPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Post_service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/DTO/PostMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/DTO/PostRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/DTO/PostResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Entity/Post.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Repository/Repository_Post.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Service/ServicePost.java" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Service/ServicePost.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +59,7 @@
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "testPost",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -87,7 +90,7 @@
       <workItem from="1777090669054" duration="1644000" />
       <workItem from="1777154004408" duration="5741000" />
       <workItem from="1777181438436" duration="7000" />
-      <workItem from="1777186982016" duration="2499000" />
+      <workItem from="1777186982016" duration="3838000" />
     </task>
     <servers />
   </component>
