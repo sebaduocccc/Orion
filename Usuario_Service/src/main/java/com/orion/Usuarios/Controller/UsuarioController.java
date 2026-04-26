@@ -1,7 +1,7 @@
 package com.orion.Usuarios.Controller;
 
 
-import com.orion.Usuarios.Model.Usuario;
+import com.orion.Usuarios.Entity.Usuario;
 import com.orion.Usuarios.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

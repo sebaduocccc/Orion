@@ -1,6 +1,6 @@
 package com.orion.Usuarios.Repository;
 
-import com.orion.Usuarios.Model.Usuario;
+import com.orion.Usuarios.Entity.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
