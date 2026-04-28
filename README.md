@@ -1,9 +1,4 @@
 # Orion
+Backend de una red social construido con arquitectura de microservicios, comunicación asíncrona mediante Apache Kafka y autenticación segura con JWT.
 
-Arrancar el proyecto:
-
-en la raiz del proyecto (con terminal):
-docker-compose up --build
-
-
-te3st
+Proyecto semestral — Ingeniería en Informática, Duoc UC
