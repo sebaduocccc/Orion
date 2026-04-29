@@ -19,7 +19,7 @@ public class PostMapper {
 
 
     }
-    // DE lA base de datos  A afuera//
+    // De la base de datos  A afuera//
     public PostResponseDTO response(Post posteo){
         PostResponseDTO dto = new PostResponseDTO();
         dto.setId(posteo.getId());

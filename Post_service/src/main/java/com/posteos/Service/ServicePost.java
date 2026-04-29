@@ -29,15 +29,11 @@ public class ServicePost {
     }
     @Transactional(readOnly = true)
     public List<PostResponseDTO> buscarUser(Long id){
-        // trae todos los posts del usuario de la BD
         List<Post> posts = repo.findByUserid(id);
 
-        // crea una lista vacía donde guardarás los DTOs
         List<PostResponseDTO> lista = new ArrayList<>();
-        // recorre cada Post de la lista uno por uno
         for (Post post : posts){
 
-            // convierte ese Post a PostResponseDTO y lo agrega a la lista
             lista.add(mapper.response(post));
         }
         return lista;
