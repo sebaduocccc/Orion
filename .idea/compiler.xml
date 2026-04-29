@@ -3,14 +3,26 @@
   <component name="CompilerConfiguration">
     <annotationProcessing>
       <profile default="true" name="Default" enabled="true" />
-      <profile name="Annotation profile for Posteos" enabled="true">
+      <profile name="Annotation profile for PosteoService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="PosteoService" />
+      </profile>
+      <profile name="Annotation profile for Notificacion_Service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
+        <module name="Usuarios" />
         <module name="Posteos" />
+        <module name="Notificacion_Service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -19,8 +31,11 @@
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Notificacion_Service" options="-parameters" />
       <module name="Orion" options="-parameters" />
+      <module name="PosteoService" options="-parameters" />
       <module name="Posteos" options="-parameters" />
+      <module name="Usuarios" options="-parameters" />
     </option>
   </component>
 </project>

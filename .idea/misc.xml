@@ -6,8 +6,10 @@
       <list>
         <option value="$PROJECT_DIR$/pom.xml" />
         <option value="$PROJECT_DIR$/Post_service/pom.xml" />
+        <option value="$PROJECT_DIR$/Usuario_Service/pom.xml" />
+        <option value="$PROJECT_DIR$/Notificacion_Service/pom.xml" />
       </list>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="17" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_17" project-jdk-name="21" project-jdk-type="JavaSDK" />
 </project>
