@@ -23,8 +23,8 @@ public class MediaController {
     // endpoints para avatares
     @PostMapping("/avatar/upload")
     public ResponseEntity<Media> subirAvatar(@RequestParam("file") MultipartFile file){
-//        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
-        Long userId = 1L;
+        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+//        Long userId = 1L;
         Media mediaGuardada = storageService.guardarArchivo(file,userId,Media.TipoMedia.AVATAR);
         return ResponseEntity.ok(mediaGuardada);
     }
@@ -47,8 +47,8 @@ public class MediaController {
     @PostMapping("/post/upload")
     public ResponseEntity<Media> subirFotoPost(@RequestParam("file") MultipartFile file){
 
-//        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
-        Long userId = 1L;
+        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+//        Long userId = 1L;
         Media mediaGuardada = storageService.guardarArchivo(file,userId,Media.TipoMedia.POST);
         return ResponseEntity.ok(mediaGuardada);
 

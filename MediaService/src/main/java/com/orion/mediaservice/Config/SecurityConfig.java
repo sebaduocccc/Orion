@@ -30,9 +30,9 @@ public class SecurityConfig {
                 .csrf(csrf -> csrf.disable())
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> {
-//                    auth.requestMatchers(HttpMethod.GET, "/api/media/avatar/**").permitAll();
-//                    auth.requestMatchers(HttpMethod.POST, "/api/media/post/**").permitAll();
-                    auth.anyRequest().permitAll();
+                    auth.requestMatchers(HttpMethod.GET, "/api/media/avatar/**").permitAll();
+                    auth.requestMatchers(HttpMethod.POST, "/api/media/post/**").permitAll();
+                    auth.anyRequest().authenticated();
                 })
 
                 .addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class)
