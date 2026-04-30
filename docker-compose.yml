@@ -63,6 +63,9 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/media_db?allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+      MEDIA_STORAGE_LOCATION: /app/media_data
+    volumes:
+      - ./media_volumen:/app/media_data
 #  app:
 #    build: .
 #    container_name: orion_app
