@@ -42,9 +42,9 @@ public class JwtUtil {
     }
 
 
-    public String generateToken(UserDetails userDetails) {
-        return generateToken(new HashMap<>(), userDetails);
-    }
+//    public String generateToken(UserDetails userDetails) {
+//        return generateToken(new HashMap<>(), userDetails);
+//    }
 
     public String generateToken(Usuario usuario){
 
@@ -54,42 +54,16 @@ public class JwtUtil {
 
         claims.put("roles",usuario.getRoles().stream().map(Rol::getNombre).collect(Collectors.toList()));
 
-        return createToken(claims,usuario.getUsername());
-
-    }
-
-
-    private String createToken(Map<String,Object> claims, String subject) {
-
         return Jwts.builder()
                 .setClaims(claims)
-                .setSubject(subject)
+                .setSubject(usuario.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+                .setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION))
                 .signWith(getSignInKey(),SignatureAlgorithm.HS256)
                 .compact();
 
-
     }
 
-    public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails ) {
-
-        List<String> roles = userDetails.getAuthorities().stream()
-                .map(authority -> authority.getAuthority())
-                .toList();
-
-        extraClaims.put("roles", roles);
-
-        return Jwts.builder()
-                .setClaims(extraClaims)
-                .setSubject(userDetails.getUsername())
-                .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION))
-                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
-                .compact();
-
-
-    }
 
 
     public boolean isTokenValid(String token,UserDetails userDetails) {

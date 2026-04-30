@@ -3,6 +3,8 @@ package com.orion.Usuarios.Controller;
 
 import com.orion.Usuarios.DTO.AuthResponse;
 import com.orion.Usuarios.DTO.LoginRequest;
+import com.orion.Usuarios.Entity.Usuario;
+import com.orion.Usuarios.Repository.UsuarioRepository;
 import com.orion.Usuarios.Security.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -28,6 +30,9 @@ public class AuthController {
     @Autowired
     private JwtUtil jwtUtil;
 
+    @Autowired
+    private UsuarioRepository usuarioRepository;
+
 
     @PostMapping("/login")
     public ResponseEntity<AuthResponse> login(@RequestBody LoginRequest loginRequest) {
@@ -36,9 +41,12 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword())
         );
 
-        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
+//        final UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.getUsername());
 
-        final String jwt = jwtUtil.generateToken(userDetails);
+        Usuario usuario = usuarioRepository.findByUsername(loginRequest.getUsername())
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+
+        final String jwt = jwtUtil.generateToken(usuario);
 
         return ResponseEntity.ok(new AuthResponse(jwt));
 
