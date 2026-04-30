@@ -63,17 +63,17 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
-  notification_service:
-    build: ./Notificacion_Service
-    ports:
-      - "9094:9094"
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/notification_db?allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+#  notification_service:
+#    build: ./Notificacion_Service
+#    ports:
+#      - "9094:9094"
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/notification_db?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
 
   media-service:
     build: ./MediaService

@@ -6,8 +6,25 @@
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Entity/Usuario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Entity/Usuario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Consumer/NotificacionConsumer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Dto/Notificacion_Request.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Dto/Notificacion_Response.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Dto/Notificacion_mapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Entity/Notificacion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/NotificacionApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Repository/RepositoryNotification.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Service/NotificacionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/test/java/com/Notification/Notificacion/NotificacionApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -157,7 +174,7 @@
       <workItem from="1777526852033" duration="13298000" />
       <workItem from="1777540561547" duration="426000" />
       <workItem from="1777562322648" duration="3674000" />
-      <workItem from="1777568919319" duration="1986000" />
+      <workItem from="1777568919319" duration="2828000" />
     </task>
     <servers />
   </component>

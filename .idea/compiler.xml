@@ -11,7 +11,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
         <module name="MediaService" />
-        <module name="Notificacion_Service" />
       </profile>
       <profile name="Annotation profile for Usuarios" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -27,6 +26,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Notificacion_Service" target="17" />
       <module name="Orion" target="17" />
     </bytecodeTargetLevel>
   </component>

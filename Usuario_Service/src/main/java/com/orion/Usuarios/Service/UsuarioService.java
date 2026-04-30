@@ -5,6 +5,7 @@ import com.orion.Usuarios.Entity.Rol;
 import com.orion.Usuarios.Entity.Usuario;
 import com.orion.Usuarios.Entity.UsuarioPerfil;
 import com.orion.Usuarios.Repository.RolRepository;
+import com.orion.Usuarios.Repository.UserProfileRepository;
 import com.orion.Usuarios.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,6 +27,8 @@ public class UsuarioService {
 
     @Autowired
     private PasswordEncoder passwordEncoder;
+    @Autowired
+    private UserProfileRepository userProfileRepository;
 
 
     public Usuario registrarUsuario(Usuario usuario) {
@@ -46,9 +49,9 @@ public class UsuarioService {
         UsuarioPerfil perfilVacio = new UsuarioPerfil();
         perfilVacio.setUsuario(userGuardado);
         perfilVacio.setNombreDisplay(userGuardado.getUsername());
+        perfilVacio.setAvatarUrl("/api/media/avatar/default_avatar.png");
+        userProfileRepository.save(perfilVacio);
 
-
-        perfilVacio.setAvatarUrl("api/media/avatar/default_avatar.png");
         return userGuardado;
 
 
