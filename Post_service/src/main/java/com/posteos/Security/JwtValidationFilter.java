@@ -51,6 +51,10 @@ public class JwtValidationFilter extends OncePerRequestFilter {
                     .getBody();
 
             String username = claims.getSubject();
+
+            Object idObj = claims.get("id");
+            Long userId = idObj != null ? Long.valueOf(idObj.toString()) : null;
+
             List<String> roles = claims.get("roles", List.class);
 
 
@@ -60,7 +64,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
 
             UsernamePasswordAuthenticationToken authentication =
                     new UsernamePasswordAuthenticationToken(username,
-                            null, authorities);
+                            userId, authorities);
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
