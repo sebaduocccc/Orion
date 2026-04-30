@@ -1,0 +1,10 @@
+### docker volumes
+
+media_volumen/avatars/
+media_volumen/posts
+
+
+## IDE
+.idea/
+*.iml
+*.iws

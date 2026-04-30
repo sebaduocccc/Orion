@@ -23,7 +23,7 @@ public class MediaController {
     // endpoints para avatares
     @PostMapping("/avatar/upload")
     public ResponseEntity<Media> subirAvatar(@RequestParam("file") MultipartFile file){
-        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials(); // con esta linea se obtiene el userId del token. (quien mando la request)
 //        Long userId = 1L;
         Media mediaGuardada = storageService.guardarArchivo(file,userId,Media.TipoMedia.AVATAR);
         return ResponseEntity.ok(mediaGuardada);

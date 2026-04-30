@@ -9,6 +9,7 @@ services:
       - "3306:3306"
     volumes:
       - ./init:/docker-entrypoint-initdb.d
+      - orion_db_data:/var/lib/mysql
     healthcheck:
       test: ["CMD","mysqladmin","ping","-h","localhost"]
       timeout: 20s
@@ -116,3 +117,6 @@ services:
 #      timeout: 20s
 #      retries: 10
 #
+
+volumes:
+  orion_db_data:

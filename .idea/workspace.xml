@@ -5,25 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/.gitattributes" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/Dockerfile" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/mvnw" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/mvnw.cmd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/pom.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Consumer/NotificacionConsumer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Dto/Notificacion_Request.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Dto/Notificacion_Response.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Dto/Notificacion_mapper.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Entity/Notificacion.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/NotificacionApplication.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Repository/RepositoryNotification.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/java/com/Notification/Notificacion/Service/NotificacionService.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/resources/application.yaml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/test/java/com/Notification/Notificacion/NotificacionApplicationTests.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MediaService/src/main/java/com/orion/mediaservice/Controller/MediaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MediaService/src/main/java/com/orion/mediaservice/Controller/MediaController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Controller/ControllerPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Controller/ControllerPost.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -87,7 +73,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "UserProfile",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -174,7 +160,7 @@
       <workItem from="1777526852033" duration="13298000" />
       <workItem from="1777540561547" duration="426000" />
       <workItem from="1777562322648" duration="3674000" />
-      <workItem from="1777568919319" duration="2828000" />
+      <workItem from="1777568919319" duration="6372000" />
     </task>
     <servers />
   </component>

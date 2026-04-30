@@ -7,6 +7,7 @@ import com.posteos.Service.ServicePost;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -19,7 +20,10 @@ public class ControllerPost {
 
     @PostMapping
     public ResponseEntity<PostResponseDTO> guardar (@RequestBody PostRequestDTO dto ){
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dto));
+        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+        dto.setUserid(userId);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(service.guardar(dto));
 
 
     }
