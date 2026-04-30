@@ -1,0 +1,15 @@
+localhost:9090/api/usuarios/registro
+
+{
+    "username":"akomi",
+    "email":"akomi@gmail.com",
+    "password":"ola123",
+    "bio":"ola mundo",
+    "avatarUrl":"sampalo"
+}
+
+localhost:9090/api/auth/login
+{
+    "username":"akomi",
+    "password":"ola123"
+}
