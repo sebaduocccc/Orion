@@ -22,11 +22,16 @@ import java.util.stream.Collectors;
 @Component
 public class JwtUtil {
 
+
+    // Llave maestra: debe ser esta misma en TODOS LOS MICROSERVICIOS FUTUROS (REVISAR)
+    // para el futuro ponerla en environment variable
+
     private static final String SECRET_KEY =
             "0mfQfctbNBt7Tb4Ej8aXQQebUc8zmnhpkZKObqzxUCi";
 
-    private static final long JWT_EXPIRATION = 86400000;
 
+    // tiempo de vida del token == 24 horas.
+    private static final long JWT_EXPIRATION = 86400000;
 
     public String extractUsername(String token) {
 
@@ -46,11 +51,20 @@ public class JwtUtil {
 //        return generateToken(new HashMap<>(), userDetails);
 //    }
 
+
+
+    /*
+
+    * Se genera un token JWT que contiene el ID del usuario y sus roles en una lista.
+    * es CRUCIAL inyectar el ID del usuario en los demas microservicios para que asi
+    * se pueda saber quien esta realizando segun que cosa.
+
+     */
     public String generateToken(Usuario usuario){
 
         Map<String, Object> claims = new HashMap<>();
 
-        claims.put("id", usuario.getId());
+        claims.put("id", usuario.getId()); // aqui se pasa el argumento "id" : "usuario autenticado"
 
         claims.put("roles",usuario.getRoles().stream().map(Rol::getNombre).collect(Collectors.toList()));
 

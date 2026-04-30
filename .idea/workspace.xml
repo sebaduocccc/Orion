@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Notificacion_Service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Notificacion_Service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Notificacion_Service/src/main/resources/application.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Security/JwtUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Security/JwtUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/media_volumen/avatars/d7958e22-47de-401b-80fe-de0469e48298_pirip.png" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -38,10 +37,10 @@
     &quot;accountId&quot;: &quot;cca39fb5-aae3-4568-b6d9-c91061d2cb0a&quot;
   }
 }</component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -71,7 +70,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "docProject",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -155,7 +154,8 @@
       <workItem from="1777181438436" duration="7000" />
       <workItem from="1777186982016" duration="2499000" />
       <workItem from="1777478535935" duration="2533000" />
-      <workItem from="1777526852033" duration="12449000" />
+      <workItem from="1777526852033" duration="13298000" />
+      <workItem from="1777540561547" duration="377000" />
     </task>
     <servers />
   </component>
