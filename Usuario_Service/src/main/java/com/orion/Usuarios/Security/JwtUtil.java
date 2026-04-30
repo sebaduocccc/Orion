@@ -1,6 +1,8 @@
 package com.orion.Usuarios.Security;
 
 
+import com.orion.Usuarios.Entity.Rol;
+import com.orion.Usuarios.Entity.Usuario;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -15,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 @Component
 public class JwtUtil {
@@ -43,6 +46,31 @@ public class JwtUtil {
         return generateToken(new HashMap<>(), userDetails);
     }
 
+    public String generateToken(Usuario usuario){
+
+        Map<String, Object> claims = new HashMap<>();
+
+        claims.put("id", usuario.getId());
+
+        claims.put("roles",usuario.getRoles().stream().map(Rol::getNombre).collect(Collectors.toList()));
+
+        return createToken(claims,usuario.getUsername());
+
+    }
+
+
+    private String createToken(Map<String,Object> claims, String subject) {
+
+        return Jwts.builder()
+                .setClaims(claims)
+                .setSubject(subject)
+                .setIssuedAt(new Date(System.currentTimeMillis()))
+                .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 10))
+                .signWith(getSignInKey(),SignatureAlgorithm.HS256)
+                .compact();
+
+
+    }
 
     public String generateToken(Map<String,Object> extraClaims, UserDetails userDetails ) {
 

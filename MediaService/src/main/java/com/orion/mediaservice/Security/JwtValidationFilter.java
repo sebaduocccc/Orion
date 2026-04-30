@@ -35,7 +35,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
 
         final String authHeader = request.getHeader("Authorization");
 
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
+        if (authHeader == null && authHeader.startsWith("Bearer ")) {
             filterChain.doFilter(request, response);
             return;
         }
@@ -51,6 +51,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
                     .getBody();
 
             String username = claims.getSubject();
+
             List<String> roles = claims.get("roles",List.class);
 
             List<SimpleGrantedAuthority> authorities = roles.stream()
@@ -58,8 +59,11 @@ public class JwtValidationFilter extends OncePerRequestFilter {
                     .collect(Collectors.toList());
 
 
+            Object idObj = claims.get("id");
+            Long userId = idObj != null ? Long.valueOf(idObj.toString()) : null;
+
             UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(username, null, authorities);
+                    new UsernamePasswordAuthenticationToken(username, userId, authorities);
 
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
