@@ -3,6 +3,7 @@ package com.orion.Usuarios.Service;
 
 import com.orion.Usuarios.Entity.Rol;
 import com.orion.Usuarios.Entity.Usuario;
+import com.orion.Usuarios.Entity.UsuarioPerfil;
 import com.orion.Usuarios.Repository.RolRepository;
 import com.orion.Usuarios.Repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +41,17 @@ public class UsuarioService {
         roles.add(userRole);
         usuario.setRoles(roles);
 
-        return usuarioRepository.save(usuario);
+        Usuario userGuardado = usuarioRepository.save(usuario);
+
+        UsuarioPerfil perfilVacio = new UsuarioPerfil();
+        perfilVacio.setUsuario(userGuardado);
+        perfilVacio.setNombreDisplay(userGuardado.getUsername());
+
+
+        perfilVacio.setAvatarUrl("api/media/avatar/default_avatar.png");
+        return userGuardado;
+
+
     }
 
 

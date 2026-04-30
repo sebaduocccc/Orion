@@ -28,14 +28,18 @@ public class Usuario {
     @Column(nullable = false)
     private String password;
 
-    private String bio;
 
-    private String avatarUrl;
-
-    @Column(name="created_at", updatable = false)
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt = LocalDateTime.now();
 
 
+    // relacion uno a uno con Perfil de usuario
+    // si se borra el usuario se borra el perfil de usuario
+    // por cascada.
+    // por ser LAZY una entidad debil.
+    // mappedBy va a la clase UsuarioPerfil y extrae el Usuario usuario(esta misma clase se une)
+    @OneToOne(mappedBy = "usuario",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private UsuarioPerfil perfil;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
