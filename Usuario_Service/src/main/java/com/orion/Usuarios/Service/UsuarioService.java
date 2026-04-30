@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -30,6 +31,10 @@ public class UsuarioService {
     @Autowired
     private UserProfileRepository userProfileRepository;
 
+
+    // CRUD COMPLETO
+
+    // CREATE
 
     public Usuario registrarUsuario(Usuario usuario) {
         usuario.setPassword(passwordEncoder.encode(usuario.getPassword()));
@@ -58,8 +63,52 @@ public class UsuarioService {
     }
 
 
-    public Optional<Usuario> obtenerPorUsername(String username){
-        return usuarioRepository.findByUsername(username);
+    // READ
+    public List<Usuario> obtenerTodosUsuarios() {
+        return usuarioRepository.findAll();
     }
+
+    public Usuario obtenerUsuarioPorId(Long id){
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id"));
+    }
+
+    public Usuario obtenerUsuarioPorUsername(String username){
+        return usuarioRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el username"));
+    }
+
+
+    // UPDATE
+
+    public Usuario actualizarUsuario(Long id, Usuario usuarioActualizado){
+        Usuario usuarioExistente = obtenerUsuarioPorId(id);
+
+        if (usuarioActualizado.getUsername() != null &&
+        !usuarioActualizado.getUsername().equals(usuarioExistente.getUsername())) {
+
+            usuarioExistente.setUsername(usuarioActualizado.getUsername());
+        }
+
+        if (usuarioActualizado.getPassword() != null
+        && !usuarioActualizado.getPassword().isEmpty()){
+            usuarioExistente.setPassword(passwordEncoder.encode(usuarioActualizado.getPassword()));
+        }
+
+        return usuarioRepository.save(usuarioExistente);
+    }
+
+
+    public void eliminarUsuario(Long id){
+
+        if(!usuarioRepository.existsById(id)){
+            throw new RuntimeException("Usuario no encontrado con el id");
+        }
+
+        ///  borrará el usuario y el userProfile juntos como cascada
+        usuarioRepository.deleteById(id);
+
+    }
+
 
 }

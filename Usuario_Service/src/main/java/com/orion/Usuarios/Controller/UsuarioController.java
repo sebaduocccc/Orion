@@ -5,6 +5,7 @@ import com.orion.Usuarios.Entity.Usuario;
 import com.orion.Usuarios.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,11 +23,17 @@ public class UsuarioController {
     }
 
 
-    @GetMapping("/{username}")
-    public ResponseEntity<Usuario> obtenerPorUsername(@PathVariable String username){
-        return usuarioService.obtenerPorUsername(username)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+
+
+    /// ADMIN ONLY
+
+    @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
+    public ResponseEntity<String> eliminarUsuario(@PathVariable Long id){
+        usuarioService.eliminarUsuario(id);
+
+
+        return ResponseEntity.ok("Usuario eliminado con exito por el administrador");
     }
 
 }
