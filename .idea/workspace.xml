@@ -7,11 +7,9 @@
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ApiGateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MediaService/src/main/java/com/orion/mediaservice/Controller/MediaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MediaService/src/main/java/com/orion/mediaservice/Controller/MediaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Controller/ControllerPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Controller/ControllerPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orion-app/src/components/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/orion-app/src/components/Home.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orion-app/src/components/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/orion-app/src/components/Login.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +72,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "react-app",
+    "git-widget-placeholder": "ipVar",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -170,7 +168,8 @@
       <workItem from="1777540561547" duration="426000" />
       <workItem from="1777562322648" duration="3674000" />
       <workItem from="1777568919319" duration="8201000" />
-      <workItem from="1777603867671" duration="8944000" />
+      <workItem from="1777603867671" duration="9631000" />
+      <workItem from="1777619876790" duration="2174000" />
     </task>
     <servers />
   </component>

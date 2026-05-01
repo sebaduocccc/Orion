@@ -101,6 +101,8 @@ services:
       - user-service
       - post-service
       - media-service
+    environment:
+      FRONTEND_URL: http://${HOST_IP}:5173
 
   orion-app:
     build:
@@ -113,6 +115,8 @@ services:
       - /app/node_modules
     depends_on:
       - api-gateway
+    environment:
+      BACKEND_API_URL: http://${HOST_IP}:8000
 #  app:
 #    build: .
 #    container_name: orion_app

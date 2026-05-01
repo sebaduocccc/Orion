@@ -15,6 +15,7 @@ spring:
               '[/**]': ## aplica a todas las rutas
                 allowed-origins:
                   - "http://localhost:5173" ## el puerto de la app react
+                  - "${FRONTEND_URL}"
                 allowed-methods:
                   - GET
                   - POST

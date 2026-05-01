@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+const API_BASE_URL = import.meta.env.BACKEND_API_URL;
 const Login = () => {
 
 
@@ -18,11 +18,11 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault(); // Evita que la página se recargue al enviar el formulario
         setError(null); // Resetea el error antes de intentar iniciar sesión
-    
+        
         try{
-
+            //'http://localhost:8000/api/auth/login'
             // ACA SE HACE LA LLAMADA A LA API PARA INICIARR SESION
-            const response = await fetch('http://localhost:8000/api/auth/login', {
+            const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
