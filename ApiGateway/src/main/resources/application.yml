@@ -30,8 +30,7 @@ spring:
             - id: usuario-service
               uri: http://user-service:9090
               predicates:
-                - Path=/api/usuarios/**
-                - Path=/api/auth/**
+                - Path=/api/usuarios/**, /api/auth/**
 
             - id: post-service
               uri: http://post-service:9091

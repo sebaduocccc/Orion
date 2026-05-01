@@ -22,7 +22,7 @@ const Login = () => {
         try{
 
             // ACA SE HACE LA LLAMADA A LA API PARA INICIARR SESION
-            const response = await fetch('http://localhost:9090/api/auth/login', {
+            const response = await fetch('http://localhost:8000/api/auth/login', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

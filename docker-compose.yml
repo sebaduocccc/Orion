@@ -101,6 +101,18 @@ services:
       - user-service
       - post-service
       - media-service
+
+  orion-app:
+    build:
+      context: ./orion-app
+    container_name: orion-app
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./orion-app:/app
+      - /app/node_modules
+    depends_on:
+      - api-gateway
 #  app:
 #    build: .
 #    container_name: orion_app

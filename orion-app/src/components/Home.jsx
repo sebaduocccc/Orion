@@ -22,7 +22,7 @@ const Home = () => {
 
         try {
         
-            const response = await fetch('http://localhost:9091/api/posts', {
+            const response = await fetch('http://localhost:8000/api/posts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
