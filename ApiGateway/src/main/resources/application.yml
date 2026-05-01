@@ -1,0 +1,39 @@
+server:
+  port: 8000
+
+spring:
+  application:
+    name: ApiGateway
+
+  cloud:
+    gateway:
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOrigins: "http://localhost:5173"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+      server:
+        webflux:
+          routes:
+            - id: usuario-service
+              uri: http://localhost:9090
+              predicates:
+                - Path=/api/usuarios/**
+                - Path=/api/auth/**
+
+
+            - id: post-service
+              uri: http://localhost:9091
+              predicates:
+                - Path=/api/posts/**
+
+            - id: media-service
+              uri: http://localhost:9093
+              predicates:
+                - Path=/api/media/**

@@ -1,14 +1,96 @@
+import { useState } from "react";
 import NavBar from "./Navbar";
 const Home = () => {
+
+
+    const [contentPost, setContentPost] = useState(''); // Estado para almacenar el contenido de un post
+    const [error, setError] = useState(null); // Estado para almacenar errores
+    const [success, setSuccess] = useState(false); // Estado para almacenar mensajes de éxito
+
+
+    const handlePost = async (e) => {
+        e.preventDefault(); // Evita que la página se recargue al enviar el formulario
+        setError(null); // Resetea el error antes de intentar crear un post
+        setSuccess(false); // Resetea el éxito antes de intentar crear un post
+
+        const token = localStorage.getItem('token'); // Obtiene el token del almacenamiento local
+
+        if (!token){
+            setError('No estas autenticado. Por favor inicia sesión de nuevo.'); // Si no hay token, muestra un mensaje de error
+            return;
+        }
+
+        try {
+        
+            const response = await fetch('http://localhost:9091/api/posts', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}` // Agrega el token en el encabezado de autorización
+                },
+                body: JSON.stringify({ content: contentPost, mediaUrl: null}) // Envía el contenido del post en el cuerpo de la solicitud
+            });
+        
+            if (!response.ok) {
+                throw new Error('Error al crear el post'); // Si la respuesta no es OK, se lanza un error
+            }
+
+
+            // si todo sale bien entonces
+
+            setContentPost(''); // Limpia el campo de contenido del post
+            setSuccess(true); // Muestra un mensaje de éxito
+
+            // en el futuro se recargara el listado de posts para mostrar el nuevo post creado
+        } catch (err) {
+            setError(err.message); // Si hay un error, se muestra el mensaje de error en la interfaz
+        }
+    };
+
+
 
     return (
 
         <div>
             <NavBar />
-            
+
             <div className="container mt-5">
-                <h1>Bienvenido a la página de inicio</h1>
-                <p>Esta es la página principal de tu aplicación.</p>
+                <div className="row justify-content-center">
+                    <div className="col-md-8">
+
+                        {/* Formulario para crear un nuevo post */}
+                        <div className="card shadow-sm mb-4">
+                            <div className="card-body">
+                                <form onSubmit={handlePost}>
+
+                                    <div className="mb-3">
+                                        <textarea
+                                        className="form-control"
+                                        rows="3"
+                                        placeholder="¿Qué estás pensando?"
+                                        value={contentPost}
+                                        onChange={(e) => setContentPost(e.target.value)} // Actualiza el estado del contenido del post al escribir
+                                        required
+                                        >
+                                        </textarea>
+                                    </div>
+
+                                    <div className="d-flex justify-content-end">
+                                        <button type="submit" className="btn btn-primary">Publicar</button>
+                                    </div>
+
+                                </form>
+
+                                {error && <div className="alert alert-danger mt-3">{error}</div>} {/* Muestra el mensaje de error si existe */}
+                                {success && <div className="alert alert-success mt-3">Post creado exitosamente.</div>} {/* Muestra el mensaje de éxito si existe */}
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+
             </div>
         </div>
 

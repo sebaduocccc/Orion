@@ -9,6 +9,7 @@
         <option value="$PROJECT_DIR$/Usuario_Service/pom.xml" />
         <option value="$PROJECT_DIR$/Notificacion_Service/pom.xml" />
         <option value="$PROJECT_DIR$/MediaService/pom.xml" />
+        <option value="$PROJECT_DIR$/ApiGateway/pom.xml" />
       </list>
     </option>
     <option name="ignoredFiles">

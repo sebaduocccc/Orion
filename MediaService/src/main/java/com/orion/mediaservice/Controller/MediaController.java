@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/media")
+@CrossOrigin(origins = "http://localhost:5173") // habilitar React js
 public class MediaController {
 
     @Autowired

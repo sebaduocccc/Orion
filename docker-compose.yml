@@ -15,6 +15,7 @@ services:
       timeout: 20s
       retries: 10
 
+
 #  zookeeper:
 #    image: confluentinc/cp-zookeeper:7.4.4
 #    container_name: zookeeper
@@ -90,6 +91,16 @@ services:
       MEDIA_STORAGE_LOCATION: /app/media_data
     volumes:
       - ./media_volumen:/app/media_data
+
+
+  api-gateway:
+    build: ./ApiGateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      - user-service
+      - post-service
+      - media-service
 #  app:
 #    build: .
 #    container_name: orion_app
