@@ -5,7 +5,7 @@ const NavBar = () => {
     <nav className="navbar navbar-dark bg-dark mb-4">
         <div className="container">
             <a className="navbar-brand" href="/">
-                My App
+                Orion
             </a>
         </div>
     </nav>

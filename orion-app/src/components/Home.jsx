@@ -1,6 +1,5 @@
 import { useState } from "react";
 import NavBar from "./Navbar";
-const API_BASE_URL = import.meta.env.BACKEND_API_URL;
 const Home = () => {
 
 
@@ -21,12 +20,9 @@ const Home = () => {
             return;
         }
 
-        
-
         try {
-            // `${BACKEND_API_URL}/api/auth/login`
-            //'http://localhost:8000/api/posts'
-            const response = await fetch(`${API_BASE_URL}/api/posts`, {
+        
+            const response = await fetch('http://localhost:8000/api/posts', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
