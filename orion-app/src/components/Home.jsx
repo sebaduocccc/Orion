@@ -1,11 +1,52 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NavBar from "./Navbar";
+import Post from "./Post";
 const Home = () => {
 
 
     const [contentPost, setContentPost] = useState(''); // Estado para almacenar el contenido de un post
     const [error, setError] = useState(null); // Estado para almacenar errores
     const [success, setSuccess] = useState(false); // Estado para almacenar mensajes de éxito
+
+
+    const [publicaciones, SetPublicaciones] = useState([]);
+
+
+    const fetchPosts = async () => {
+        const token = localStorage.getItem('token');
+        if (!token) return;
+
+        try{
+            // get a la api de posts
+            const response = await fetch('http://localhost:8000/api/posts',{
+                method: 'GET',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (response.ok){
+
+                // se convierte la respuesta de la api
+                // en un objeto json con todas las publicaciones
+                // recuperadas
+                const data = await response.json();
+
+                SetPublicaciones(data.reverse());
+            }
+        } catch (error){
+            console.error("Error al cargar el feed: ", error)
+        }
+    };
+
+    // useEffect ejecuta la funcion fetchPosts() solo
+    // una vez al cargar la pagina
+    useEffect(() => {
+        fetchPosts();
+    },[]); // arreglo [] vacio para decirle que ejecute solo al montar el componente
+
+    
 
 
     const handlePost = async (e) => {
@@ -86,6 +127,30 @@ const Home = () => {
                             </div>
                         </div>
 
+
+                        <h5 className="text-muted mb-3">Ultimas publicaciones</h5>
+
+                        {publicaciones.length === 0 ?(
+                            <p className="text-center text-muted mt-5">
+                                No hay publicaciones.
+                            </p>
+                        ) : (
+                            publicaciones.map((post) => (
+                                <Post
+                                key={post.id}
+
+                                autorID={post.userid}
+                                contenido={post.content}
+                                />
+                            ))
+                        )}
+
+
+
+
+                        <div>
+                            <Post/>
+                        </div>
 
                     </div>
                 </div>
