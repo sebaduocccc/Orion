@@ -2,10 +2,7 @@ CREATE DATABASE usuario_db;
 CREATE DATABASE follows_db;
 CREATE DATABASE media_db;
 CREATE DATABASE feed_db;
-CREATE DATABASE notification_db;
 CREATE DATABASE interaction_db;
-CREATE DATABASE chat_db;
-CREATE DATABASE search_db;
 CREATE DATABASE admin_db;
 
 -- USE usuariod_db;

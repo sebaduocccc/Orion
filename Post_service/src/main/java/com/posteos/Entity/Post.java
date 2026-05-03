@@ -1,38 +1,35 @@
 package com.posteos.Entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
-
-
-
 import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @Data
-@Table(name="post" , indexes = {
+@Table(name = "post", indexes = {
         @Index(name = "idx_post_userid", columnList = "userid")
 })
 public class Post {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @Column( length = 13,nullable = false)
 
+    @Column(nullable = false)
     private Long userid;
-    @NotBlank(message = "CONTENIDO REQUERIDO")
+
+    @Column(nullable = false, length = 500)
     private String content;
+
+    @Column(length = 255)
     private String mediaUrl;
 
-    @Column(nullable = false, updatable = false)
+    @Column(name = "creado_el", nullable = false, updatable = false)
     @CreationTimestamp
-    private LocalDateTime creado_el;
-
+    private LocalDateTime creadoEl;
 }

@@ -35,7 +35,7 @@ public class SecurityConfig {
                     auth.requestMatchers(HttpMethod.OPTIONS,"/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/media/avatar/**").permitAll();
                     auth.requestMatchers(HttpMethod.GET, "/api/media/post/**").permitAll();
-                    auth.anyRequest().authenticated();
+                    auth.anyRequest().permitAll();
                 })
 
                 .addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class)
