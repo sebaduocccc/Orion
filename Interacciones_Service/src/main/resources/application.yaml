@@ -1,13 +1,11 @@
 spring:
   application:
     name: Interacciones
-
   datasource:
     url: jdbc:mysql://localhost:3306/interacciones_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:root}
     driver-class-name: com.mysql.cj.jdbc.Driver
-
   jpa:
     hibernate:
       ddl-auto: validate
@@ -16,8 +14,10 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
         format_sql: true
-
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
     default-schema: interacciones_db
+
+server:
+  port: 6767
