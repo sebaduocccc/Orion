@@ -5,13 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ApiGateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ApiGateway/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MediaService/src/main/java/com/orion/mediaservice/Controller/MediaController.java" beforeDir="false" afterPath="$PROJECT_DIR$/MediaService/src/main/java/com/orion/mediaservice/Controller/MediaController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Controller/ControllerPost.java" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Controller/ControllerPost.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/AuthController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/AuthController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/DTO/PostMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/DTO/PostMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/DTO/PostRequestDTO.java" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/DTO/PostRequestDTO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Entity/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/Post_service/src/main/java/com/posteos/Entity/Post.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,17 +72,17 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "react-app",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ssaav/Proyectos/Orion",
+    "last_opened_file_path": "/home/akomi/Proyectos/Orion",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
+    "project.structure.last.edited": "Project",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.configurations.included.in.services": "true",
@@ -171,6 +169,7 @@
       <workItem from="1777562322648" duration="3674000" />
       <workItem from="1777568919319" duration="8201000" />
       <workItem from="1777603867671" duration="8944000" />
+      <workItem from="1777900384560" duration="1586000" />
     </task>
     <servers />
   </component>

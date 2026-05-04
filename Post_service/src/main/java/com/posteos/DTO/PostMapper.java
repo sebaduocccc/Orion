@@ -26,7 +26,7 @@ public class PostMapper {
         dto.setContent(posteo.getContent());
         dto.setUserid(posteo.getUserid());
         dto.setMediaUrl(posteo.getMediaUrl());
-        dto.setCreado_el(posteo.getCreado_el());
+        dto.setCreado_el(posteo.getCreadoEl());
         return dto;
 
     }

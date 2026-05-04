@@ -14,7 +14,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class PostRequestDTO {
-    @NotNull(message = "El userId es requerido")
     private Long userid;
 
     @NotBlank(message = "El contenido es requerido")

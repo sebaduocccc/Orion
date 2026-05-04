@@ -20,7 +20,7 @@ public class Post {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private Long userid;
 
     @Column(nullable = false, length = 500)
@@ -29,7 +29,7 @@ public class Post {
     @Column(length = 255)
     private String mediaUrl;
 
-    @Column(name = "creado_el", nullable = false, updatable = false)
+    @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime creadoEl;
 }
