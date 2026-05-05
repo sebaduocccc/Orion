@@ -5,21 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/.gitattributes" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/.mvn/wrapper/maven-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/mvnw" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/mvnw.cmd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/pom.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/ComentariosApplication.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Entity/Comentario.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/src/main/resources/application.yaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Comentario_Service/src/test/java/com/Comentarios/ComentariosApplicationTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Repository/RepositoryComentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Repository/RepositoryComentario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Service/ServiceComentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Service/ServiceComentario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -201,7 +189,7 @@
       <workItem from="1777603867671" duration="8944000" />
       <workItem from="1777900384560" duration="1586000" />
       <workItem from="1777961538911" duration="495000" />
-      <workItem from="1777996454104" duration="561000" />
+      <workItem from="1777996454104" duration="982000" />
     </task>
     <servers />
   </component>

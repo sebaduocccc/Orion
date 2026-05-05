@@ -10,7 +10,7 @@ import java.util.List;
 public interface RepositoryComentario extends JpaRepository<Comentario, Long> {
     public long countByPostId(Long postId);
 
-    public List<ResponseComentario> findByPostId(Long postId);
-    public List<ResponseComentario> findByUserId(Long userId);
+    List<Comentario> findByPostId(Long postId);
+    List<Comentario> findByUserId(Long userId);
 }
 
