@@ -1,0 +1,54 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-comentario
+      author: tu-nombre
+      changes:
+        - createTable:
+            tableName: comentario
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+
+              - column:
+                  name: postId
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: userId
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: contenido
+                  type: VARCHAR(300)
+                  constraints:
+                    nullable: false
+
+              - column:
+                  name: creado_el
+                  type: DATETIME
+                  defaultValueComputed: CURRENT_TIMESTAMP
+                  constraints:
+                    nullable: false
+
+        - createIndex:
+            indexName: idx_comentario_postid
+            tableName: comentario
+            columns:
+              - column:
+                  name: postId
+
+        - createIndex:
+            indexName: idx_comentario_userid
+            tableName: comentario
+            columns:
+              - column:
+                  name: userId
