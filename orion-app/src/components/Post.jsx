@@ -1,15 +1,15 @@
 
-const Post = ({ autorId, contenido}) => {
+const Post = ({ post }) => {
     return(
 
         <div>
             <div className="card">
                 <div className="card-header font-weight-bold">
-                    @{autorId || 'usuario'}
-                </div>
+                    {post.userId ? post.autorUsername : `Usuario ${post.autorID}`} {/* Muestra el nombre de usuario si está disponible, de lo contrario muestra el ID del autor */}
+                    </div>
                 <div className="card-body">
                     <p className="card-text">
-                        {contenido}
+                        {post.content}
                     </p>
                     </div>
                 <div className="card-footer">

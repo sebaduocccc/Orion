@@ -53,7 +53,7 @@ public class ServicePost {
     @Transactional(readOnly = true)
     public List<PostResponseDTO> buscarUser(Long id) {
         log.info("Buscando posts del usuario id={}", id);
-        return repo.findByUserid(id)
+        return repo.findByUserId(id)
                 .stream()
                 .map(mapper::response)
                 .collect(Collectors.toList());

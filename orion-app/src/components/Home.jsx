@@ -141,8 +141,8 @@ const Home = () => {
                                 <Post
                                 key={post.id}
 
-                                autorID={post.userid}
-                                contenido={post.content}
+                                userId={post.userId}
+                                content={post.content}
                                 />
                             ))
                         )}
