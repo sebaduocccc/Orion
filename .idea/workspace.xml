@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Repository/RepositoryComentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Repository/RepositoryComentario.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Service/ServiceComentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Service/ServiceComentario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Controller/ControllerComentario.java" beforeDir="false" afterPath="$PROJECT_DIR$/Comentario_Service/src/main/java/com/Comentarios/Controller/ControllerComentario.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,12 +30,12 @@
     &quot;assignee&quot;: &quot;sebaduocccc&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "https://github.com/sebaduocccc/Orion",
-    "accountId": "f8d3918d-2aaf-4588-b8ac-2a1589227b41"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/sebaduocccc/Orion&quot;,
+    &quot;accountId&quot;: &quot;f8d3918d-2aaf-4588-b8ac-2a1589227b41&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -75,7 +74,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "ComentariosMicro",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
