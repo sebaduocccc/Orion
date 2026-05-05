@@ -85,6 +85,11 @@ public class UsuarioService {
                 .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id"));
     }
 
+    public UsuarioPerfil obtenerUsuarioPerfilPorUsername(String username){
+        return userProfileRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el username"));
+    }
+
 
     // UPDATE
 
