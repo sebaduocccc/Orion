@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 const Login = () => {
 
@@ -91,6 +91,8 @@ const Login = () => {
                                         required
                                     />
                                 </div>
+
+                                <Link to="/register" className="d-block mb-3">Regístrate aquí</Link>
 
                                 <button type="submit" className="btn btn-primary w-100">Iniciar Sesión</button>
                             </form>

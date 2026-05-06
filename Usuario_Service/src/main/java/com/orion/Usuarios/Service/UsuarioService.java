@@ -52,12 +52,12 @@ public class UsuarioService {
         usuario.setRoles(roles);
 
         Usuario userGuardado = usuarioRepository.save(usuario);
-
-        UsuarioPerfil perfilVacio = new UsuarioPerfil();
-        perfilVacio.setUsuario(userGuardado);
-        perfilVacio.setNombreDisplay(userGuardado.getUsername());
-        perfilVacio.setAvatarUrl("/api/media/avatar/default_avatar.png");
-        userProfileRepository.save(perfilVacio);
+//
+//        UsuarioPerfil perfilVacio = new UsuarioPerfil();
+//        perfilVacio.setUsuario(userGuardado);
+//        perfilVacio.setNombreDisplay(userGuardado.getUsername());
+//        perfilVacio.setAvatarUrl("/api/media/avatar/default_avatar.png");
+//        userProfileRepository.save(perfilVacio);
 
         return userGuardado;
 

@@ -1,4 +1,5 @@
 import { useState, useEffect, use} from "react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Post = ({ autorId, contenido }) => {
 
@@ -32,6 +33,8 @@ const Post = ({ autorId, contenido }) => {
         }
     };
 
+
+
     if (autorId) {
         fetchNombreUsuario();
     }
@@ -43,7 +46,9 @@ const Post = ({ autorId, contenido }) => {
         <div>
             <div className="card">
                 <div className="card-header font-weight-bold">
+                    <Link to={`/profiles/${autorId}`} className="text-decoration-none text-dark">
                     @{nombreUsuario} {/* Muestra el ID del autor o un mensaje si no está disponible */}
+                    </Link>
                     </div>
                 <div className="card-body">
                     <p className="card-text">

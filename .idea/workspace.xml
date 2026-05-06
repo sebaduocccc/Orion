@@ -7,7 +7,11 @@
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/orion-app/src/components/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/orion-app/src/components/Register.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/DTO/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/DTO/RegisterRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Security/JwtAuthenticationFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -205,7 +209,7 @@
       <workItem from="1777900384560" duration="1586000" />
       <workItem from="1777961538911" duration="495000" />
       <workItem from="1777996454104" duration="982000" />
-      <workItem from="1778036503446" duration="5346000" />
+      <workItem from="1778036503446" duration="8638000" />
     </task>
     <servers />
   </component>

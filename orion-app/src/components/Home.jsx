@@ -158,7 +158,7 @@ const Home = () => {
 
 
                         <div>
-                            <Post/>
+                            
                         </div>
 
                     </div>

@@ -127,7 +127,7 @@ const Profile = () => {
                             style={{width: '100px', height: '100px', objectFit:'cover'}}
                             />
                             <h3 className="card-title fw-bold">@{perfil.username}</h3>
-                            <p className="card-text text-muted">{perfil.bio || 'Sin biografía'}</p>
+                            <p className="card-text text-muted">{perfil.biografia || 'Sin biografía'}</p>
                             <p className="card-text text-muted">Ubicacion: {perfil.ubicacion || 'No especificada'}</p>
                         </div>
                             

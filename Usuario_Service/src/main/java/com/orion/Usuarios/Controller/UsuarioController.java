@@ -24,15 +24,21 @@ public class UsuarioController {
     @PostMapping("/registro")
     public ResponseEntity<RegisterResponse> registrar(@RequestBody RegisterRequest registerRequest) {
         Usuario user = new Usuario();
-        UsuarioPerfil usuarioPerfil = new UsuarioPerfil();
-        usuarioPerfil.setBiografia(registerRequest.getBiografia());
-        usuarioPerfil.setAvatarUrl(registerRequest.getAvatarUrl());
-        usuarioPerfil.setUbicacion(registerRequest.getUbicacion());
         user.setUsername(registerRequest.getUsername());
         user.setEmail(registerRequest.getEmail());
         user.setPassword(registerRequest.getPassword());
+
+
+        UsuarioPerfil usuarioPerfil = new UsuarioPerfil();
+        usuarioPerfil.setBiografia(registerRequest.getBiografia());
+        usuarioPerfil.setAvatarUrl("/api/media/avatar/default_avatar.png");
+        usuarioPerfil.setUbicacion(registerRequest.getUbicacion());
+
+        usuarioPerfil.setUsuario(user);
         user.setPerfil(usuarioPerfil);
+
         Usuario userRegistrado = usuarioService.registrarUsuario(user);
+
         return ResponseEntity.ok(new RegisterResponse(
                 userRegistrado.getId(),
                 userRegistrado.getUsername(),

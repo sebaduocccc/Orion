@@ -75,7 +75,7 @@ services:
       - "5173:5173"
     volumes:
       - ./orion-app:/app
-      - /app/node_modules
+      - node_modules_orion:/app/node_modules
     depends_on:
       - api-gateway
     environment:
@@ -83,6 +83,7 @@ services:
 
 volumes:
   orion_db_data:
+  node_modules_orion:
 
 #  app:
 #    build: .
