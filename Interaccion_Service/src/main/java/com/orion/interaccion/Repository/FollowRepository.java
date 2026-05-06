@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface FollowRepository extends JpaRepository<Like, Long> {
+public interface FollowRepository extends JpaRepository<Follow, Long> {
 
     // cuantos seguidores tiene el usuario X
     long countBySeguidoId(Long seguidoId);
