@@ -1,5 +1,53 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+
+
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [biografia, setBiografia] = useState('');
+    const [avatarUrl, setAvatarUrl] = useState('');
+    const [ubicacion, setUbicacion] = useState('');
+
+    const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
+
+
+
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // no recargue pagina al mandar el formulario
+        setError(null); // resetea el error antes de intentar registrar
+
+        try{
+
+            const response = await fetch('http://localhost:8000/api/usuarios/registro', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ username, email, password, biografia, ubicacion, avatarUrl })
+            });
+
+            if (!response.ok) {
+                throw new Error('Registro fallido'); // manda mensaje de error en vivo.
+            }
+
+            const data = await response.json(); // Se obtiene la respuesta de la API en formato JSON
+            navigate('/login'); // Redirige a la página de login después del registro exitoso
+
+
+        } catch (err) {
+            setError(err.message); // Si hay un error, se muestra el mensaje de error en la interfaz
+        }
+
+
+    };
+
+
 
 
     return (
@@ -14,11 +62,14 @@ const Register = () => {
 
                         <div className="card-body">
                             <h2>Register</h2>
-
-                            <div className="mb-3">
+                            {error && <div className="alert alert-danger">{error}</div>} {/* Muestra el mensaje de error si existe */}
+                            <form onSubmit={handleSubmit}>
+                                <div className="mb-3">
                                 <label className="form-label">Username</label>
                                 <input type="text" 
                                        className="form-control"
+                                       value={username}
+                                       onChange={(e) => setUsername(e.target.value)}
                                        required
                                 />
                             </div>
@@ -27,6 +78,8 @@ const Register = () => {
                                 <label className="form-label">Email</label>
                                 <input type="text" 
                                        className="form-control"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
                                        required
                                 />
                             </div>
@@ -35,6 +88,8 @@ const Register = () => {
                                 <label className="form-label">Contraseña</label>
                                 <input type="text" 
                                        className="form-control"
+                                       value={password}
+                                       onChange={(e) => setPassword(e.target.value)}
                                        required
                                 />
                             </div>
@@ -43,6 +98,8 @@ const Register = () => {
                                 <label className="form-label">Confirmar Contraseña</label>
                                 <input type="text" 
                                        className="form-control"
+                                       value={confirmPassword}
+                                       onChange={(e) => setConfirmPassword(e.target.value)}
                                        required
                                 />
                             </div>
@@ -50,6 +107,8 @@ const Register = () => {
                             <div className="mb-3">
                                 <label className="form-label">Biografia</label>
                                 <textarea className="form-control"
+                                          value={biografia}
+                                          onChange={(e) => setBiografia(e.target.value)}
                                 />
                             </div>
 
@@ -57,11 +116,16 @@ const Register = () => {
                                 <label className="form-label">Ubicacion</label>
                                 <input type="text" 
                                        className="form-control"
+                                       value={ubicacion}
+                                       onChange={(e) => setUbicacion(e.target.value)}
                                        required
                                 />
                             </div>
 
-                            <button className="btn btn-primary w-100">Register</button>
+                            <button type="submit" className="btn btn-primary w-100">Register</button>
+                            </form>
+
+                            
                         </div>
 
                         
@@ -71,6 +135,6 @@ const Register = () => {
             </div>
         </div>
     );
-}
+};
 
 export default Register;
