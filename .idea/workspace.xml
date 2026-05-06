@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Comentario_Service/src/main/resources/application.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/Comentario_Service/src/main/resources/application.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -35,12 +34,12 @@
     &quot;assignee&quot;: &quot;sebaduocccc&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/sebaduocccc/Orion&quot;,
-    &quot;accountId&quot;: &quot;f8d3918d-2aaf-4588-b8ac-2a1589227b41&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "git@github.com:sebaduocccc/Orion.git",
+    "accountId": "cca39fb5-aae3-4568-b6d9-c91061d2cb0a"
   }
-}</component>
+}]]></component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -79,11 +78,11 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "detallesComentario",
+    "git-widget-placeholder": "main",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/mateon/Documents/orion/Orion/Comentario_Service",
+    "last_opened_file_path": "C:/Users/ssaav/Proyectos/Orion",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -154,7 +153,7 @@
       </method>
     </configuration>
     <configuration name="PosteosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
-      <module name="PosteoService" />
+      <module name="Posteos" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.posteos.PosteosApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -197,6 +196,7 @@
       <workItem from="1777900384560" duration="1586000" />
       <workItem from="1777961538911" duration="495000" />
       <workItem from="1777996454104" duration="982000" />
+      <workItem from="1778036503446" duration="26000" />
     </task>
     <servers />
   </component>
