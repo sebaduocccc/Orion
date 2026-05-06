@@ -5,12 +5,33 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bcbfa88e-6d3a-43e8-852f-2816d117b34d" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Config/SecurityConfig.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Config/SecurityConfig.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Controller/UsuarioController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/DTO/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/DTO/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Security/JwtAuthenticationFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Security/JwtAuthenticationFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" beforeDir="false" afterPath="$PROJECT_DIR$/Usuario_Service/src/main/java/com/orion/Usuarios/Service/UsuarioService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/.mvn/wrapper/maven-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/Dockerfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/mvnw" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/mvnw.cmd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Config/SecurityConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Controller/ControllerInteraccion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Dto/InteraccionMapper.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Dto/InteraccionRequestDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Dto/InteraccionResponseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Entity/Interaccion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Exception/GlobalExceptionHandler.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Exception/ResourceNotFoundException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/InteraccionesApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Repository/Repository_Interaccion.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Security/JwtValidationFIlter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/java/com/Interacciones/Interacciones/Service/InteraccionService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/resources/application.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/resources/db/changelog/changes/001-create-interaccion.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/main/resources/db/changelog/db.changelog-master.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Interacciones_Service/src/test/java/com/Interacciones/Interacciones/InteraccionesApplicationTests.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -40,12 +61,12 @@
     &quot;assignee&quot;: &quot;sebaduocccc&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "url": "git@github.com:sebaduocccc/Orion.git",
-    "accountId": "cca39fb5-aae3-4568-b6d9-c91061d2cb0a"
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:sebaduocccc/Orion.git&quot;,
+    &quot;accountId&quot;: &quot;cca39fb5-aae3-4568-b6d9-c91061d2cb0a&quot;
   }
-}]]></component>
+}</component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
@@ -84,11 +105,11 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
     "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
-    "git-widget-placeholder": "react-app",
+    "git-widget-placeholder": "sebaInteraccion",
     "ignore.virus.scanning.warn.message": "true",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ssaav/Proyectos/Orion",
+    "last_opened_file_path": "/home/akomi/Proyectos/Orion/Interaccion_Service",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -137,9 +158,38 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="ApiGateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.orion.apigateway.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ComentariosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Comentarios" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.Comentarios.ComentariosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ComentariosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Comentarios" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.Comentarios.ComentariosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InteraccionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Interaccion_Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.orion.interaccion.InteraccionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InteraccionesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Interacciones" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.Interacciones.Interacciones.InteraccionesApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -158,6 +208,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MediaServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="MediaService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.orion.mediaservice.MediaServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="NotificacionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="Notificacion_Service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.Notification.Notificacion.NotificacionApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="NotificacionApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Notificacion_Service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.Notification.Notificacion.NotificacionApplication" />
@@ -166,8 +230,23 @@
       </method>
     </configuration>
     <configuration name="PosteosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="PosteoService" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.posteos.PosteosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PosteosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="Posteos" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="com.posteos.PosteosApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UsuariosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="Usuarios" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.orion.Usuarios.UsuariosApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -210,6 +289,7 @@
       <workItem from="1777961538911" duration="495000" />
       <workItem from="1777996454104" duration="982000" />
       <workItem from="1778036503446" duration="8638000" />
+      <workItem from="1778050092001" duration="2033000" />
     </task>
     <servers />
   </component>

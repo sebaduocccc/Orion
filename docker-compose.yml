@@ -57,6 +57,17 @@ services:
     volumes:
       - ./media_volumen:/app/media_data
 
+  interaccion-service:
+    build: ./Interaccion_Service
+    ports:
+      - "9095:9095"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/interaction_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
 
   api-gateway:
     build: ./ApiGateway
