@@ -1,9 +1,46 @@
 import { useState, useEffect, use} from "react";
 import { Link, useNavigate } from "react-router-dom";
 
-const Post = ({ autorId, contenido }) => {
+const Post = ({ postId, autorId, contenido }) => {
 
     const [nombreUsuario, setNombreUsuario] = useState('Cargando...'); // Estado para almacenar el nombre de usuario del autor
+    
+
+    const [likesCount, setLikesCount] = useState(0); // Estado para almacenar el número de likes
+
+    useEffect(() => {
+
+        const fetchLikesCount = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) return;
+
+            try {
+
+                const response = await fetch(`http://localhost:8000/api/interacciones/post/${postId}/like/count`,{
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    setLikesCount(data); // Actualiza el estado con el número de likes
+                } else {
+                    console.error('Error al cargar el número de likes: ', response.status);
+                }
+
+            } catch (error) {
+                console.error('Error al cargar el número de likes: ', error);
+        }
+
+    };
+
+    fetchLikesCount();
+}, [postId]); // El efecto se ejecuta cada vez que el postId cambia
+
+
+
 
     useEffect(() => { // useEffect para cargar el nombre de usuario del autor cuando el componente se monta
         const fetchNombreUsuario = async () => {
@@ -56,7 +93,7 @@ const Post = ({ autorId, contenido }) => {
                     </p>
                     </div>
                 <div className="card-footer">
-                    <button className="btn btn-primary">Like</button>
+                    <span>{likesCount} likes</span>
                 </div>
             </div>
         </div>

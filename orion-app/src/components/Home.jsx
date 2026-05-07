@@ -145,7 +145,7 @@ const Home = () => {
                                 <div className="mt-3">
                                 <Post
                                 key={post.id}
-
+                                postId={post.id}
                                 autorId={post.userId}
                                 contenido={post.content}
                                 

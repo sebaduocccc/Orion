@@ -3,6 +3,7 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import Profile from "./components/Profile";
 import Register from "./components/Register";
+import Test from "./components/Test";
 
 const PrivateRoute = ({ children }) => {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/register" element={<Register />} />
 
 
+
           <Route 
             path="/home"
             element={
@@ -40,6 +42,17 @@ function App() {
               </PrivateRoute>
             }>
             </Route>
+
+
+            <Route
+            path="/tests"
+            element={
+              <PrivateRoute>
+                <Test />
+              </PrivateRoute>
+            }>
+            </Route>
+            
 
           <Route path="*" element={<Navigate to="/login" />} /> {/*Redirige cualquier ruta no definida a /login*/}  
   

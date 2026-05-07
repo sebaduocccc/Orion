@@ -129,7 +129,26 @@ const Profile = () => {
                             <h3 className="card-title fw-bold">@{perfil.username}</h3>
                             <p className="card-text text-muted">{perfil.biografia || 'Sin biografía'}</p>
                             <p className="card-text text-muted">Ubicacion: {perfil.ubicacion || 'No especificada'}</p>
+
+                            <div className="row">
+                                <div className="col">
+                                    <h6 className="text-muted mb-0">Publicaciones</h6>
+                                    <p className="fw-bold">{posts.length}</p>
+                                </div>
+                                <div className="col">
+                                    <h6 className="text-muted mb-0">Seguidores</h6>
+                                    <p className="fw-bold">{perfil.seguidores || 0}</p>
+                                </div>
+                                <div className="col">
+                                    <h6 className="text-muted mb-0">Siguiendo</h6>
+                                    <p className="fw-bold">{perfil.siguiendo || 0}</p>
+                                </div>
+                            </div>
+
+                            
                         </div>
+
+
                             
 
 
@@ -148,6 +167,7 @@ const Profile = () => {
                                 <div className="mt-3">
                                 <Post
                                 key={post.id}
+                                postId={post.id}
                                 autorId={post.userId}
                                 contenido={post.content}
                                 />
