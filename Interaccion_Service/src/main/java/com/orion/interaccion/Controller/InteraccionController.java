@@ -21,6 +21,8 @@ public class InteraccionController {
     @Autowired
     private FollowService followService;
 
+
+    // boton para dar like a un post
     @PostMapping("/post/{postId}/like")
     public ResponseEntity<Boolean> toggleLike(@PathVariable Long postId){
 
@@ -32,6 +34,7 @@ public class InteraccionController {
     }
 
 
+    // boton para obtener un numero con el total de likes
     @GetMapping("/post/{postId}/like/count")
     public ResponseEntity<Long> contarLikes(@PathVariable Long postId){
         return ResponseEntity.ok(interaccionService.obtenerTotalLikes(postId));

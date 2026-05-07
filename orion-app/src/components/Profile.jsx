@@ -13,6 +13,9 @@ const Profile = () => {
     const [cargando, setCargando] = useState(true); // Estado para indicar si los datos están cargando
     const [error, setError] = useState(false); // Estado para almacenar errores
     const [posts, setPosts] = useState([]); // Estado para almacenar los posts del usuario
+    const [seguidores, setSeguidores] = useState(0); // Estado para almacenar el número de seguidores
+
+    const [isFollowing, setIsFollowing] = useState(false);
 
     useEffect(() => { // useEffect para cargar los datos del perfil cuando el componente se monta
 
@@ -81,7 +84,101 @@ const Profile = () => {
         fetchPerfil(); // Llama a la función para cargar los datos del perfil
 
 
+
+        const fetchSeguidores = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) return;
+
+            try {
+                const response = await fetch(`http://localhost:8000/api/interacciones/usuarios/${id}/seguidores/count`,{
+                    method: 'GET',
+                    headers:{
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok){
+                    const data = await response.json();
+                    console.log("Número de seguidores: ", data);
+                    setSeguidores(data); // Actualiza el estado con el número de seguidores
+                } else {
+                    console.error("Error al cargar el número de seguidores: ", response.status);
+                }
+
+            } catch (err) {
+                console.error("Error al cargar el número de seguidores: ", err);
+            }
+
+        };
+
+        fetchSeguidores(); // Llama a la función para cargar el número de seguidores del usuario
+
+
+        const fetchIsFollowing = async () => {
+            const token = localStorage.getItem('token');
+            if (!token) return;
+
+            try {
+
+                const response = await fetch(`http://localhost:8000/api/interacciones/usuarios/${id}/siguiendo`,{
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok){
+                    const data = await response.json();
+                    if(data){
+                        console.log('si sigues a este usuario')
+                    } else {
+                        console.log('no sigues a este usuario')
+                    }
+                    setIsFollowing(data);
+                }
+            } catch (error){
+                console.error('error en el sistema: ', error);
+            }
+
+        };
+
+        fetchIsFollowing();
+
         },    [id]); // El efecto se ejecuta cada vez que el ID cambia
+
+
+        const handleFollowToggle = async () => {
+
+            const token = localStorage.getItem('token');
+
+            if (!token) return;
+
+            try{
+
+                const response = await fetch(`http://localhost:8000/api/interacciones/usuarios/${id}/follow`,{
+                    method: 'POST',
+                    headers:{
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok){
+                    const isNowFollowing = await response.json();
+
+                    setIsFollowing(isNowFollowing)
+
+                    // para actualizar en vivo como sube o baja el contador de seguidores al dejar de seguir
+                    setSeguidores((prev) => isNowFollowing ? prev + 1 : prev - 1);
+                }
+
+
+            } catch (error){
+                console.error('error:', error)
+            }
+        };
 
         if (cargando) {
             return (
@@ -118,7 +215,7 @@ const Profile = () => {
             <div>
                 <NavBar />
 
-                <div className="container mt-5">
+                <div className="container mt-5" style={{width:'800px'}}>
                     <div className="card shadow-sm">
 
                         <div className="card-body text-center py-5">
@@ -132,19 +229,32 @@ const Profile = () => {
 
                             <div className="row">
                                 <div className="col">
-                                    <h6 className="text-muted mb-0">Publicaciones</h6>
+                                    <h6 className="text-muted mb-0">Posts</h6>
                                     <p className="fw-bold">{posts.length}</p>
                                 </div>
                                 <div className="col">
                                     <h6 className="text-muted mb-0">Seguidores</h6>
-                                    <p className="fw-bold">{perfil.seguidores || 0}</p>
+                                    <p className="fw-bold">{seguidores || 0}</p>
                                 </div>
                                 <div className="col">
                                     <h6 className="text-muted mb-0">Siguiendo</h6>
                                     <p className="fw-bold">{perfil.siguiendo || 0}</p>
                                 </div>
+
+                                <div>
+                                    <button 
+                                className={`btn ${isFollowing ? 'btn-outline-danger' : 'btn-primary'} mb-4 px-4`}
+                                onClick={handleFollowToggle}
+                                style={{ borderRadius: '20px' }}
+                            >
+                                {isFollowing ? 'Dejar de seguir' : 'Seguir'}
+                            </button>
+                                </div>
+                                
                             </div>
 
+
+                            
                             
                         </div>
 
@@ -155,7 +265,7 @@ const Profile = () => {
                     </div>
 
 
-                    <div className="container mt-5">
+                    <div className="container mt-5" style={{width:'600px'}}>
                         <h5 className="text-muted mb-3">Publicaciones de {perfil.username}</h5>   
 
                         {posts.length === 0 ? (
@@ -164,9 +274,9 @@ const Profile = () => {
                             </p>
                         ) : (
                             posts.map((post) => (
-                                <div className="mt-3">
+                                <div key={post.id} className="mt-3">
                                 <Post
-                                key={post.id}
+                                
                                 postId={post.id}
                                 autorId={post.userId}
                                 contenido={post.content}
