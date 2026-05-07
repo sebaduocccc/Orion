@@ -1,6 +1,8 @@
 package com.orion.interaccion.Controller;
 
 
+import com.orion.interaccion.Entity.Follow;
+import com.orion.interaccion.Service.FollowService;
 import com.orion.interaccion.Service.InteraccionService;
 import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ public class InteraccionController {
     @Autowired
     private InteraccionService interaccionService;
 
+    @Autowired
+    private FollowService followService;
+
     @PostMapping("/post/{postId}/like")
     public ResponseEntity<Boolean> toggleLike(@PathVariable Long postId){
 
@@ -30,6 +35,38 @@ public class InteraccionController {
     @GetMapping("/post/{postId}/like/count")
     public ResponseEntity<Long> contarLikes(@PathVariable Long postId){
         return ResponseEntity.ok(interaccionService.obtenerTotalLikes(postId));
+    }
+
+
+    // Boton para dar follow a un usuario
+    @PostMapping("/usuarios/{seguidoId}/follow")
+    public ResponseEntity<Boolean> toggleFollow(@PathVariable Long seguidoId){
+        // se obtiene el id del usuario autenticado con la sesión
+        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+
+        boolean isFollowing = followService.toggleFollow(userId,seguidoId);
+        return ResponseEntity.ok(isFollowing);
+    }
+
+
+
+    // Obtener el numero de seguidores que tiene un usuario
+    @GetMapping("/usuarios/{usuarioId}/seguidores/count")
+    public ResponseEntity<Long> getSeguidoresCount(@PathVariable Long usuarioId){
+        return ResponseEntity.ok(followService.obtenerContadorSeguidores(usuarioId));
+    }
+
+    // Obtener el numero de personas que sigue un usuario
+    @GetMapping("/usuarios/{usuarioId}/seguidos/count")
+    public ResponseEntity<Long> getSeguidosCount(@PathVariable Long usuarioId){
+        return ResponseEntity.ok(followService.obtenerContadorSeguidos(usuarioId));
+    }
+
+    // Para el frontend identificar (true o false) si sigues a esa persona ( para mostrar un boton acorde a si la sigues o no )
+    @GetMapping("/usuarios/{seguidoId}/siguiendo")
+    public ResponseEntity<Boolean> checkFollowingStatus(@PathVariable Long seguidoId){
+        Long seguidorId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
+        return ResponseEntity.ok(followService.verificarSiSigue(seguidorId, seguidoId));
     }
 
 
