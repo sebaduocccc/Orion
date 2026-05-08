@@ -27,7 +27,7 @@ const Profile = () => {
 
             try{
 
-                const response = await fetch(`http://localhost:8000/api/posts/usuario/${id}`,{
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/posts/usuario/${id}`,{
                     method: 'GET',
                     headers: {
                         'Authorization' : `Bearer ${token}`,
@@ -58,7 +58,7 @@ const Profile = () => {
 
             try{
 
-                const response = await fetch(`http://localhost:8000/api/usuarios/${id}`,{
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/usuarios/${id}`,{
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -90,7 +90,7 @@ const Profile = () => {
             if (!token) return;
 
             try {
-                const response = await fetch(`http://localhost:8000/api/interacciones/usuarios/${id}/seguidores/count`,{
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/interacciones/usuarios/${id}/seguidores/count`,{
                     method: 'GET',
                     headers:{
                         'Authorization': `Bearer ${token}`,
@@ -121,7 +121,7 @@ const Profile = () => {
 
             try {
 
-                const response = await fetch(`http://localhost:8000/api/interacciones/usuarios/${id}/siguiendo`,{
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/interacciones/usuarios/${id}/siguiendo`,{
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,
@@ -157,7 +157,7 @@ const Profile = () => {
 
             try{
 
-                const response = await fetch(`http://localhost:8000/api/interacciones/usuarios/${id}/follow`,{
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/interacciones/usuarios/${id}/follow`,{
                     method: 'POST',
                     headers:{
                         'Authorization': `Bearer ${token}`,
@@ -215,11 +215,11 @@ const Profile = () => {
             <div>
                 <NavBar />
 
-                <div className="container mt-5" style={{width:'800px'}}>
+                <div className="container mt-5">
                     <div className="card shadow-sm">
 
                         <div className="card-body text-center py-5">
-                            <img src={`http://localhost:8000${perfil.avatarUrl}`}
+                            <img src={`${import.meta.env.VITE_API_BASE_URL}${perfil.avatarUrl}`}
                             className="rounded-circle mb-3 border border-3 border-primary shadow-sm"
                             style={{width: '100px', height: '100px', objectFit:'cover'}}
                             />

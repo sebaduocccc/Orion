@@ -17,7 +17,7 @@ const Post = ({ postId, autorId, contenido }) => {
 
             try {
 
-                const response = await fetch(`http://localhost:8000/api/interacciones/post/${postId}/like/count`,{
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/interacciones/post/${postId}/like/count`,{
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -40,7 +40,6 @@ const Post = ({ postId, autorId, contenido }) => {
     fetchLikesCount();
 
 
-
 }, [postId]); // El efecto se ejecuta cada vez que el postId cambia
 
 
@@ -52,7 +51,7 @@ const handleLikePost = async () => {
 
     try{
 
-        const response = await fetch(`http://localhost:8000/api/interacciones/post/${postId}/like`,{
+        const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/interacciones/post/${postId}/like`,{
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -86,7 +85,7 @@ const handleLikePost = async () => {
 
             try {
 
-                const response = await fetch(`http://localhost:8000/api/usuarios/${autorId}`,{
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/usuarios/${autorId}`,{
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`,

@@ -13,8 +13,7 @@ spring:
             add-to-simple-url-handler-mapping: true
             cors-configurations:
               '[/**]': ## aplica a todas las rutas
-                allowed-origins:
-                  - "http://localhost:5173" ## el puerto de la app react
+                allowed-origin-patterns: "*"
                 allowed-methods:
                   - GET
                   - POST

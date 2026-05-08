@@ -18,7 +18,7 @@ const Home = () => {
 
         try{
             // get a la api de posts
-            const response = await fetch('http://localhost:8000/api/posts',{
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/posts`,{
                 method: 'GET',
                 headers: {
                     'Authorization': `Bearer ${token}`,
@@ -66,7 +66,7 @@ const Home = () => {
 
         try {
         
-            const response = await fetch('http://localhost:8000/api/posts', {
+            const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/posts`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
