@@ -17,7 +17,7 @@ const Post = ({ postId, autorId, contenido }) => {
 
             try {
 
-                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}api/interacciones/post/${postId}/like/count`,{
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/interacciones/post/${postId}/like/count`,{
                     method: 'GET',
                     headers: {
                         'Authorization': `Bearer ${token}`
@@ -67,7 +67,7 @@ const handleLikePost = async () => {
             console.log(data);
 
             // para actualizar en vivo como sube o baja el contador de seguidores al dejar de seguir
-                    setLikesCount((prev) => isLiked ? prev - 1 : prev + 1);
+                    setLikesCount((prev) => data ? prev + 1 : Math.max(0,prev - 1));
         }
 
     } catch (error){
@@ -131,10 +131,10 @@ const handleLikePost = async () => {
                     </div>
                 <div className="card-footer">
                     <button
-                    className="btn btn-primary"
+                    className={`btn ${isLiked ? 'btn-danger' : 'btn-primary'}`}
                     onClick={handleLikePost}
                     >
-                        Like
+                        {isLiked ? '❤️ Quitar Like' : '🤍 Like'}
                     </button>
                     <span>  {likesCount} like</span>
                 </div>

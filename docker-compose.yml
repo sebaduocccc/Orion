@@ -2,6 +2,7 @@ services:
 
   db:
     image: mysql:8.0
+    profiles: ["core"]
     container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -18,6 +19,7 @@ services:
 
   user-service:
     build: ./Usuario_Service
+    profiles: ["core"]
     container_name: users-service
     ports:
       - "9090:9090"
@@ -31,6 +33,7 @@ services:
 
   post-service:
     build: ./Post_service
+    profiles: ["social"]
     ports:
       - "9091:9091"
     depends_on:
@@ -44,6 +47,7 @@ services:
 
   media-service:
     build: ./MediaService
+    profiles: ["social"]
     ports:
       - "9093:9093"
     depends_on:
@@ -59,6 +63,7 @@ services:
 
   interaccion-service:
     build: ./Interaccion_Service
+    profiles: ["social"]
     ports:
       - "9095:9095"
     depends_on:
@@ -71,6 +76,7 @@ services:
 
   api-gateway:
     build: ./ApiGateway
+    profiles: ["core"]
     ports:
       - "8000:8000"
     depends_on:
