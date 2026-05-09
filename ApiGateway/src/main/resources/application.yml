@@ -45,3 +45,8 @@ spring:
               uri: http://interaccion-service:9095
               predicates:
                 - Path=/api/interacciones/**
+
+            - id: chat-service
+              uri: http://chat-service:9100
+              predicates:
+                - Path=/api/chat/**, /ws-chat/**

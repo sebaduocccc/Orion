@@ -2,7 +2,7 @@ services:
 
   db:
     image: mysql:8.0
-    profiles: ["core"]
+    profiles: ["core","chat"]
     container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -19,7 +19,7 @@ services:
 
   user-service:
     build: ./Usuario_Service
-    profiles: ["core"]
+    profiles: ["core","chat"]
     container_name: users-service
     ports:
       - "9090:9090"
@@ -74,19 +74,33 @@ services:
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
+  chat-service:
+    build: ./chatService
+    profiles: [ "social", "chat"]
+    ports:
+      - "9100:9100"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/chat_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
   api-gateway:
     build: ./ApiGateway
-    profiles: ["core"]
+    profiles: ["core","chat"]
     ports:
       - "8000:8000"
-    depends_on:
-      - user-service
-      - post-service
-      - media-service
+#    depends_on:
+#      - user-service
+#      - post-service
+#      - media-service
 
   orion-app:
     build:
       context: ./orion-app
+    profiles: ["core","chat"]
     container_name: orion-app
     ports:
       - "5173:5173"
