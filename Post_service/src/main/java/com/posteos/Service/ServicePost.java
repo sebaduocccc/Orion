@@ -9,6 +9,9 @@ import com.posteos.Repository.Repository_Post;
 import lombok.RequiredArgsConstructor;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -94,6 +97,25 @@ public class ServicePost {
                 .orElseThrow(() -> new ResourceNotFoundException("Post no encontrado con id: " + id));
         repo.deleteById(id);
         log.info("Post id={} eliminado correctamente", id);
+    }
+
+
+    @Transactional
+    public Page<Post> cargarFeedPrincipal(int page, int size){
+
+        Pageable pageable = PageRequest.of(page, size);
+        return repo.findAllByOrderByCreadoElDesc(pageable);
+
+    }
+
+
+
+    @Transactional
+    public Page<Post> cargarFeedUsuario(int page, int size, Long userId){
+
+        Pageable pageable = PageRequest.of(page, size);
+        return repo.findByUserIdOrderByCreadoElDesc(userId,pageable);
+
     }
 
 

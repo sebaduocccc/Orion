@@ -2,6 +2,7 @@ package com.posteos.Controller;
 
 import com.posteos.DTO.PostRequestDTO;
 import com.posteos.DTO.PostResponseDTO;
+import com.posteos.Entity.Post;
 import com.posteos.Service.ServicePost;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -97,18 +98,24 @@ public class ControllerPost {
 
 
 
-    // frontend
+    @GetMapping("/feed")
+    public Page<Post> obtenerTodosFeed(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
 
-//    @GetMapping("/feed")
-//    public Page<PostResponseDTO> obtenerTodosFeed(
-//            @RequestParam(defaultValue = "0") int page,
-//            @RequestParam(defaultValue = "10") int size
-//    ) {
-//
-//        Pageable pageable = PageRequest.of(page, size);
-//
-//        return service
-//
-//    }
+        return service.cargarFeedPrincipal(page, size);
+
+    }
+
+
+    @GetMapping("/feed/{id}")
+    public Page<Post> obtenerFeedUsuario(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @PathVariable Long id
+    ){
+                return service.cargarFeedUsuario(page, size, id);
+    }
 
 }
