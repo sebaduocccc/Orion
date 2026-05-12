@@ -119,4 +119,10 @@ public class ServicePost {
     }
 
 
+    @Transactional
+    public Long totalDePostDeUsuario(Long userId){
+        return repo.countByUserId(userId);
+    }
+
+
 }

@@ -3,6 +3,7 @@ package com.posteos.Controller;
 import com.posteos.DTO.PostRequestDTO;
 import com.posteos.DTO.PostResponseDTO;
 import com.posteos.Entity.Post;
+import com.posteos.Repository.Repository_Post;
 import com.posteos.Service.ServicePost;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
@@ -27,6 +28,8 @@ public class ControllerPost {
 
     @Autowired
     private ServicePost service;
+    @Autowired
+    private Repository_Post repository_Post;
 
     @PostMapping
     public ResponseEntity<PostResponseDTO> guardar(@Valid @RequestBody PostRequestDTO dto) {
@@ -50,6 +53,9 @@ public class ControllerPost {
         return ResponseEntity.ok(lista);
     }
 
+
+
+
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<PostResponseDTO>> obtenerTodosPorUsuario(@PathVariable Long userId) {
         List<PostResponseDTO> posts = service.buscarPostDeUsuario(userId);
@@ -59,6 +65,12 @@ public class ControllerPost {
         }
 
         return ResponseEntity.ok(posts);
+    }
+
+
+    @GetMapping("/user/{userId}/count")
+    public ResponseEntity<Long> obtenerCountLikesUsuario(@PathVariable Long userId) {
+        return ResponseEntity.ok(service.totalDePostDeUsuario(userId));
     }
 
     @GetMapping("/{id}")

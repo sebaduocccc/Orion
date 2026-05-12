@@ -1,8 +1,24 @@
 import { Link, useNavigate } from "react-router-dom";
 import { jwtDecode } from "jwt-decode";
+import { useEffect, useState } from "react";
 const NavBar = () => {
 
+    const [userId, setUserId] = useState(0);
+
     const navigate = useNavigate();
+
+
+
+    useEffect(() => {
+
+        const token = localStorage.getItem('token');
+
+        const decodedToken = jwtDecode(token); // Decodifica el token para obtener la información del usuario
+        console.log("Token decodificado: ", decodedToken);
+        const userId = decodedToken.id; // Asumiendo que el ID del usuario está en el campo "user_id" del token
+        setUserId(userId);
+
+    });
 
     const handleLogout = () => {
 

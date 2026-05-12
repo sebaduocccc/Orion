@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import NavBar from "./Navbar";
 import Post from "./Post";
 import Chat from "./Chat";
+import ProfileFeed from "./ProfileFeed";
 
 const Profile = () => {
 
@@ -16,42 +17,43 @@ const Profile = () => {
     const [posts, setPosts] = useState([]); // Estado para almacenar los posts del usuario
     const [seguidores, setSeguidores] = useState(0); // Estado para almacenar el número de seguidores
     const [siguiendo, setSiguiendo] = useState(0);
+    const [postCount, setPostCount] = useState(0);
 
     const [isFollowing, setIsFollowing] = useState(false);
 
     useEffect(() => { // useEffect para cargar los datos del perfil cuando el componente se monta
 
 
-        const fetchPosts = async () => {
-            const token = localStorage.getItem('token');
-            if (!token) return;
+        // const fetchPosts = async () => {
+        //     const token = localStorage.getItem('token');
+        //     if (!token) return;
 
 
-            try{
+        //     try{
 
-                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/posts/usuario/${id}`,{
-                    method: 'GET',
-                    headers: {
-                        'Authorization' : `Bearer ${token}`,
-                        'Content-Type': 'application/json'
-                    }
-                });
+        //         const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/posts/usuario/${id}`,{
+        //             method: 'GET',
+        //             headers: {
+        //                 'Authorization' : `Bearer ${token}`,
+        //                 'Content-Type': 'application/json'
+        //             }
+        //         });
 
 
-                if (response.ok){
-                    const data = await response.json();
-                    console.log("Posts del usuario: ", data);
-                    setPosts(data); // Actualiza el estado con los posts del usuario
+        //         if (response.ok){
+        //             const data = await response.json();
+        //             console.log("Posts del usuario: ", data);
+        //             setPosts(data); // Actualiza el estado con los posts del usuario
 
-                }
+        //         }
 
-            } catch (err) {
-                console.error("Error al cargar los posts del usuario: ", err);
-            }
+        //     } catch (err) {
+        //         console.error("Error al cargar los posts del usuario: ", err);
+        //     }
 
-        };
+        // };
 
-        fetchPosts(); // Llama a la función para cargar los posts del usuario
+        // fetchPosts(); // Llama a la función para cargar los posts del usuario
 
         const fetchPerfil = async () => {
             const token = localStorage.getItem('token');
@@ -113,6 +115,37 @@ const Profile = () => {
             }
 
         };
+
+
+        const fetchPostCount = async () => {
+            const token = localStorage.getItem('token');
+            if(!token) return;
+
+            try {
+
+                const response = await fetch(`${import.meta.env.VITE_API_BASE_URL}/api/posts/user/${id}/count`,{
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+
+                if (response.ok){
+
+                    const data = await response.json();
+
+                    setPostCount(data);
+                }
+
+            } catch (error){
+                console.error('no se pudo traer los numero de post', error)
+            }
+
+        };
+
+        fetchPostCount();
 
         fetchSeguidores(); // Llama a la función para cargar el número de seguidores del usuario
 
@@ -264,7 +297,7 @@ const Profile = () => {
                             <div className="row">
                                 <div className="col">
                                     <h6 className="text-muted mb-0">Posts</h6>
-                                    <p className="fw-bold">{posts.length}</p>
+                                    <p className="fw-bold">{postCount}</p>
                                 </div>
                                 <div className="col">
                                     <h6 className="text-muted mb-0">Seguidores</h6>
@@ -299,27 +332,10 @@ const Profile = () => {
                     </div>
 
 
-                    <div className="container mt-5" style={{width:'600px'}}>
-                        <h5 className="text-muted mb-3">Publicaciones de {perfil.username}</h5>   
-
-                        {posts.length === 0 ? (
-                            <p className="text-center text-muted mt-5">
-                                No hay publicaciones de este usuario.
-                            </p>
-                        ) : (
-                            posts.map((post) => (
-                                <div key={post.id} className="mt-3">
-                                <Post
-                                
-                                postId={post.id}
-                                autorId={post.userId}
-                                contenido={post.content}
-                                />
-                                </div>
-                            ))
-                        )} 
-
-                    </div>
+                    <ProfileFeed
+                        userId={id}
+                        username={perfil.username}
+                    />
 
 
                     {localStorage.getItem('userId') !== id && (
