@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import NavBar from "./Navbar";
-import Post from "./Post";
+import Feed from "./Feed";
 const Home = () => {
 
 
@@ -134,32 +134,7 @@ const Home = () => {
                         </div>
 
 
-                        <h5 className="text-muted mb-3">Ultimas publicaciones</h5>
-
-                        {publicaciones.length === 0 ?(
-                            <p className="text-center text-muted mt-5">
-                                No hay publicaciones.
-                            </p>
-                        ) : (
-                            publicaciones.map((post) => (
-                                <div className="mt-3">
-                                <Post
-                                key={post.id}
-                                postId={post.id}
-                                autorId={post.userId}
-                                contenido={post.content}
-                                
-                                />
-                                </div>
-                            ))
-                        )}
-
-
-
-
-                        <div>
-                            
-                        </div>
+                        <Feed/>
 
                     </div>
                 </div>
