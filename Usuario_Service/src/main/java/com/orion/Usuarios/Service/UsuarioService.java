@@ -12,9 +12,15 @@ import com.orion.Usuarios.Exception.ResourceNotFoundException;
 import com.orion.Usuarios.Repository.RolRepository;
 import com.orion.Usuarios.Repository.UserProfileRepository;
 import com.orion.Usuarios.Repository.UsuarioRepository;
+import jakarta.servlet.Servlet;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.*;
 
@@ -30,6 +36,8 @@ public class UsuarioService {
     private PasswordEncoder passwordEncoder;
     @Autowired
     private UserProfileRepository userProfileRepository;
+    @Autowired
+    WebClient.Builder webClientBuilder;
 
 
 
@@ -95,21 +103,84 @@ public class UsuarioService {
                     u.getEmail(),
                     u.getPerfil().getAvatarUrl(),
                     u.getPerfil().getBiografia(),
-                    u.getPerfil().getUbicacion()
+                    u.getPerfil().getUbicacion(),
+                    conseguirPostCount(u.getId()),
+                    conseguirSeguidoresUsuario(u.getId()),
+                    conseguirSeguidosUsuario(u.getId())
             ));
         }
 
         return usuarioResponseDTOs;
     }
 
-    public Usuario obtenerUsuarioPorId(Long id){
-        return usuarioRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("No se encontró ningun usuario con el ID: "+id));
+    public long conseguirPostCount(Long userId){
+        String token = obtenerTokenActual();
+        Long cantidadPosts = webClientBuilder.build()
+                .get()
+                .uri("http://api-gateway:8000/api/posts/user/"+userId+"/count")
+                .retrieve()
+                .bodyToMono(Long.class)
+                .block();
+        return cantidadPosts != null ? cantidadPosts : 0L;
     }
 
-    public Usuario obtenerUsuarioPorUsername(String username){
-        return usuarioRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el username"));
+    public long conseguirSeguidoresUsuario(Long userId){
+        Long cantidadSeguidores = webClientBuilder.build()
+                .get()
+                .uri("http://api-gateway:8000/api/interacciones/usuarios/"+userId+"/seguidores/count")
+                .retrieve()
+                .bodyToMono(Long.class)
+                .block();
+        return cantidadSeguidores != null ? cantidadSeguidores : 0L;
+    }
+
+    public long conseguirSeguidosUsuario(Long userId){
+        Long cantidadSeguidos = webClientBuilder.build()
+                .get()
+                .uri("http://api-gateway:8000/api/interacciones/usuarios/"+ userId+"/seguidos/count")
+                .retrieve()
+                .bodyToMono(Long.class)
+                .block();
+        return cantidadSeguidos != null ? cantidadSeguidos : 0L;
+    }
+
+    public UsuarioResponseDTO obtenerUsuarioPorId(Long id){
+
+        Usuario usuario = usuarioRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+
+        UsuarioResponseDTO usuarioResponseDTO = new UsuarioResponseDTO(
+                usuario.getId(),
+                usuario.getUsername(),
+                usuario.getEmail(),
+                usuario.getPerfil().getAvatarUrl(),
+                usuario.getPerfil().getBiografia(),
+                usuario.getPerfil().getUbicacion(),
+                conseguirPostCount(usuario.getId()),
+                conseguirSeguidoresUsuario(usuario.getId()),
+                conseguirSeguidosUsuario(usuario.getId())
+        );
+        return usuarioResponseDTO;
+
+    }
+
+    public UsuarioResponseDTO obtenerUsuarioPorUsername(String username){
+
+        Usuario usuario = usuarioRepository.findByUsername(username)
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
+
+        UsuarioResponseDTO usuarioResponseDTO = new UsuarioResponseDTO(
+                usuario.getId(),
+                usuario.getUsername(),
+                usuario.getEmail(),
+                usuario.getPerfil().getAvatarUrl(),
+                usuario.getPerfil().getBiografia(),
+                usuario.getPerfil().getUbicacion(),
+                conseguirPostCount(usuario.getId()),
+                conseguirSeguidoresUsuario(usuario.getId()),
+                conseguirSeguidosUsuario(usuario.getId())
+        );
+        return usuarioResponseDTO;
     }
 
     public UsuarioPerfil obtenerUsuarioPerfilPorId(Long id){
@@ -164,7 +235,10 @@ public class UsuarioService {
                 usuario.getEmail(),
                 usuario.getPerfil().getAvatarUrl(),
                 usuario.getPerfil().getBiografia(),
-                usuario.getPerfil().getUbicacion()
+                usuario.getPerfil().getUbicacion(),
+                conseguirPostCount(usuario.getId()),
+                conseguirSeguidoresUsuario(usuario.getId()),
+                conseguirSeguidosUsuario(usuario.getId())
         );
     }
 
@@ -178,6 +252,20 @@ public class UsuarioService {
         ///  borrará el usuario y el userProfile juntos como cascada
         usuarioRepository.deleteById(id);
 
+    }
+
+
+
+    // jwt para llamar a otros servicios
+
+    public String obtenerTokenActual() {
+        ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+        if (attributes != null) {
+            HttpServletRequest request = attributes.getRequest();
+            return request.getHeader(HttpHeaders.AUTHORIZATION);
+        }
+
+        return null;
     }
 
 //    public Usuario actualizarUsuario(Long id, Usuario usuarioActualizado){

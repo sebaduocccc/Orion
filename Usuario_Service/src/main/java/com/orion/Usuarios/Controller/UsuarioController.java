@@ -43,33 +43,12 @@ public class UsuarioController {
 
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> buscar(@PathVariable Long id){
-
-        Usuario usuario = usuarioService.obtenerUsuarioPorId(id);
-        UsuarioPerfil usuarioPerfil = usuarioService.obtenerUsuarioPerfilPorId(id);
-        UsuarioResponseDTO usuarioResponseDTO = new UsuarioResponseDTO(
-                usuario.getId(),
-                usuario.getUsername(),
-                usuario.getEmail(),
-                usuarioPerfil.getAvatarUrl(),
-                usuarioPerfil.getBiografia(),
-                usuarioPerfil.getUbicacion()
-        );
-
-        return ResponseEntity.ok(usuarioResponseDTO);
+        return ResponseEntity.ok(usuarioService.obtenerUsuarioPorId(id));
     }
 
     @GetMapping("/username/{username}")
     public ResponseEntity<UsuarioResponseDTO> buscarPorUsername(@PathVariable String username){
-        Usuario usuario = usuarioService.obtenerUsuarioPorUsername(username);
-        UsuarioPerfil usuarioPerfil = usuarioService.obtenerUsuarioPerfilPorId(usuario.getId());
-        return ResponseEntity.ok(new UsuarioResponseDTO(
-                usuario.getId(),
-                usuario.getUsername(),
-                usuario.getEmail(),
-                usuarioPerfil.getAvatarUrl(),
-                usuarioPerfil.getBiografia(),
-                usuarioPerfil.getUbicacion()
-        ));
+        return ResponseEntity.ok(usuarioService.obtenerUsuarioPorUsername(username));
     }
 
     @GetMapping("/all")
@@ -108,10 +87,15 @@ public class UsuarioController {
 
     @GetMapping("/profile/{userId}")
     public ResponseEntity<UserProfileResponse> getUsuarioPerfil(@PathVariable Long userId){
-        Usuario user =  usuarioService.obtenerUsuarioPorId(userId);
+        UsuarioResponseDTO user =  usuarioService.obtenerUsuarioPorId(userId);
 
-        UserProfileResponse perfil = new UserProfileResponse(user.getUsername(),user.getPerfil().getAvatarUrl(),
-                user.getPerfil().getBiografia(),user.getPerfil().getUbicacion());
+
+        UserProfileResponse perfil = new UserProfileResponse(
+                user.getUsername(),
+                user.getAvatarUrl(),
+                user.getBiografia(),
+                user.getUbicacion()
+        );
 
         return ResponseEntity.ok(perfil);
     }

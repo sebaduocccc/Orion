@@ -31,6 +31,11 @@ public class ControllerPost {
     @Autowired
     private Repository_Post repository_Post;
 
+
+    // CRUD
+
+
+    //CREATE
     @PostMapping
     public ResponseEntity<PostResponseDTO> guardar(@Valid @RequestBody PostRequestDTO dto) {
         Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
@@ -41,6 +46,8 @@ public class ControllerPost {
         return ResponseEntity.status(HttpStatus.CREATED).body(response);
     }
 
+
+    // READ
     @GetMapping
     public ResponseEntity<?> obtenerTodos() {
         log.info("GET /api/posts - Obteniendo todos los posts");
@@ -52,8 +59,6 @@ public class ControllerPost {
         log.info("Se retornaron {} posts", lista.size());
         return ResponseEntity.ok(lista);
     }
-
-
 
 
     @GetMapping("/user/{userId}")
@@ -90,6 +95,8 @@ public class ControllerPost {
         return ResponseEntity.ok(lista);
     }
 
+
+    // UPDATE
     @PutMapping("/{id}")
     public ResponseEntity<PostResponseDTO> actualizar(
             @PathVariable Long id,
@@ -100,6 +107,7 @@ public class ControllerPost {
         return ResponseEntity.ok(actualizado);
     }
 
+    // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<String> borrar(@PathVariable Long id) {
         log.info("DELETE /api/posts/{} - Eliminando post", id);
@@ -108,6 +116,10 @@ public class ControllerPost {
         return ResponseEntity.ok("Post eliminado correctamente");
     }
 
+
+
+
+    //FRONTEND
 
 
     @GetMapping("/feed")

@@ -14,4 +14,7 @@ public class UsuarioResponseDTO {
     private String avatarUrl;
     private String biografia;
     private String ubicacion;
+    private long cantPosts;
+    private long cantSeguidores;
+    private long cantSeguidos;
 }

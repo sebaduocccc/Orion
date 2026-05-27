@@ -27,6 +27,10 @@ public class ServicePost {
     private final Repository_Post repo;
     private final PostMapper mapper;
 
+    // CRUD
+
+    // CREATE
+
     @Transactional
     public PostResponseDTO guardar(PostRequestDTO dto) {
         log.info("Guardando nuevo post para usuario id={}", dto.getUserId());
@@ -36,6 +40,8 @@ public class ServicePost {
         return mapper.response(guardado);
     }
 
+
+    // READ
     @Transactional(readOnly = true)
     public PostResponseDTO buscarPorId(Long id) {
         log.info("Buscando post con id={}", id);
@@ -79,6 +85,13 @@ public class ServicePost {
     }
 
     @Transactional
+    public Long totalDePostDeUsuario(Long userId){
+        return repo.countByUserId(userId);
+    }
+
+    // UPDATE
+
+    @Transactional
     public PostResponseDTO actualizar(Long id, PostRequestDTO dto) {
         log.info("Actualizando post id={}", id);
         Post post = repo.findById(id)
@@ -90,6 +103,8 @@ public class ServicePost {
         return mapper.response(actualizado);
     }
 
+
+    // DELETE
     @Transactional
     public void eliminar(Long id) {
         log.info("Eliminando post id={}", id);
@@ -99,6 +114,10 @@ public class ServicePost {
         log.info("Post id={} eliminado correctamente", id);
     }
 
+
+
+
+    //FRONTEND
 
     @Transactional
     public Page<Post> cargarFeedPrincipal(int page, int size){
@@ -119,10 +138,7 @@ public class ServicePost {
     }
 
 
-    @Transactional
-    public Long totalDePostDeUsuario(Long userId){
-        return repo.countByUserId(userId);
-    }
+
 
 
 }
