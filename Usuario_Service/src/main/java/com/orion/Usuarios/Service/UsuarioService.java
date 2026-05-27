@@ -246,12 +246,11 @@ public class UsuarioService {
     public void eliminarUsuario(Long id){
 
         if(!usuarioRepository.existsById(id)){
-            throw new ResourceNotFoundException("Usuario no encontrado con el id");
+            throw new ResourceNotFoundException("Usuario no encontrado con el id "+ id);
         }
 
         ///  borrará el usuario y el userProfile juntos como cascada
         usuarioRepository.deleteById(id);
-
     }
 
 
