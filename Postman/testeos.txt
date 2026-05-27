@@ -1,0 +1,221 @@
+-- Usuario Service
+
+token: "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWQiOjQsInN1YiI6ImFrb21pIiwiaWF0IjoxNzc5ODU4Mzk4LCJleHAiOjE3Nzk5NDQ3OTh9.2E9qi0lywlAiM_pH9b25gAgugt7zl4vl4t6hw-3IHGk"
+
+CRUD
+
+http://localhost:8000/api/usuarios
+
+
+LOGIN:
+http://localhost:8000/api/auth/login
+body: {
+    "username":"akomi",
+    "password":"asd"
+}
+
+retorna:
+{
+    "token": "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJST0xFX1VTRVIiXSwiaWQiOjQsInN1YiI6ImFrb21pIiwiaWF0IjoxNzc5ODU4Mzk4LCJleHAiOjE3Nzk5NDQ3OTh9.2E9qi0lywlAiM_pH9b25gAgugt7zl4vl4t6hw-3IHGk",
+    "userId": 4
+}
+
+CREATE:
+
+http://localhost:8000/api/usuarios/registro
+
+body: {
+	"username":"test",
+	"email":"test",
+	"password":"test",
+	"biografia":"test",
+	"avatarUrl":"http://localhost:8000/api/media/ola.png",
+	"ubicacion":"Santiago, Chile"
+}
+
+READ:
+
+http://localhost:8000/api/usuarios/{id}
+retorna
+"{
+    "id": 3,
+    "username": "mateon",
+    "email": "mateito@gmail.com",
+    "avatarUrl": "/api/media/avatar/default_avatar.png",
+    "biografia": "soy mateon",
+    "ubicacion": "Santiago, Chile",
+    "cantPosts": 0,
+    "cantSeguidores": 0,
+    "cantSeguidos": 0
+}"
+
+
+http://localhost:8000/api/usuarios/username/{username}
+retorna
+"{
+    "id": 4,
+    "username": "akomi",
+    "email": "akmi@yahoo.es",
+    "avatarUrl": "/api/media/avatar/default_avatar.png",
+    "biografia": "hola mundo",
+    "ubicacion": "Santiago, Chile",
+    "cantPosts": 0,
+    "cantSeguidores": 0,
+    "cantSeguidos": 0
+}"
+
+http://localhost:8000/api/usuarios/all
+retorna
+"
+[
+    {
+        "id": 1,
+        "username": "carlos_abarzua",
+        "email": "ca.abarzuac@profesorduoc.cl",
+        "avatarUrl": "/api/media/avatar/default_avatar.png",
+        "biografia": "titi me pregunto",
+        "ubicacion": "Santiago, Chile",
+        "cantPosts": 0,
+        "cantSeguidores": 0,
+        "cantSeguidos": 0
+    },
+    {
+        "id": 2,
+        "username": "ronald_villalobos",
+        "email": "ronald@gmail.com",
+        "avatarUrl": "/api/media/avatar/default_avatar.png",
+        "biografia": "trabajando para usted",
+        "ubicacion": "Santiago, Chile",
+        "cantPosts": 0,
+        "cantSeguidores": 0,
+        "cantSeguidos": 0
+    },
+    {
+        "id": 3,
+        "username": "mateon",
+        "email": "mateito@gmail.com",
+        "avatarUrl": "/api/media/avatar/default_avatar.png",
+        "biografia": "soy mateon",
+        "ubicacion": "Santiago, Chile",
+        "cantPosts": 0,
+        "cantSeguidores": 0,
+        "cantSeguidos": 0
+    },...]
+"
+
+PUT
+
+http://localhost:8000/api/usuarios/{id}
+
+body: {
+	"email":"nuevomail"
+}
+
+
+DELETE
+
+http://localhost:8000/api/usuarios/1
+
+retorna "Usuario eliminado"
+
+y si se vuelve a hacer 
+retorna "{
+    "timestamp": "2026-05-27T05:06:07.388151232",
+    "status": 404,
+    "error": "Not Found",
+    "message": "Usuario no encontrado con el id 1",
+    "path": "/api/usuarios/1"
+}"
+
+
+
+--	Posteos Service
+
+***endpoints protegidos con Bearer token***
+
+CREATE
+
+POST
+http://localhost:8000/api/posts
+body:{
+    "content":"asd",
+    "mediaUrl":""
+}
+response:
+{
+    "id": 2,
+    "userId": 4,
+    "content": "asd",
+    "mediaUrl": "",
+    "creado_el": "2026-05-27T05:18:11.518341"
+}
+
+
+READ
+GET
+
+http://localhost:8000/api/posts
+response:
+[
+    {
+        "id": 1,
+        "userId": 4,
+        "content": "asd",
+        "mediaUrl": "",
+        "creado_el": "2026-05-27T05:17:57.355575"
+    },
+    {
+        "id": 2,
+        "userId": 4,
+        "content": "asd",
+        "mediaUrl": "",
+        "creado_el": "2026-05-27T05:18:11.518341"
+    }
+]
+
+
+http://localhost:8000/api/posts/{id}
+reponse:
+[
+    {
+        "id": 2,
+        "userId": 4,
+        "content": "asd",
+        "mediaUrl": "",
+        "creado_el": "2026-05-27T05:18:11.518341"
+    },
+    {
+        "id": 1,
+        "userId": 4,
+        "content": "asd",
+        "mediaUrl": "",
+        "creado_el": "2026-05-27T05:17:57.355575"
+    }
+]
+
+
+http://localhost:8000/api/posts/{id}/count
+response: 2
+
+
+http://localhost:8000/api/posts/{id}
+response:
+{
+    "id": 1,
+    "userId": 4,
+    "content": "asd",
+    "mediaUrl": "",
+    "creado_el": "2026-05-27T05:17:57.355575"
+}
+
+
+UPDATE
+{
+    "content":"hola",
+    "mediaUrl":"paulo"
+}
+
+DELETE
+http://localhost:8000/api/posts/1
+
+eliminado correctamente
