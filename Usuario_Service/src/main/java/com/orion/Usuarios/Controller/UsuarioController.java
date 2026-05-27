@@ -93,8 +93,6 @@ public class UsuarioController {
     // DELETE
 
 
-    public ResponseEntity<List<UsuarioResponseDTO>> obtenerTodosUsuarios(){}
-
 
 
 

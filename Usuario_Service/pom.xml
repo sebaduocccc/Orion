@@ -94,6 +94,7 @@
 		</dependency>
 
 
+<!--        jwt-->
         <dependency>
             <groupId>io.jsonwebtoken</groupId>
             <artifactId>jjwt-api</artifactId>
@@ -113,6 +114,13 @@
         </dependency>
 
 
+
+<!--        weblcient (request a otros microservicios)-->
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
 
 	</dependencies>
 

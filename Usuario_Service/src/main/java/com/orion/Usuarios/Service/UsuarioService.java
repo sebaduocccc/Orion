@@ -7,6 +7,8 @@ import com.orion.Usuarios.DTO.UsuarioUpdateDTO;
 import com.orion.Usuarios.Entity.Rol;
 import com.orion.Usuarios.Entity.Usuario;
 import com.orion.Usuarios.Entity.UsuarioPerfil;
+import com.orion.Usuarios.Exception.ResourceAlreadyExistsException;
+import com.orion.Usuarios.Exception.ResourceNotFoundException;
 import com.orion.Usuarios.Repository.RolRepository;
 import com.orion.Usuarios.Repository.UserProfileRepository;
 import com.orion.Usuarios.Repository.UsuarioRepository;
@@ -35,6 +37,16 @@ public class UsuarioService {
 
     // CREATE
     public Usuario registrarUsuario(RegisterRequest registerRequest) {
+
+        // verificacion antes
+        if (usuarioRepository.existsByUsername(registerRequest.getUsername())) {
+            throw new ResourceAlreadyExistsException("Usuario con nombre "+ registerRequest.getUsername()+ " ya esta registrado.");
+        }
+
+        if (usuarioRepository.existsByEmail(registerRequest.getEmail())) {
+            throw new ResourceAlreadyExistsException("El correo electronico ya esta registrado.");
+        }
+
         // se crea usuario
         Usuario usuario = new Usuario();
         usuario.setUsername(registerRequest.getUsername());
@@ -55,6 +67,10 @@ public class UsuarioService {
         roles.add(userRole);
         usuario.setRoles(roles);
 
+
+        usuarioPerfil.setUsuario(usuario);
+        usuario.setPerfil(usuarioPerfil);
+
         // se guarda
         Usuario userGuardado = usuarioRepository.save(usuario);
         return userGuardado;
@@ -63,7 +79,13 @@ public class UsuarioService {
 
     // READ
     public List<UsuarioResponseDTO> obtenerTodosUsuarios() {
+
         List<Usuario> usuarios = usuarioRepository.findAll();
+
+        if (usuarios.isEmpty()) {
+            throw new ResourceNotFoundException("No hay Usuarios registrados");
+        }
+
         List<UsuarioResponseDTO> usuarioResponseDTOs = new ArrayList<>();
 
         for (Usuario u : usuarios) {
@@ -82,7 +104,7 @@ public class UsuarioService {
 
     public Usuario obtenerUsuarioPorId(Long id){
         return usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id"));
+                .orElseThrow(() -> new ResourceNotFoundException("No se encontró ningun usuario con el ID: "+id));
     }
 
     public Usuario obtenerUsuarioPorUsername(String username){
@@ -103,10 +125,10 @@ public class UsuarioService {
     public UsuarioResponseDTO actualizarUsuario(Long id, UsuarioUpdateDTO usuarioUpdateDTO) {
 
         Usuario usuario = usuarioRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id"));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con el id"));
 
         UsuarioPerfil usuarioPerfil = userProfileRepository.findByUsuarioId(id)
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el id"));
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado con el id"));
 
 
         if (usuarioUpdateDTO.getUsername() != null && !usuarioUpdateDTO.getUsername().isEmpty()) {
@@ -150,7 +172,7 @@ public class UsuarioService {
     public void eliminarUsuario(Long id){
 
         if(!usuarioRepository.existsById(id)){
-            throw new RuntimeException("Usuario no encontrado con el id");
+            throw new ResourceNotFoundException("Usuario no encontrado con el id");
         }
 
         ///  borrará el usuario y el userProfile juntos como cascada
