@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="b20cce19-d8ea-4ca4-9f67-54bf43e8780a" name="akomilab" url="">
+        <fileTransfer accessType="SFTP" host="akomilab" port="22" sshConfigId="1e63ecfc-eab3-4895-93c7-80d52bbb17db" sshConfig="akomilab@akomilab:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
