@@ -4,11 +4,22 @@ server:
 spring:
   application:
     name: user-service
+
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://db:3306/user_db?allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
+
 eureka:
   client:
     service-url:
 #      url contenedor docker:
-      defaultZone: http://eurekaserver:8761/eureka/
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://eurekaserver:8761/eureka/}
   instance:
 #    evitar problemas de resolucion de nombres (para docker en este caso)
     prefer-ip-address: true
+
+jwt:
+  secret: ${JWT_SECRET}
+# para inyectar: @Value("${jwt.secret}")
+#  private String secretKey;

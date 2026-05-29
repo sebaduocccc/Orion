@@ -6,7 +6,7 @@ services:
     build: ./backend/eurekaserver
     container_name: eurekaserver
     ports:
-      - "8761:8761"
+      - "${PORT_EUREKA}:${PORT_EUREKA}"
     networks:
       - orion-network
 
@@ -15,7 +15,7 @@ services:
     build: ./backend/apigateway
     container_name: apigateway
     ports:
-      - "8000:8000"
+      - "${PORT_GATEWAY}:${PORT_GATEWAY}"
     depends_on:
       eurekaserver:
         condition: service_started
@@ -27,7 +27,7 @@ services:
     image: mysql:8.0
     container_name: mysql_db
     environment:
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
     ports:
       - "3306:3306"
     volumes:
@@ -48,16 +48,18 @@ services:
     build: ./backend/user-service
     container_name: user-service
     ports:
-      - "9090:9090"
+      - "${PORT_USER_SERVICE}:${PORT_USER_SERVICE}"
     depends_on:
       eurekaserver:
         condition: service_started
       db:
         condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/user_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_USERS}?allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
+      JWT_SECRET: ${JWT_SECRET}
     networks:
       - orion-network
 
