@@ -1,5 +1,27 @@
 services:
 
+#server eureka
+
+  eurekaserver:
+    build: ./backend/eurekaserver
+    container_name: eurekaserver
+    ports:
+      - "8761:8761"
+    networks:
+      - orion-network
+
+
+  apigateway:
+    build: ./backend/apigateway
+    container_name: apigateway
+    ports:
+      - "8000:8000"
+    depends_on:
+      eurekaserver:
+        condition: service_started
+    networks:
+      - orion-network
+
 # base de datos mysql
   db:
     image: mysql:8.0
@@ -15,6 +37,8 @@ services:
       test: ["CMD","mysqladmin","ping","-h","localhost"]
       timeout: 20s
       retries: 10
+    networks:
+      - orion-network
 
 
 #  microservicios
@@ -26,13 +50,22 @@ services:
     ports:
       - "9090:9090"
     depends_on:
+      eurekaserver:
+        condition: service_started
       db:
         condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/user_db?allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - orion-network
 
 
 volumes:
   orion_db_data:
+
+
+networks:
+  orion-network:
+    driver: bridge
