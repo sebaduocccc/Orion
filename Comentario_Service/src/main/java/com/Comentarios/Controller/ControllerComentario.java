@@ -16,13 +16,13 @@ import java.util.List;
 @RestController
 
 @RequiredArgsConstructor
-@RequestMapping("/api/posts")
+@RequestMapping("/api/comentarios")
 public class ControllerComentario {
 
     private static final Logger log = LoggerFactory.getLogger(ControllerComentario.class);
     private final ServiceComentario service;
 
-    @GetMapping("/api/posts/{postId}/comentarios")
+    @GetMapping("/{postId}/comentarios")
     public ResponseEntity<List<ResponseComentario>> comentariosPost(
             @PathVariable Long postId) {
         log.info("Get /api/posts/{}/comentarios - ViendoComentarios post", postId);
@@ -34,7 +34,7 @@ public class ControllerComentario {
         return ResponseEntity.ok(lista);
     }
 
-    @PostMapping("/api/posts/{postId}/comentar")
+    @PostMapping("/{postId}/comentar")
     public ResponseEntity<ResponseComentario> comentar(@PathVariable Long postId, @Valid @RequestBody RequestComentario r){
         log.info("POST /api/posts/{}/comentar - Comentando", postId);
         ResponseComentario creado = service.guardar(postId, r);

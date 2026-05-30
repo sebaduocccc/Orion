@@ -1,9 +1,10 @@
 spring:
   application:
     name: Usuarios
+
   jpa:
     hibernate:
-      ddl-auto: validate
+      ddl-auto: update
     show-sql: true
   datasource:
     url: ${SPRING_DATASOURCE_URL}
@@ -11,9 +12,11 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD}
 
   liquibase:
-    enabled: true
+    enabled: false
     change-log: classpath:/db/changelog/db.changelog-master.yaml
 
-
+logging:
+  file:
+    name: logs/usuario.log
 server:
   port: 9090

@@ -10,7 +10,9 @@ spring:
       ddl-auto: update
     show-sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
-
+logging:
+  file:
+    name: logs/Posts.log
 
 server:
   port: 9091

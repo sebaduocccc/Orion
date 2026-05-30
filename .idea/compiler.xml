@@ -21,9 +21,17 @@
         <module name="Usuarios" />
         <module name="MediaService" />
         <module name="Interaccion_Service" />
-        <module name="Comentarios" />
         <module name="Posteos" />
         <module name="ApiGateway" />
+      </profile>
+      <profile name="Annotation profile for Comentarios" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="Comentarios" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

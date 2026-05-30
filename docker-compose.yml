@@ -74,6 +74,18 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/interaction_db?allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+  comentario-service:
+    build: ./Comentario_Service
+    profiles: [ "social","complete" ]
+    ports:
+      - "8008:8008"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/comentarios_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
 
   chat-service:
     build: ./chatService
