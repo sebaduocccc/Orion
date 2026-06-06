@@ -9,6 +9,26 @@
         <outputRelativeToContentRoot value="true" />
         <module name="chatService" />
       </profile>
+      <profile name="Annotation profile for eventos_service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
+        </processorPath>
+        <module name="eventos_service" />
+      </profile>
+      <profile name="Annotation profile for Grupos_service" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="Grupos_service" />
+        <module name="Posteos" />
+      </profile>
       <profile name="Annotation profile for Usuarios" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -17,12 +37,11 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="PosteoService" />
-        <module name="Usuarios" />
         <module name="MediaService" />
+        <module name="PosteoService" />
         <module name="Interaccion_Service" />
+        <module name="Usuarios" />
         <module name="ApiGateway" />
-        <module name="Posteos" />
       </profile>
       <profile name="Annotation profile for Comentarios" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -31,7 +50,6 @@
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
         </processorPath>
-        <module name="eventos_service" />
         <module name="Comentarios" />
       </profile>
     </annotationProcessing>
@@ -46,6 +64,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="ApiGateway" options="-parameters" />
       <module name="Comentarios" options="-parameters" />
+      <module name="Grupos_service" options="-parameters" />
       <module name="Interaccion_Service" options="-parameters" />
       <module name="Interacciones" options="-parameters" />
       <module name="MediaService" options="-parameters" />
