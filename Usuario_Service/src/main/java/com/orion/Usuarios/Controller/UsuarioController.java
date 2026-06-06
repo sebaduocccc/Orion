@@ -22,6 +22,11 @@ public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
+    @GetMapping("/nombre/{id}")
+    public ResponseEntity<String> obtenerNombrePorId(@PathVariable Long id) {
+        UsuarioResponseDTO usuario = usuarioService.obtenerUsuarioPorId(id);
+        return ResponseEntity.ok(usuario.getUsername());
+    }
 
 
     ///  CRUD

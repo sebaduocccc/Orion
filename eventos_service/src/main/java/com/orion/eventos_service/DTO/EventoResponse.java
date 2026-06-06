@@ -12,6 +12,6 @@ public class EventoResponse {
     private String lugar;
     private LocalDateTime fecha;
     private LocalDateTime creadoEl;
-    private List<Long> asistentes;
+    private List<String> asistentes;
     private int cantidadAsistentes;
 }
