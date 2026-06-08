@@ -7,6 +7,7 @@ CREATE DATABASE admin_db;
 CREATE DATABASE chat_db;
 CREATE DATABASE comentarios_db;
 CREATE DATABASE IF NOT EXISTS eventos_db;
+CREATE DATABASE suscripcion_db;
 -- USE usuariod_db;
 -- INSERT INTO permisos (nombre) VALUES ('READ'), ('POST'), ('UPDATE'), ('DELETE');
 -- INSERT INTO roles (nombre) VALUES ('ROLE_USER'), ('ROLE_ADMIN');

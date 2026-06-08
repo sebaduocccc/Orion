@@ -17,10 +17,10 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="PosteoService" />
-        <module name="Usuarios" />
         <module name="MediaService" />
+        <module name="PosteoService" />
         <module name="Interaccion_Service" />
+        <module name="Usuarios" />
         <module name="ApiGateway" />
         <module name="Posteos" />
       </profile>
@@ -34,12 +34,24 @@
         <module name="eventos_service" />
         <module name="Comentarios" />
       </profile>
+      <profile name="Annotation profile for SuscripcionService" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="SuscripcionService" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="apigateway" target="17" />
+      <module name="eurekaserver" target="17" />
       <module name="Interacciones" target="17" />
       <module name="Notificacion_Service" target="17" />
       <module name="Orion" target="17" />
       <module name="search" target="17" />
+      <module name="user-service" target="17" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -53,6 +65,7 @@
       <module name="Orion" options="-parameters" />
       <module name="PosteoService" options="-parameters" />
       <module name="Posteos" options="-parameters" />
+      <module name="SuscripcionService" options="-parameters" />
       <module name="Usuarios" options="-parameters" />
       <module name="chatService" options="-parameters" />
       <module name="eventos_service" options="-parameters" />
