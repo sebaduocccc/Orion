@@ -9,16 +9,6 @@
         <outputRelativeToContentRoot value="true" />
         <module name="chatService" />
       </profile>
-      <profile name="Annotation profile for eventos_service" enabled="true">
-        <sourceOutputDir name="target/generated-sources/annotations" />
-        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
-        <outputRelativeToContentRoot value="true" />
-        <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
-        </processorPath>
-        <module name="eventos_service" />
-      </profile>
       <profile name="Annotation profile for Grupos_service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -27,7 +17,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
         </processorPath>
         <module name="Posteos" />
-        <module name="Comentarios" />
         <module name="Grupos_service" />
       </profile>
       <profile name="Annotation profile for Usuarios" enabled="true">
@@ -43,6 +32,17 @@
         <module name="Interaccion_Service" />
         <module name="Usuarios" />
         <module name="ApiGateway" />
+      </profile>
+      <profile name="Annotation profile for Comentarios" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
+        </processorPath>
+        <module name="eventos_service" />
+        <module name="Comentarios" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

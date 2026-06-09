@@ -39,7 +39,7 @@ public class ServiceGrupo {
                 .orElseThrow(() -> new RuntimeException("Grupo no encontrado"));
 
         if (!grupo.getIdCreador().equals(idUsuario)) {
-            throw new RuntimeException("No tienes permiso para editar este evento");
+            throw new RuntimeException("No tienes permiso para editar este grupo");
         }
 
         grupo.setNombre(dto.getNombre());
@@ -56,7 +56,7 @@ public class ServiceGrupo {
                 .orElseThrow(() -> new RuntimeException("Grupo no encontrado con id: " + id));
 
         if (!grupo.getIdCreador().equals(idUsuario)) {
-            throw new RuntimeException("No tienes permiso para eliminar este evento");
+            throw new RuntimeException("No tienes permiso para eliminar este grupo");
         }
 
         repo.deleteById(id);
@@ -70,10 +70,10 @@ public class ServiceGrupo {
     @Transactional
     public ResponseGrupo unirseAGrupo(Long id, Long idUsuario) {
         Grupo grupo = repo.findById(id)
-                .orElseThrow(() -> new RuntimeException("Evento no encontrado con id: " + id));
+                .orElseThrow(() -> new RuntimeException("Grupo no encontrado con id: " + id));
 
         if (grupo.getMiembros().contains(idUsuario)) {
-            throw new RuntimeException("Ya estás registrado en este evento");
+            throw new RuntimeException("Ya estás registrado en este grupo");
         }
 
         grupo.getMiembros().add(idUsuario);
