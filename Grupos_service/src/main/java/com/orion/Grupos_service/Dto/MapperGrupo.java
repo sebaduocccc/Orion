@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,6 +27,7 @@ public class MapperGrupo {
 
         grupo.setMiembros(new ArrayList<>());
         grupo.getMiembros().add(idCreador);
+        grupo.setCreadoEl(LocalDateTime.now());
 
         return grupo;
     }
