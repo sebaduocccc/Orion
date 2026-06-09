@@ -75,5 +75,9 @@ public class ControllerGrupo {
 
         return ResponseEntity.ok(assembler.toModel(actualizado));
     }
+    @GetMapping("/{idGrupo}/miembros")
+    public ResponseEntity<List<Long>> obtenerMiembros(@PathVariable Long idGrupo) {
+        return ResponseEntity.ok(service.obtenerMiembros(idGrupo));
+    }
 
 }

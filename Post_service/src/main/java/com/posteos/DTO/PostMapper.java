@@ -14,6 +14,7 @@ public class PostMapper {
         post.setUserId(pdto.getUserId());
         post.setContent(pdto.getContent());
         post.setMediaUrl(pdto.getMediaUrl());
+        post.setIdGrupo(pdto.getIdGrupo());
 
         return post;
 
@@ -27,6 +28,7 @@ public class PostMapper {
         dto.setUserId(posteo.getUserId());
         dto.setMediaUrl(posteo.getMediaUrl());
         dto.setCreado_el(posteo.getCreadoEl());
+        dto.setIdGrupo(posteo.getIdGrupo());
         return dto;
 
     }

@@ -1,5 +1,6 @@
 package com.posteos.Service;
 
+import com.posteos.Client.GrupoClient;
 import com.posteos.DTO.PostMapper;
 import com.posteos.DTO.PostRequestDTO;
 import com.posteos.DTO.PostResponseDTO;
@@ -12,6 +13,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +26,7 @@ import java.util.stream.Collectors;
 public class ServicePost {
 
     private static final Logger log = LoggerFactory.getLogger(ServicePost.class);
-
+    private final GrupoClient grupoClient;
     private final Repository_Post repo;
     private final PostMapper mapper;
 
@@ -35,6 +38,12 @@ public class ServicePost {
     public PostResponseDTO guardar(PostRequestDTO dto) {
         log.info("Guardando nuevo post para usuario id={}", dto.getUserId());
         Post post = mapper.aEntidad(dto);
+        if (dto.getIdGrupo() != null) {
+            List<Long> miembros = grupoClient.obtenerMiembros(dto.getIdGrupo());
+            if (!miembros.contains(dto.getUserId())) {
+                throw new RuntimeException("No eres miembro de este grupo");
+            }
+        }
         Post guardado = repo.save(post);
         log.info("Post guardado con id={}", guardado.getId());
         return mapper.response(guardado);
@@ -58,7 +67,12 @@ public class ServicePost {
                 .map(mapper::response)
                 .collect(Collectors.toList());
     }
-
+    public List<PostResponseDTO> obtenerPorGrupo(Long idGrupo) {
+        return repo.findByIdGrupo(idGrupo)
+                .stream()
+                .map(mapper::response)
+                .collect(Collectors.toList());
+    }
 
     public List<PostResponseDTO> buscarPostDeUsuario(Long userId) {
 
@@ -70,7 +84,8 @@ public class ServicePost {
                         post.getUserId(),
                         post.getContent(),
                         post.getMediaUrl(),
-                        post.getCreadoEl()
+                        post.getCreadoEl(),
+                        post.getIdGrupo()
                 ))
                 .collect(Collectors.toList());
     }
@@ -96,6 +111,11 @@ public class ServicePost {
         log.info("Actualizando post id={}", id);
         Post post = repo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post no encontrado con id: " + id));
+        UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        Long userId = (Long) auth.getPrincipal();
+        if (!post.getUserId().equals(userId)) {
+            throw new RuntimeException("No tienes permiso para editar este post");
+        }
         post.setContent(dto.getContent());
         post.setMediaUrl(dto.getMediaUrl());
         Post actualizado = repo.save(post);
@@ -108,8 +128,15 @@ public class ServicePost {
     @Transactional
     public void eliminar(Long id) {
         log.info("Eliminando post id={}", id);
-        repo.findById(id)
+
+        Post post =repo.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("Post no encontrado con id: " + id));
+        UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        Long userId = (Long) auth.getPrincipal();
+        if (!post.getUserId().equals(userId)) {
+            throw new RuntimeException("No tienes permiso para editar este post");
+        }
+
         repo.deleteById(id);
         log.info("Post id={} eliminado correctamente", id);
     }

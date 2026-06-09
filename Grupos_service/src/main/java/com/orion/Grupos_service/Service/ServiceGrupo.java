@@ -32,6 +32,7 @@ public class ServiceGrupo {
                 .map(mapper::toResponse)
                 .collect(Collectors.toList());
     }
+
     @Transactional
     public ResponseGrupo actualizar(Long id, RequestGrupo dto, Long idUsuario) {
 
@@ -66,6 +67,11 @@ public class ServiceGrupo {
         Grupo grupo = repo.findById(id)
                 .orElseThrow(() -> new RuntimeException("Grupo no encontrado con id: " + id));
         return mapper.toResponse(grupo);
+    }
+    public List<Long> obtenerMiembros(Long idGrupo) {
+        Grupo grupo = repo.findById(idGrupo)
+                .orElseThrow(() -> new RuntimeException("Grupo no encontrado"));
+        return grupo.getMiembros();
     }
     @Transactional
     public ResponseGrupo unirseAGrupo(Long id, Long idUsuario) {

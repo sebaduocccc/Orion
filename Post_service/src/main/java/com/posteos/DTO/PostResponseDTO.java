@@ -18,5 +18,7 @@ public class PostResponseDTO {
     private String content;
     private String mediaUrl;
     private LocalDateTime creado_el;
+    private Long idGrupo;
+
 
 }

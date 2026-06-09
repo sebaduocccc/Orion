@@ -14,6 +14,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
@@ -102,11 +103,23 @@ public class ControllerPost {
             @PathVariable Long id,
             @Valid @RequestBody PostRequestDTO dto) {
         log.info("PUT /api/posts/{} - Actualizando post", id);
+        UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
+        Long userId = (Long) auth.getPrincipal();
         PostResponseDTO actualizado = service.actualizar(id, dto);
         log.info("Post id={} actualizado correctamente", id);
         return ResponseEntity.ok(actualizado);
     }
-
+    @PostMapping("/grupo/{idGrupo}")
+    public ResponseEntity<PostResponseDTO> publicarEnGrupo(
+            @PathVariable Long idGrupo,
+            @Valid @RequestBody PostRequestDTO dto) {
+        dto.setIdGrupo(idGrupo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.guardar(dto));
+    }
+    @GetMapping("/grupo/{idGrupo}")
+    public ResponseEntity<List<PostResponseDTO>> obtenerPorGrupo(@PathVariable Long idGrupo) {
+        return ResponseEntity.ok(service.obtenerPorGrupo(idGrupo));
+    }
     // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<String> borrar(@PathVariable Long id) {

@@ -21,4 +21,5 @@ public class PostRequestDTO {
     private String content;
 
     private String mediaUrl;
+    private Long idGrupo;
 }

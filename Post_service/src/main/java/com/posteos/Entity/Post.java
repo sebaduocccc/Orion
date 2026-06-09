@@ -32,4 +32,6 @@ public class Post {
     @Column(nullable = false, updatable = false)
     @CreationTimestamp
     private LocalDateTime creadoEl;
+    @Column(nullable = true)
+    private Long idGrupo;
 }
