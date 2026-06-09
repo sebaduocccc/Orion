@@ -15,6 +15,7 @@ public class ResponseGrupo {
     private Long idCreador;
     private String nombre;
     private String descripcion;
-    private List<Long> miembros;
+    private List<String> miembros;
     private LocalDateTime creadoEl;
+
 }

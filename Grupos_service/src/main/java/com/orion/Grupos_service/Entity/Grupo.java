@@ -34,6 +34,7 @@ public class Grupo {
     @Column(name = "usuario_id")
     private List<Long> miembros;
 
+
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime creadoEl;

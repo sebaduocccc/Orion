@@ -19,12 +19,13 @@ spring:
                   - POST
                   - PUT
                   - DELETE
-                  - OPTION # React
+                  - OPTIONS # React
                   - PATCH
                 allowed-headers: "*"
                 allow-credentials: true
 
           routes:
+
             - id: usuario-service
               uri: http://user-service:9090
               predicates:
@@ -34,6 +35,7 @@ spring:
               predicates:
                 - Path=/api/comentarios/**
 
+
             - id: post-service
               uri: http://post-service:9091
               predicates:
@@ -42,7 +44,15 @@ spring:
             - id: media-service
               uri: http://media-service:9093
               predicates:
+
                 - Path=/api/media/**
+
+
+            - id: eventos-service
+            - uri: http://eventos-service:9096
+            - predicates:
+              - Path=/api/eventos/**
+
 
             - id: interacciones_service
               uri: http://interaccion-service:9095
@@ -53,6 +63,12 @@ spring:
               uri: http://chat-service:9100
               predicates:
                 - Path=/api/chat/**, /ws-chat/**
+
+
+            - id: grupos-service
+              uri: http://grupos-service:9092
+              predicates:
+                - Path=/api/grupos/**
 
           default-filters:
             - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE

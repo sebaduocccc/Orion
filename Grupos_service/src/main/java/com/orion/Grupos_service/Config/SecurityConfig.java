@@ -1,6 +1,7 @@
 package com.orion.Grupos_service.Config;
 
-import com.orion.eventos_service.Security.JwtValidationFilter;
+
+import com.orion.Grupos_service.Security.JwtValidationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -28,11 +29,12 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "/api/evento/**").permitAll();
-                    auth.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll();
-                    auth.requestMatchers("/api/evento/**").hasAuthority("ROLE_USER");
+                    auth.requestMatchers("/swagger-ui/**",
+                            "/swagger-ui/index.html",
+                            "/v3/api-docs/**",
+                            "/swagger-resources/**",
+                            "/webjars/**").permitAll();
                     auth.anyRequest().authenticated();
-
                 })
                 .addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

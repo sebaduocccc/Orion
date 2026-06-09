@@ -31,6 +31,19 @@ services:
         SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/usuario_db?allowPublicKeyRetrieval=true&useSSL=false
         SPRING_DATASOURCE_USERNAME: root
         SPRING_DATASOURCE_PASSWORD: root
+  grupos-service:
+    build: ./Grupos_service
+    profiles: [ "social","complete" ]
+    ports:
+      - "9092:9092"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_APPLICATION_NAME: Grupos_service
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/grupos_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
   eventos-service:
     build: ./eventos_service
     profiles: [ "social","complete" ]
@@ -140,65 +153,4 @@ volumes:
   orion_db_data:
   node_modules_orion:
 
-#  app:
-#    build: .
-#    container_name: orion_app
-#    ports:
-#      - "9090:9090"
-#    depends_on:
-#      db:
-#        condition: service_healthy
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://db:33306/orion_db?allowPublicKeyRetrieval=true&useSSL=false
-#      SPRING_DATASOURCE_USERNAME: root
-#      SPRING_DATASOURCE_PASSWORD: root
 
-#  notification_service:
-#    build: ./Notificacion_Service
-#    ports:
-#      - "9094:9094"
-#    depends_on:
-#      db:
-#        condition: service_healthy
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/notification_db?allowPublicKeyRetrieval=true&useSSL=false
-#      SPRING_DATASOURCE_USERNAME: root
-#      SPRING_DATASOURCE_PASSWORD: root
-
-#  db:
-#    image: mysql:8.0
-#    container_name: mysql_db
-#    environment:
-#      MYSQL_DATABASE: orion_db
-#      MYSQL_ROOT_PASSWORD: root
-#    ports:
-#      - "3306:3306"
-#    healthcheck:
-#      test: ["CMD","mysqladmin","ping","-h","localhost"]
-#      timeout: 20s
-#      retries: 10
-#
-
-
-#  zookeeper:
-#    image: confluentinc/cp-zookeeper:7.4.4
-#    container_name: zookeeper
-#    environment:
-#      ZOOKEEPER_CLIENT_PORT: 2181
-#      ZOOKEEPER_TICK_TIME: 2000
-#
-#
-#  kafka:
-#    image: confluentinc/cp-kafka:7.4.4
-#    container_name: kafka
-#    depends_on:
-#      - zookeeper
-#    ports:
-#      - "9092:9092"
-#    environment:
-#      KAFKA_BROKER_ID: 1
-#      KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-#      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
-#      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
-#      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
-#      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1

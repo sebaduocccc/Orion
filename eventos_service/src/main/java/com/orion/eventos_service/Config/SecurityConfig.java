@@ -32,13 +32,9 @@ public class SecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> {
                     auth.requestMatchers(HttpMethod.OPTIONS, "/**").permitAll();
-                    auth.requestMatchers(HttpMethod.GET, "/api/evento/**").permitAll();
                     auth.requestMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll();
-                    auth.requestMatchers("/api/evento/**").hasAuthority("ROLE_USER");
                     auth.anyRequest().authenticated();
-
                 })
                 .addFilterBefore(jwtValidationFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();
-    }
-}
+}}
