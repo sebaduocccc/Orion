@@ -54,5 +54,10 @@ spring:
               predicates:
                 - Path=/api/chat/**, /ws-chat/**
 
+            - id: suscripcion-service
+              uri: http://suscripcion-service:9102
+              predicates:
+                - Path=/api/suscripciones/**
+
           default-filters:
             - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
