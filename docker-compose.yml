@@ -85,6 +85,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/interaction_db?allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
+
   comentario-service:
     build: ./Comentario_Service
     profiles: [ "social","complete" ]
@@ -108,6 +109,19 @@ services:
         condition: service_healthy
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/chat_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+
+  suscripcion-service:
+    build: ./SuscripcionService
+    profiles: [ "social","posts","complete" ]
+    ports:
+      - "9102:9102"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/suscripcion_db?allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD: root
 
