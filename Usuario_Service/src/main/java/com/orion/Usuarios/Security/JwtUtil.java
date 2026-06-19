@@ -8,6 +8,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
@@ -26,12 +27,13 @@ public class JwtUtil {
     // Llave maestra: debe ser esta misma en TODOS LOS MICROSERVICIOS FUTUROS (REVISAR)
     // para el futuro ponerla en environment variable
 
-    private static final String SECRET_KEY =
-            "0mfQfctbNBt7Tb4Ej8aXQQebUc8zmnhpkZKObqzxUCi";
+    @Value("${jwt.secret}")
+    private static String SECRET_KEY;
 
 
     // tiempo de vida del token == 24 horas.
-    private static final long JWT_EXPIRATION = 86400000;
+    @Value("${jwt.expiration_time}")
+    private static long JWT_EXPIRATION;
 
     public String extractUsername(String token) {
 

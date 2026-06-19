@@ -7,9 +7,9 @@ spring:
       ddl-auto: update
     show-sql: true
   datasource:
-    url: ${SPRING_DATASOURCE_URL}
-    username: ${SPRING_DATASOURCE_USERNAME}
-    password: ${SPRING_DATASOURCE_PASSWORD}
+    url: ${SPRING_DATASOURCE_URL}:jdbc:mysql://db:3306/usuario_db?allowPublicKeyRetrieval=true&useSSL=false
+    username: ${SPRING_DATASOURCE_USERNAME}:root
+    password: ${SPRING_DATASOURCE_PASSWORD}:root
 
   liquibase:
     enabled: false
@@ -20,3 +20,14 @@ logging:
     name: logs/usuario.log
 server:
   port: 9090
+
+
+jwt:
+  secret: ${JWT_SECRET}
+  expiration_time: ${JWT_EXPIRATION_TIME}
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_CLIENT_SERVICEURL_DEFAULTZONE:http://eurekaserver:8761/eureka/}
+  instance:
+    prefer-ip-address: true
