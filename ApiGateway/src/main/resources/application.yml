@@ -36,7 +36,7 @@ spring:
                 - Path=/api/comentarios/**
 
             - id: post-service
-              uri: http://post-service:9091
+              uri: lb://posteos
               predicates:
                 - Path=/api/posts/**
 

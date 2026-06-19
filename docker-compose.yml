@@ -60,6 +60,42 @@ services:
     networks:
       - orion-network
 
+  post-service:
+    build: ./Post_service
+    container_name: posts-service
+    ports:
+      - "${PORT_POST_SERVICE}:${PORT_POST_SERVICE}"
+    depends_on:
+      eureka-server:
+        condition: service_started
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_POSTS}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
+      JWT_SECRET: ${JWT_SECRET}
+    networks:
+      - orion-network
+
+  interaccion-service:
+    build: ./Interaccion_Service
+    container_name: interaccion-service
+    ports:
+      - "${PORT_INTERACCION_SERVICE}:${PORT_INTERACCION_SERVICE}"
+    depends_on:
+      eureka-server:
+        condition: service_started
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_INTERACCION}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
+      JWT_SECRET: ${JWT_SECRET}
+
 #  post-service:
 #    build: ./Post_service
 #    ports:

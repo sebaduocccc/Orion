@@ -9,6 +9,7 @@ import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,8 +24,8 @@ import java.util.stream.Collectors;
 @Component
 public class JwtValidationFilter extends OncePerRequestFilter {
 
-    private static final String SECRET_KEY =
-            "0mfQfctbNBt7Tb4Ej8aXQQebUc8zmnhpkZKObqzxUCi";
+    @Value("${jwt.secret}")
+    private static String SECRET_KEY;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,

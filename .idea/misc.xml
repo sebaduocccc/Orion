@@ -8,6 +8,7 @@
         <option value="$PROJECT_DIR$/Post_service/pom.xml" />
         <option value="$PROJECT_DIR$/ApiGateway/pom.xml" />
         <option value="$PROJECT_DIR$/eureka-server/pom.xml" />
+        <option value="$PROJECT_DIR$/Interaccion_Service/pom.xml" />
       </list>
     </option>
   </component>
