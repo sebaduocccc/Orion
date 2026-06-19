@@ -3,7 +3,6 @@ services:
 
   db:
     image: mysql:8.0
-    profiles: ["core","chat","posts","complete"]
     container_name: mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: root
@@ -20,7 +19,6 @@ services:
 
   user-service:
     build: ./Usuario_Service
-    profiles: ["core","chat","posts","complete"]
     container_name: users-service
     ports:
       - "9090:9090"
@@ -34,7 +32,6 @@ services:
 
   post-service:
     build: ./Post_service
-    profiles: ["social","posts","complete"]
     ports:
       - "9091:9091"
     depends_on:
@@ -46,59 +43,59 @@ services:
       SPRING_DATASOURCE_PASSWORD: root
 
 
-  media-service:
-    build: ./MediaService
-    profiles: ["social","complete"]
-    ports:
-      - "9093:9093"
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/media_db?allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-      MEDIA_STORAGE_LOCATION: /app/media_data
-    volumes:
-      - ./media_volumen:/app/media_data
+#  media-service:
+#    build: ./MediaService
+#    profiles: ["social","complete"]
+#    ports:
+#      - "9093:9093"
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/media_db?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
+#      MEDIA_STORAGE_LOCATION: /app/media_data
+#    volumes:
+#      - ./media_volumen:/app/media_data
 
-  interaccion-service:
-    build: ./Interaccion_Service
-    profiles: ["social","complete"]
-    ports:
-      - "9095:9095"
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/interaction_db?allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
-  comentario-service:
-    build: ./Comentario_Service
-    profiles: [ "social","complete" ]
-    ports:
-      - "8008:8008"
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/comentarios_db?allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+#  interaccion-service:
+#    build: ./Interaccion_Service
+#    profiles: ["social","complete"]
+#    ports:
+#      - "9095:9095"
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/interaction_db?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
+#  comentario-service:
+#    build: ./Comentario_Service
+#    profiles: [ "social","complete" ]
+#    ports:
+#      - "8008:8008"
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/comentarios_db?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
 
-  chat-service:
-    build: ./chatService
-    profiles: [ "social", "chat","complete"]
-    ports:
-      - "9100:9100"
-    depends_on:
-      db:
-        condition: service_healthy
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/chat_db?allowPublicKeyRetrieval=true&useSSL=false
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+#  chat-service:
+#    build: ./chatService
+#    profiles: [ "social", "chat","complete"]
+#    ports:
+#      - "9100:9100"
+#    depends_on:
+#      db:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/chat_db?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: root
 
   api-gateway:
     build: ./ApiGateway
@@ -110,24 +107,24 @@ services:
 #      - post-service
 #      - media-service
 
-  orion-app:
-    build:
-      context: ./orion-app
-    profiles: ["core","chat","complete"]
-    container_name: orion-app
-    ports:
-      - "5173:5173"
-    volumes:
-      - ./orion-app:/app
-      - node_modules_orion:/app/node_modules
-    depends_on:
-      - api-gateway
-    environment:
-      - CHOKIDAR_USEPOLLING=true
+#  orion-app:
+#    build:
+#      context: ./orion-app
+#    profiles: ["core","chat","complete"]
+#    container_name: orion-app
+#    ports:
+#      - "5173:5173"
+#    volumes:
+#      - ./orion-app:/app
+#      - node_modules_orion:/app/node_modules
+#    depends_on:
+#      - api-gateway
+#    environment:
+#      - CHOKIDAR_USEPOLLING=true
 
 volumes:
   orion_db_data:
-  node_modules_orion:
+#  node_modules_orion:
 
 #  app:
 #    build: .

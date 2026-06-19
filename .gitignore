@@ -6,7 +6,7 @@ media_volumen/posts/
 ### .env
 orion-app/.env
 .env
-.env.*
+
 
 ## IDE
 .idea/
