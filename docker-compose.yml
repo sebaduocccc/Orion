@@ -15,6 +15,8 @@ services:
       test: ["CMD","mysqladmin","ping","-h","localhost"]
       timeout: 20s
       retries: 10
+    networks:
+      - orion-network
 
   eureka-server:
     build: ./eureka-server
@@ -33,6 +35,7 @@ services:
       eureka-server:
         condition: service_started
     environment:
+      EUREKA_DEFAULT_ZONE: ${EUREKA_DEFAULT_ZONE}
       JWT_SECRET: ${JWT_SECRET}
     networks:
       - orion-network
@@ -43,6 +46,8 @@ services:
     ports:
       - "${PORT_USER_SERVICE}:${PORT_USER_SERVICE}"
     depends_on:
+      eureka-server:
+        condition: service_started
       db:
         condition: service_healthy
     environment:

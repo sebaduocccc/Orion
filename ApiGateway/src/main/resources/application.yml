@@ -26,9 +26,10 @@ spring:
 
           routes:
             - id: usuario-service
-              uri: http://user-service:9090
+              uri: lb://usuarios
               predicates:
                 - Path=/api/usuarios/**, /api/auth/**
+
             - id: comentario-service
               uri: http://comentario-service:8008
               predicates:
@@ -56,3 +57,9 @@ spring:
 
           default-filters:
             - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials, RETAIN_UNIQUE
+eureka:
+  client:
+    service-url:
+      defaultZone: ${EUREKA_DEFAULT_ZONE}
+  instance:
+    prefer-ip-address: true
