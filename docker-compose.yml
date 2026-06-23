@@ -23,6 +23,12 @@ services:
     container_name: eureka-server
     ports:
       - "${PORT_EUREKA}:${PORT_EUREKA}"
+    healthcheck:
+      test: [ "CMD-SHELL", "wget -q -O /dev/null http://localhost:${PORT_EUREKA:-8761}/eureka/apps || exit 1" ]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
     networks:
       - orion-network
 
@@ -33,9 +39,9 @@ services:
       - "${PORT_GATEWAY}:${PORT_GATEWAY}"
     depends_on:
       eureka-server:
-        condition: service_started
+        condition: service_healthy
     environment:
-      EUREKA_DEFAULT_ZONE: ${EUREKA_DEFAULT_ZONE}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
       JWT_SECRET: ${JWT_SECRET}
     networks:
       - orion-network
@@ -47,7 +53,7 @@ services:
       - "${PORT_USER_SERVICE}:${PORT_USER_SERVICE}"
     depends_on:
       eureka-server:
-        condition: service_started
+        condition: service_healthy
       db:
         condition: service_healthy
     environment:
@@ -86,7 +92,7 @@ services:
       - "${PORT_INTERACCION_SERVICE}:${PORT_INTERACCION_SERVICE}"
     depends_on:
       eureka-server:
-        condition: service_started
+        condition: service_healthy
       db:
         condition: service_healthy
     environment:
@@ -95,6 +101,8 @@ services:
       SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
       EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
       JWT_SECRET: ${JWT_SECRET}
+    networks:
+      - orion-network
 
 #  post-service:
 #    build: ./Post_service
