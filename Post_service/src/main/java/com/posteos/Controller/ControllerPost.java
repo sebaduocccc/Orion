@@ -5,6 +5,7 @@ import com.posteos.DTO.PostResponseDTO;
 import com.posteos.Entity.Post;
 import com.posteos.Repository.Repository_Post;
 import com.posteos.Service.ServicePost;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/posts")
+@SecurityRequirement(name = "bearerAuth")
 //@CrossOrigin(origins = "http://localhost:5173")
 public class ControllerPost {
 
@@ -37,9 +39,11 @@ public class ControllerPost {
 
     //CREATE
     @PostMapping
-    public ResponseEntity<PostResponseDTO> guardar(@Valid @RequestBody PostRequestDTO dto) {
-        Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getCredentials();
-        log.info("POST /api/posts - Creando post para usuario id={}", dto.getUserId());
+    public ResponseEntity<?> guardar(
+            @Valid @RequestBody PostRequestDTO dto,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acceso denegado");
+        log.info("POST /api/posts - Creando post para usuario id={}", userId);
         dto.setUserId(userId);
         PostResponseDTO response = service.guardar(dto);
         log.info("Post creado con id={}", response.getId());
@@ -139,7 +143,7 @@ public class ControllerPost {
             @RequestParam(defaultValue = "10") int size,
             @PathVariable Long id
     ){
-                return service.cargarFeedUsuario(page, size, id);
+        return service.cargarFeedUsuario(page, size, id);
     }
 
 }
