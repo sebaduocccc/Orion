@@ -1,0 +1,27 @@
+server:
+  port: 8008
+
+logging:
+  file:
+    name: logs/comentarios.log
+
+spring:
+  application:
+    name: Comentarios
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://localhost:3306/comentarios_db?useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true}
+    username: ${DB_USERNAME:root}
+    password: ${DB_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: false
+  liquibase:
+    enabled: true
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+
+springdoc:
+  packages-to-scan: com.Comentarios.Controller
+  api-docs:
+    path: /v3/api-docs
