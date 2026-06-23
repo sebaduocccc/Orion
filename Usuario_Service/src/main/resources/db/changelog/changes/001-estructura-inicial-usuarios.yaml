@@ -1,7 +1,7 @@
 databaseChangeLog:
   - changeSet:
       id: 001-estructura-inicial-usuarios
-      author: akomi
+      author: sebaduocccc
       changes:
         # tabla usuarios
         - createTable:
