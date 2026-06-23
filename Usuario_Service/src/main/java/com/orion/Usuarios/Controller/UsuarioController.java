@@ -6,6 +6,7 @@ import com.orion.Usuarios.Entity.Usuario;
 import com.orion.Usuarios.Entity.UsuarioPerfil;
 import com.orion.Usuarios.Service.UsuarioService;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -16,6 +17,7 @@ import java.util.List;
 
 import java.util.Map;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/usuarios")
 @SecurityRequirement(name = "bearerAuth") // para el api-gateway y su jwt
@@ -26,13 +28,14 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
 
-    ///  CRUD
+    // CRUD
 
     // CREATE
-
     @PostMapping("/registro")
     public ResponseEntity<RegisterResponse> registrar(@RequestBody RegisterRequest registerRequest) {
+        log.info("POST /api/usuarios/registro - Registrando nuevo usuario: {}", registerRequest.getUsername());
         Usuario userRegistrado = usuarioService.registrarUsuario(registerRequest);
+        log.info("Usuario registrado con id={}", userRegistrado.getId());
         return ResponseEntity.ok(new RegisterResponse(
                 userRegistrado.getId(),
                 userRegistrado.getUsername(),
@@ -42,96 +45,82 @@ public class UsuarioController {
 
 
     // READ
-
     @GetMapping("/{id}")
-    public ResponseEntity<UsuarioResponseDTO> buscar(@PathVariable Long id){
+    public ResponseEntity<UsuarioResponseDTO> buscar(@PathVariable Long id) {
+        log.info("GET /api/usuarios/{}", id);
         return ResponseEntity.ok(usuarioService.obtenerUsuarioPorId(id));
     }
 
     @GetMapping("/username/{username}")
-    public ResponseEntity<UsuarioResponseDTO> buscarPorUsername(@PathVariable String username){
+    public ResponseEntity<UsuarioResponseDTO> buscarPorUsername(@PathVariable String username) {
+        log.info("GET /api/usuarios/username/{}", username);
         return ResponseEntity.ok(usuarioService.obtenerUsuarioPorUsername(username));
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<UsuarioResponseDTO>> buscarTodosUsuarios(){
+    public ResponseEntity<List<UsuarioResponseDTO>> buscarTodosUsuarios() {
+        log.info("GET /api/usuarios/all - Listando todos los usuarios");
         return ResponseEntity.ok(usuarioService.obtenerTodosUsuarios());
     }
 
 
     // UPDATE
-
-
     @PutMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> actualizarUsuario(
             @PathVariable Long id,
-            @RequestBody UsuarioUpdateDTO updateDTO
-    ){
+            @RequestBody UsuarioUpdateDTO updateDTO,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        log.info("PUT /api/usuarios/{} - Solicitado por userId={}", id, userId);
         UsuarioResponseDTO actualizado = usuarioService.actualizarUsuario(id, updateDTO);
+        log.info("Usuario id={} actualizado correctamente", id);
         return ResponseEntity.ok(actualizado);
     }
 
     // DELETE
-
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> eliminarUsuario(@PathVariable Long id){
+    public ResponseEntity<String> eliminarUsuario(
+            @PathVariable Long id,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        log.info("DELETE /api/usuarios/{} - Solicitado por userId={}", id, userId);
         usuarioService.eliminarUsuario(id);
+        log.info("Usuario id={} eliminado correctamente", id);
         return ResponseEntity.ok("Usuario eliminado");
     }
 
 
-
-
-
-
-    ///  FRONTEND APP
+    // FRONTEND APP
 
     @GetMapping("/profile/photo/{userId}")
-    public ResponseEntity<ProfilePhotoDTO> buscarAvatarUrl(@PathVariable Long userId){
+    public ResponseEntity<ProfilePhotoDTO> buscarAvatarUrl(@PathVariable Long userId) {
+        log.info("GET /api/usuarios/profile/photo/{} - Obteniendo avatar", userId);
         UsuarioPerfil usuarioPerfil = usuarioService.obtenerUsuarioPerfilPorId(userId);
         return ResponseEntity.ok(new ProfilePhotoDTO(usuarioPerfil.getAvatarUrl()));
     }
 
     @GetMapping("/profile/{userId}")
-    public ResponseEntity<UserProfileResponse> getUsuarioPerfil(@PathVariable Long userId){
-        UsuarioResponseDTO user =  usuarioService.obtenerUsuarioPorId(userId);
-
-
+    public ResponseEntity<UserProfileResponse> getUsuarioPerfil(@PathVariable Long userId) {
+        log.info("GET /api/usuarios/profile/{} - Obteniendo perfil público", userId);
+        UsuarioResponseDTO user = usuarioService.obtenerUsuarioPorId(userId);
         UserProfileResponse perfil = new UserProfileResponse(
                 user.getUsername(),
                 user.getAvatarUrl(),
                 user.getBiografia(),
                 user.getUbicacion()
         );
-
         return ResponseEntity.ok(perfil);
     }
 
-
     @PutMapping("/{id}/avatar")
-    public ResponseEntity<UsuarioPerfil> actualizarUrlAvatar(@PathVariable Long id, @RequestBody Map<String, String> body){
-
+    public ResponseEntity<UsuarioPerfil> actualizarUrlAvatar(
+            @PathVariable Long id,
+            @RequestBody Map<String, String> body,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        log.info("PUT /api/usuarios/{}/avatar - Solicitado por userId={}", id, userId);
         String nuevaUrl = body.get("avatarUrl");
-
-        UsuarioPerfil perfilActualizar = usuarioService.actualizarUrlAvatar(id, nuevaUrl);
-
-        return ResponseEntity.ok(perfilActualizar);
+        UsuarioPerfil perfilActualizado = usuarioService.actualizarUrlAvatar(id, nuevaUrl);
+        log.info("Avatar actualizado para usuario id={}", id);
+        return ResponseEntity.ok(perfilActualizado);
     }
-
-
-
-
-
-    /// ADMIN ONLY
-
-//    @DeleteMapping("/{id}")
-//    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-//    public ResponseEntity<String> eliminarUsuario(@PathVariable Long id){
-//        usuarioService.eliminarUsuario(id);
-//
-//
-//        return ResponseEntity.ok("Usuario eliminado con exito por el administrador");
-//    }
 
 
 }

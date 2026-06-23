@@ -7,6 +7,7 @@ import com.posteos.Entity.Post;
 import com.posteos.Exception.ResourceNotFoundException;
 import com.posteos.Repository.Repository_Post;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -18,11 +19,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ServicePost {
-
-    private static final Logger log = LoggerFactory.getLogger(ServicePost.class);
 
     private final Repository_Post repo;
     private final PostMapper mapper;
@@ -61,9 +61,9 @@ public class ServicePost {
 
 
     public List<PostResponseDTO> buscarPostDeUsuario(Long userId) {
-
+        log.info("Buscando posts del usuario id={}", userId);
         List<Post> posts = repo.findByUserIdOrderByCreadoElDesc(userId);
-
+        log.info("Se encontraron {} posts para usuario id={}", posts.size(), userId);
         return posts.stream()
                 .map(post -> new PostResponseDTO(
                         post.getId(),
@@ -85,8 +85,10 @@ public class ServicePost {
     }
 
     @Transactional
-    public Long totalDePostDeUsuario(Long userId){
-        return repo.countByUserId(userId);
+    public Long totalDePostDeUsuario(Long userId) {
+        Long total = repo.countByUserId(userId);
+        log.info("Total de posts del usuario id={}: {}", userId, total);
+        return total;
     }
 
     // UPDATE
@@ -120,25 +122,16 @@ public class ServicePost {
     //FRONTEND
 
     @Transactional
-    public Page<Post> cargarFeedPrincipal(int page, int size){
-
+    public Page<Post> cargarFeedPrincipal(int page, int size) {
+        log.info("Cargando feed principal: página={} tamaño={}", page, size);
         Pageable pageable = PageRequest.of(page, size);
         return repo.findAllByOrderByCreadoElDesc(pageable);
-
     }
-
-
 
     @Transactional
-    public Page<Post> cargarFeedUsuario(int page, int size, Long userId){
-
+    public Page<Post> cargarFeedUsuario(int page, int size, Long userId) {
+        log.info("Cargando feed del usuario id={}: página={} tamaño={}", userId, page, size);
         Pageable pageable = PageRequest.of(page, size);
-        return repo.findByUserIdOrderByCreadoElDesc(userId,pageable);
-
+        return repo.findByUserIdOrderByCreadoElDesc(userId, pageable);
     }
-
-
-
-
-
 }

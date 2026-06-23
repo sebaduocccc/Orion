@@ -7,6 +7,7 @@ import com.posteos.Repository.Repository_Post;
 import com.posteos.Service.ServicePost;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,13 +21,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/posts")
 @SecurityRequirement(name = "bearerAuth")
 //@CrossOrigin(origins = "http://localhost:5173")
 public class ControllerPost {
-
-    private static final Logger log = LoggerFactory.getLogger(ControllerPost.class);
 
     @Autowired
     private ServicePost service;
@@ -67,18 +67,19 @@ public class ControllerPost {
 
     @GetMapping("/user/{userId}")
     public ResponseEntity<List<PostResponseDTO>> obtenerTodosPorUsuario(@PathVariable Long userId) {
+        log.info("GET /api/posts/user/{} - Posts del usuario", userId);
         List<PostResponseDTO> posts = service.buscarPostDeUsuario(userId);
-
-        if(posts.isEmpty()) {
-            return ResponseEntity.notFound().build(); // devuelve code 204 no hay posts
+        if (posts.isEmpty()) {
+            log.warn("No se encontraron posts para usuario id={}", userId);
+            return ResponseEntity.notFound().build();
         }
-
         return ResponseEntity.ok(posts);
     }
 
 
     @GetMapping("/user/{userId}/count")
     public ResponseEntity<Long> obtenerCountLikesUsuario(@PathVariable Long userId) {
+        log.info("GET /api/posts/user/{}/count - Contando posts del usuario", userId);
         return ResponseEntity.ok(service.totalDePostDeUsuario(userId));
     }
 
@@ -129,11 +130,9 @@ public class ControllerPost {
     @GetMapping("/feed")
     public Page<Post> obtenerTodosFeed(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
-    ) {
-
+            @RequestParam(defaultValue = "10") int size) {
+        log.info("GET /api/posts/feed - página={} tamaño={}", page, size);
         return service.cargarFeedPrincipal(page, size);
-
     }
 
 
@@ -141,8 +140,8 @@ public class ControllerPost {
     public Page<Post> obtenerFeedUsuario(
             @RequestParam(defaultValue = "0") int page,
             @RequestParam(defaultValue = "10") int size,
-            @PathVariable Long id
-    ){
+            @PathVariable Long id) {
+        log.info("GET /api/posts/feed/{} - página={} tamaño={}", id, page, size);
         return service.cargarFeedUsuario(page, size, id);
     }
 
