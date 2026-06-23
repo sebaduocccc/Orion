@@ -3,14 +3,19 @@ spring:
     name: Interaccion_Service
 
   datasource:
-    url: ${SPRING_DATASOURCE_URL}jdbc:mysql://db:3306/interaction_db?allowPublicKeyRetrieval=true&useSSL=false
-    username: ${SPRING_DATASOURCE_USERNAME}:root
-    password: ${SPRING_DATASOURCE_PASSWORD}:root
+    url: ${SPRING_DATASOURCE_URL:jdbc:mysql://db:3306/interaction_db?allowPublicKeyRetrieval=true&useSSL=false}
+    username: ${SPRING_DATASOURCE_USERNAME:root}
+    password: ${SPRING_DATASOURCE_PASSWORD:root}
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
     database-platform: org.hibernate.dialect.MySQLDialect
+
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+
 
 
 server:

@@ -1,0 +1,30 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-estructura-inicial-interacciones
+      author: sebaduocccc
+      changes:
+        # tabla de likes
+        - createTable:
+            tableName: likes
+            columns:
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true}}
+              - column: {name: usuario_id, type: bigint, constraints: {nullable: false}}
+              - column: {name: post_id, type: bigint, constraints: {nullable: false}}
+
+        - addUniqueConstraint:
+            tableName: likes
+            columnNames: usuario_id, post_id
+            constraintName: uq_likes_usuario_post
+
+        # tabla de follows
+        - createTable:
+            tableName: follows
+            columns:
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true}}
+              - column: {name: seguidor_id, type: bigint, constraints: {nullable: false}}
+              - column: {name: seguido_id, type: bigint, constraints: {nullable: false}}
+
+        - addUniqueConstraint:
+            tableName: follows
+            columnNames: seguidor_id, seguido_id
+            constraintName: uq_follows_seguidor_seguido
