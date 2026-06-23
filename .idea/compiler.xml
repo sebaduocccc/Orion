@@ -10,7 +10,7 @@
         <module name="chatService" />
         <module name="eureka-server" />
       </profile>
-      <profile name="Annotation profile for Usuarios" enabled="true">
+      <profile name="Annotation profile for PosteoService" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
