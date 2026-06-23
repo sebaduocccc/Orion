@@ -1,10 +1,11 @@
 spring:
   application:
     name: Usuarios
-
+  main:
+    web-application-type: servlet
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: none
     show-sql: true
   datasource:
     url: ${SPRING_DATASOURCE_URL}:jdbc:mysql://db:3306/usuario_db?allowPublicKeyRetrieval=true&useSSL=false
@@ -12,7 +13,7 @@ spring:
     password: ${SPRING_DATASOURCE_PASSWORD}:root
 
   liquibase:
-    enabled: false
+    enabled: true
     change-log: classpath:/db/changelog/db.changelog-master.yaml
 
 logging:

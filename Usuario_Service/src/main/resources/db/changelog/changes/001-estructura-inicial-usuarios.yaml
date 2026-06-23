@@ -7,51 +7,49 @@ databaseChangeLog:
         - createTable:
             tableName: usuario
             columns:
-              - column: {name: id,type: bigint, autoIncrement: true, constraints:{ primaryKey: true }}
-              - column: {name: username, type: varchar(50), constraints: { nullable: false, unique: true }}
-              - column: {name: email, type: varchar(100), constraints: {nullable: false}}
-              - column: {name: password, type: varchar(255), constraints: { nullable: false }}
-              - column: {name: created_at, type: datetime}
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true}}
+              - column: {name: username, type: varchar(50), constraints: {nullable: false, unique: true}}
+              - column: {name: email, type: varchar(255), constraints: {nullable: false, unique: true}}
+              - column: {name: password, type: varchar(255), constraints: {nullable: false}}
+              - column: {name: created_at, type: datetime(6)}
 
         # tabla perfiles
         - createTable:
             tableName: usuario_perfil
             columns:
-              - column: {name: id, type: bigint, autoIncrement: true, constraints: { primaryKey: true }}
-              - column: {name: usuario_id, type: bigint, constraints: { nullable: false, unique: true }}
-              - column: {name: nombre_display, type: varchar(100)}
-              - column: {name: biografia, type: varchar(255)}
-              - column: {name: ubicacion, type: varchar(100)}
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true}}
+              - column: {name: usuario_id, type: bigint, constraints: {nullable: false, unique: true}}
+              - column: {name: nombre_display, type: varchar(255)}
+              - column: {name: biografia, type: varchar(500)}
+              - column: {name: ubicacion, type: varchar(255)}
               - column: {name: avatar_url, type: varchar(255)}
 
         # roles y permisos (security)
         - createTable:
             tableName: roles
             columns:
-              - column: {name: id, type: bigint, autoIncrement: true, constraints: { primaryKey: true }}
-              - column: {name: nombre, type: varchar(50), constraints: { nullable: false , unique: true }}
-
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true}}
+              - column: {name: nombre, type: varchar(50), constraints: {nullable: false, unique: true}}
 
         - createTable:
             tableName: usuarios_roles
             columns:
-              - column: {name: usuario_id, type: bigint, constraints: { nullable: false }}
-              - column: {name: rol_id, type: bigint, constraints: { nullable: false }}
+              - column: {name: usuario_id, type: bigint, constraints: {nullable: false}}
+              - column: {name: rol_id, type: bigint, constraints: {nullable: false}}
 
         - createTable:
             tableName: permisos
             columns:
-              - column: {name: id, type: bigint, autoIncrement: true, constraints: { primaryKey: true }}
-              - column: {name: nombre, type: varchar(50), constraints: {nullable.false, unique: true }}
+              - column: {name: id, type: bigint, autoIncrement: true, constraints: {primaryKey: true}}
+              - column: {name: nombre, type: varchar(50), constraints: {nullable: false, unique: true}}
 
         - createTable:
             tableName: roles_permisos
             columns:
-              - column: {name: rol_id, type: bigint, constraints: { nullable: false }}
-              - column: {name: permiso_id, type: bigint, constraints: { nullable: false }}
+              - column: {name: rol_id, type: bigint, constraints: {nullable: false}}
+              - column: {name: permiso_id, type: bigint, constraints: {nullable: false}}
 
         # llaves foraneas
-
         - addForeignKeyConstraint:
             baseTableName: usuario_perfil
             baseColumnNames: usuario_id
