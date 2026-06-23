@@ -24,94 +24,29 @@ import java.util.stream.Collectors;
 public class JwtUtil {
 
 
-    // Llave maestra: debe ser esta misma en TODOS LOS MICROSERVICIOS FUTUROS (REVISAR)
-    // para el futuro ponerla en environment variable
-
     @Value("${jwt.secret}")
-    private static String SECRET_KEY;
+    private String secret;
 
-
-    // tiempo de vida del token == 24 horas.
     @Value("${jwt.expiration_time}")
-    private static long JWT_EXPIRATION;
+    private long expirationTime;
 
-    public String extractUsername(String token) {
-
-        return extractClaim(token, Claims::getSubject);
-    }
-
-
-    public <T> T extractClaim(String token, Function<Claims, T> claimsResolver){
-
-        final Claims claims = extractAllClaims(token);
-        return claimsResolver.apply(claims);
-
-    }
-
-
-//    public String generateToken(UserDetails userDetails) {
-//        return generateToken(new HashMap<>(), userDetails);
-//    }
-
-
-
-    /*
-
-    * Se genera un token JWT que contiene el ID del usuario y sus roles en una lista.
-    * es CRUCIAL inyectar el ID del usuario en los demas microservicios para que asi
-    * se pueda saber quien esta realizando segun que cosa.
-
-     */
-    public String generateToken(Usuario usuario){
-
+    public String generateToken(Usuario usuario) {
         Map<String, Object> claims = new HashMap<>();
-
-        claims.put("id", usuario.getId()); // aqui se pasa el argumento "id" : "usuario autenticado"
-
-        claims.put("roles",usuario.getRoles().stream().map(Rol::getNombre).collect(Collectors.toList()));
+        claims.put("id", usuario.getId());
+        claims.put("roles", usuario.getRoles().stream().map(Rol::getNombre).collect(Collectors.toList()));
 
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(usuario.getUsername())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
-                .setExpiration(new Date(System.currentTimeMillis() + JWT_EXPIRATION))
-                .signWith(getSignInKey(),SignatureAlgorithm.HS256)
+                .setExpiration(new Date(System.currentTimeMillis() + expirationTime))
+                .signWith(getSignInKey(), SignatureAlgorithm.HS256)
                 .compact();
-
     }
 
-
-
-    public boolean isTokenValid(String token,UserDetails userDetails) {
-
-        final String username = extractUsername(token);
-        return (username.equals(userDetails.getUsername())) && !isTokenExpired(token);
-
-    }
-
-
-    public boolean isTokenExpired(String token) {
-
-        return extractExpiration(token).before(new Date());
-
-    }
-
-    public Date extractExpiration(String token) {
-        return extractClaim(token, Claims::getExpiration);
-    }
-
-
-    private Claims extractAllClaims(String token){
-        return Jwts.parserBuilder()
-                .setSigningKey(getSignInKey())
-                .build()
-                .parseClaimsJws(token)
-                .getBody();
-    }
-
-
-    public Key getSignInKey(){
-        byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
+    private Key getSignInKey() {
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 }

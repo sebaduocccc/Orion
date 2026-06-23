@@ -5,6 +5,7 @@ import com.orion.Usuarios.DTO.*;
 import com.orion.Usuarios.Entity.Usuario;
 import com.orion.Usuarios.Entity.UsuarioPerfil;
 import com.orion.Usuarios.Service.UsuarioService;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -17,6 +18,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/usuarios")
+@SecurityRequirement(name = "bearerAuth") // para el api-gateway y su jwt
 //@CrossOrigin(origins = "http://localhost:5173") // habilitar React js
 public class UsuarioController {
 
@@ -130,5 +132,6 @@ public class UsuarioController {
 //
 //        return ResponseEntity.ok("Usuario eliminado con exito por el administrador");
 //    }
+
 
 }
