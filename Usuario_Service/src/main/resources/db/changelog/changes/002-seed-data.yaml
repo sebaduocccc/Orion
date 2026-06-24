@@ -1,0 +1,294 @@
+databaseChangeLog:
+
+  - changeSet:
+      id: 002-insert-permisos
+      author: orion-system
+      changes:
+        - insert:
+            tableName: permisos
+            columns:
+              - column: {name: id, valueNumeric: 1}
+              - column: {name: nombre, value: "READ"}
+        - insert:
+            tableName: permisos
+            columns:
+              - column: {name: id, valueNumeric: 2}
+              - column: {name: nombre, value: "POST"}
+        - insert:
+            tableName: permisos
+            columns:
+              - column: {name: id, valueNumeric: 3}
+              - column: {name: nombre, value: "DELETE"}
+
+  - changeSet:
+      id: 003-insert-roles
+      author: orion-system
+      changes:
+        - insert:
+            tableName: roles
+            columns:
+              - column: {name: id, valueNumeric: 1}
+              - column: {name: nombre, value: "ROLE_USER"}
+        - insert:
+            tableName: roles
+            columns:
+              - column: {name: id, valueNumeric: 2}
+              - column: {name: nombre, value: "ROLE_ADMIN"}
+
+  - changeSet:
+      id: 004-insert-roles-permisos
+      author: orion-system
+      changes:
+        # ROLE_USER (1): READ (1) + POST (2)
+        - insert:
+            tableName: roles_permisos
+            columns:
+              - column: {name: rol_id, valueNumeric: 1}
+              - column: {name: permiso_id, valueNumeric: 1}
+        - insert:
+            tableName: roles_permisos
+            columns:
+              - column: {name: rol_id, valueNumeric: 1}
+              - column: {name: permiso_id, valueNumeric: 2}
+        # ROLE_ADMIN (2): READ (1) + POST (2) + DELETE (3)
+        - insert:
+            tableName: roles_permisos
+            columns:
+              - column: {name: rol_id, valueNumeric: 2}
+              - column: {name: permiso_id, valueNumeric: 1}
+        - insert:
+            tableName: roles_permisos
+            columns:
+              - column: {name: rol_id, valueNumeric: 2}
+              - column: {name: permiso_id, valueNumeric: 2}
+        - insert:
+            tableName: roles_permisos
+            columns:
+              - column: {name: rol_id, valueNumeric: 2}
+              - column: {name: permiso_id, valueNumeric: 3}
+
+  - changeSet:
+      id: 005-insert-usuarios
+      author: orion-system
+      changes:
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 1}
+              - column: {name: username, value: "carlos_abarzua"}
+              - column: {name: email, value: "ca.abarzuac@profesorduoc.cl"}
+              - column: {name: password, value: "$2b$10$/5Q3Ex0GtK4tptq8F1HpPOj9.kN3YyIGwtfQP6MngtL2pfUZqjoZy"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 2}
+              - column: {name: username, value: "ronald_villalobos"}
+              - column: {name: email, value: "ronald@gmail.com"}
+              - column: {name: password, value: "$2b$10$7chuixrI3ZKhHMccht/fFeADolUFjsHZ2KCRMi/w4CTHhFnIv1FYy"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 3}
+              - column: {name: username, value: "mateon"}
+              - column: {name: email, value: "mateito@gmail.com"}
+              - column: {name: password, value: "$2b$10$w9nAD..HflBCi/P50EFZVOhlmKWfCSXo/Nqi2PNP6Qz9rSEl6UgLW"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 4}
+              - column: {name: username, value: "akomi"}
+              - column: {name: email, value: "akmi@yahoo.es"}
+              - column: {name: password, value: "$2b$10$pJdg6x83AQxNr9C2ceY4FutLTfisDQnp7aOVvwawccd/Uh3gnFhyy"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 5}
+              - column: {name: username, value: "vicentito"}
+              - column: {name: email, value: "v.garcia@duocuc.cl"}
+              - column: {name: password, value: "$2b$10$49Jk6qOpurKAahL3qlK8ieDu2F1/qEUsTmZ6MGkrifLmoi820RrjC"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 6}
+              - column: {name: username, value: "srbaes"}
+              - column: {name: email, value: "r.baes@gmail.com"}
+              - column: {name: password, value: "$2b$10$jX1tobeME9xDrX/IBG5j/OZxKK8ahuiYFOdPieTW0d..ML2Te.NPW"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 7}
+              - column: {name: username, value: "panxito"}
+              - column: {name: email, value: "panxo@outlook.com"}
+              - column: {name: password, value: "$2b$10$ysci1SgUE3P2VF5MSyIVVOpH.FDKiiQk2vUCJzKlD1FvNAe9eQJWe"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 8}
+              - column: {name: username, value: "cristovalsito"}
+              - column: {name: email, value: "ola@hotmail.com"}
+              - column: {name: password, value: "$2b$10$GSXUHzH42yoKzkajZZeIBO1Td9AXQhNO6xuNLSaJo5Oz2gywcEyIi"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 9}
+              - column: {name: username, value: "paulo"}
+              - column: {name: email, value: "paulo@gmail.com"}
+              - column: {name: password, value: "$2b$10$Nm5a.jh2GfjgPm1xgz/dZOdrHK6tbTrizOXZVmi82oacG45FH7gxq"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+        - insert:
+            tableName: usuario
+            columns:
+              - column: {name: id, valueNumeric: 10}
+              - column: {name: username, value: "orlangod"}
+              - column: {name: email, value: "orlando_sepulveda@duocuc.cl"}
+              - column: {name: password, value: "$2b$10$NvbUtBduJ3q5v/ViShcqYuG98Qt/pYr/OsXgf7N6SDnBdBUTQoTOu"}
+              - column: {name: created_at, valueDate: "2025-01-01 00:00:00"}
+
+  - changeSet:
+      id: 006-insert-usuario-perfiles
+      author: orion-system
+      changes:
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 1}
+              - column: {name: usuario_id, valueNumeric: 1}
+              - column: {name: biografia, value: "titi me pregunto"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 2}
+              - column: {name: usuario_id, valueNumeric: 2}
+              - column: {name: biografia, value: "trabajando para usted"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 3}
+              - column: {name: usuario_id, valueNumeric: 3}
+              - column: {name: biografia, value: "soy mateon"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 4}
+              - column: {name: usuario_id, valueNumeric: 4}
+              - column: {name: biografia, value: "hola mundo"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 5}
+              - column: {name: usuario_id, valueNumeric: 5}
+              - column: {name: biografia, value: "sr baesssssss"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 6}
+              - column: {name: usuario_id, valueNumeric: 6}
+              - column: {name: biografia, value: "https://github.com/rrrbbb20/proyecto-gimnasio"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 7}
+              - column: {name: usuario_id, valueNumeric: 7}
+              - column: {name: biografia, value: "soy padre"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 8}
+              - column: {name: usuario_id, valueNumeric: 8}
+              - column: {name: biografia, value: "bibliotecovich"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 9}
+              - column: {name: usuario_id, valueNumeric: 9}
+              - column: {name: biografia, value: "asdddd"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+        - insert:
+            tableName: usuario_perfil
+            columns:
+              - column: {name: id, valueNumeric: 10}
+              - column: {name: usuario_id, valueNumeric: 10}
+              - column: {name: biografia, value: "Oracle DB Engineering"}
+              - column: {name: ubicacion, value: "Santiago, Chile"}
+              - column: {name: avatar_url, value: "/api/media/avatar/default_avatar.png"}
+
+  - changeSet:
+      id: 007-insert-usuarios-roles
+      author: orion-system
+      changes:
+        # Todos los usuarios tienen ROLE_USER (rol_id: 1)
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 1}
+              - column: {name: rol_id, valueNumeric: 1}
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 2}
+              - column: {name: rol_id, valueNumeric: 1}
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 3}
+              - column: {name: rol_id, valueNumeric: 1}
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 4}
+              - column: {name: rol_id, valueNumeric: 1}
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 5}
+              - column: {name: rol_id, valueNumeric: 1}
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 6}
+              - column: {name: rol_id, valueNumeric: 1}
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 7}
+              - column: {name: rol_id, valueNumeric: 1}
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 8}
+              - column: {name: rol_id, valueNumeric: 1}
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 9}
+              - column: {name: rol_id, valueNumeric: 1}
+        - insert:
+            tableName: usuarios_roles
+            columns:
+              - column: {name: usuario_id, valueNumeric: 10}
+              - column: {name: rol_id, valueNumeric: 1}
