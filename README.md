@@ -133,6 +133,7 @@ Cliente  →  GET /api/posts/  [Authorization: Bearer eyJ...]
 ```bash
 git clone <url-del-repositorio>
 cd Orion
+cp .env.template .env
 docker compose up --build
 ```
 
