@@ -1,0 +1,95 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-seed-media
+      author: orion-system
+      changes:
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 1 }
+              - column: { name: tipo, value: "AVATAR" }
+              - column: { name: nombre_original, value: "perfil_carlos.jpg" }
+              - column: { name: nombre_generado, value: "usr1_avatar_a1b2c3d4.jpg" }
+              - column: { name: url_acceso, value: "https://media.orion.app/avatars/usr1_avatar_a1b2c3d4.jpg" }
+              - column: { name: subido_el, valueDate: "2026-05-10T10:00:00" }
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 2 }
+              - column: { name: tipo, value: "AVATAR" }
+              - column: { name: nombre_original, value: "foto_ana.png" }
+              - column: { name: nombre_generado, value: "usr2_avatar_e5f6g7h8.png" }
+              - column: { name: url_acceso, value: "https://media.orion.app/avatars/usr2_avatar_e5f6g7h8.png" }
+              - column: { name: subido_el, valueDate: "2026-05-11T09:30:00" }
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 3 }
+              - column: { name: tipo, value: "POST" }
+              - column: { name: nombre_original, value: "running_parque.jpg" }
+              - column: { name: nombre_generado, value: "usr3_post_i9j0k1l2.jpg" }
+              - column: { name: url_acceso, value: "https://media.orion.app/posts/usr3_post_i9j0k1l2.jpg" }
+              - column: { name: subido_el, valueDate: "2026-06-05T07:44:00" }
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 4 }
+              - column: { name: tipo, value: "POST" }
+              - column: { name: nombre_original, value: "ceviche_mercado.jpg" }
+              - column: { name: nombre_generado, value: "usr4_post_m3n4o5p6.jpg" }
+              - column: { name: url_acceso, value: "https://media.orion.app/posts/usr4_post_m3n4o5p6.jpg" }
+              - column: { name: subido_el, valueDate: "2026-06-07T12:58:00" }
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 5 }
+              - column: { name: tipo, value: "AVATAR" }
+              - column: { name: nombre_original, value: "gamer_setup.png" }
+              - column: { name: nombre_generado, value: "usr5_avatar_q7r8s9t0.png" }
+              - column: { name: url_acceso, value: "https://media.orion.app/avatars/usr5_avatar_q7r8s9t0.png" }
+              - column: { name: subido_el, valueDate: "2026-05-15T18:20:00" }
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 6 }
+              - column: { name: tipo, value: "AVATAR" }
+              - column: { name: nombre_original, value: "bookworm_profile.jpg" }
+              - column: { name: nombre_generado, value: "usr6_avatar_u1v2w3x4.jpg" }
+              - column: { name: url_acceso, value: "https://media.orion.app/avatars/usr6_avatar_u1v2w3x4.jpg" }
+              - column: { name: subido_el, valueDate: "2026-05-20T15:10:00" }
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 7 }
+              - column: { name: tipo, value: "POST" }
+              - column: { name: nombre_original, value: "yoga_amanecer.jpg" }
+              - column: { name: nombre_generado, value: "usr7_post_y5z6a7b8.jpg" }
+              - column: { name: url_acceso, value: "https://media.orion.app/posts/usr7_post_y5z6a7b8.jpg" }
+              - column: { name: subido_el, valueDate: "2026-06-13T05:58:00" }
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 8 }
+              - column: { name: tipo, value: "POST" }
+              - column: { name: nombre_original, value: "app_redesign_screenshot.png" }
+              - column: { name: nombre_generado, value: "usr8_post_c9d0e1f2.png" }
+              - column: { name: url_acceso, value: "https://media.orion.app/posts/usr8_post_c9d0e1f2.png" }
+              - column: { name: subido_el, valueDate: "2026-06-15T11:43:00" }
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 9 }
+              - column: { name: tipo, value: "AVATAR" }
+              - column: { name: nombre_original, value: "startup_founder.jpg" }
+              - column: { name: nombre_generado, value: "usr9_avatar_g3h4i5j6.jpg" }
+              - column: { name: url_acceso, value: "https://media.orion.app/avatars/usr9_avatar_g3h4i5j6.jpg" }
+              - column: { name: subido_el, valueDate: "2026-05-25T09:05:00" }
+        - insert:
+            tableName: media
+            columns:
+              - column: { name: user_id, valueNumeric: 10 }
+              - column: { name: tipo, value: "POST" }
+              - column: { name: nombre_original, value: "concierto_jaivas.jpg" }
+              - column: { name: nombre_generado, value: "usr10_post_k7l8m9n0.jpg" }
+              - column: { name: url_acceso, value: "https://media.orion.app/posts/usr10_post_k7l8m9n0.jpg" }
+              - column: { name: subido_el, valueDate: "2026-06-19T22:55:00" }

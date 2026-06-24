@@ -1,0 +1,41 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-mensajes
+      author: orion-system
+      changes:
+        - createTable:
+            tableName: mensajes
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: sender_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: receiver_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nombre_emisor
+                  type: VARCHAR(255)
+              - column:
+                  name: contenido
+                  type: VARCHAR(1000)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fecha_envio
+                  type: DATETIME(6)
+              - column:
+                  name: timestamp
+                  type: DATETIME(6)
+                  constraints:
+                    nullable: false

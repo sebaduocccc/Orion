@@ -1,0 +1,100 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-seed-mensajes
+      author: orion-system
+      preConditions:
+        onFail: MARK_RAN
+        sqlCheck:
+          expectedResult: "0"
+          sql: SELECT COUNT(*) FROM mensajes
+      changes:
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 1}
+              - column: {name: receiver_id, valueNumeric: 2}
+              - column: {name: nombre_emisor, value: "carlos_abarzua"}
+              - column: {name: contenido, value: "Hola Ronald, ¿cómo va el proyecto de la semana?"}
+              - column: {name: fecha_envio, valueDate: "2026-06-10 09:00:00"}
+              - column: {name: timestamp, valueDate: "2026-06-10 09:00:00"}
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 2}
+              - column: {name: receiver_id, valueNumeric: 1}
+              - column: {name: nombre_emisor, value: "ronald_villalobos"}
+              - column: {name: contenido, value: "Todo bien por acá, terminé el módulo de autenticación."}
+              - column: {name: fecha_envio, valueDate: "2026-06-10 09:05:00"}
+              - column: {name: timestamp, valueDate: "2026-06-10 09:05:00"}
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 3}
+              - column: {name: receiver_id, valueNumeric: 4}
+              - column: {name: nombre_emisor, value: "mateon"}
+              - column: {name: contenido, value: "Oye, ¿viste el partido anoche? Fue increíble."}
+              - column: {name: fecha_envio, valueDate: "2026-06-11 20:30:00"}
+              - column: {name: timestamp, valueDate: "2026-06-11 20:30:00"}
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 4}
+              - column: {name: receiver_id, valueNumeric: 3}
+              - column: {name: nombre_emisor, value: "akomi"}
+              - column: {name: contenido, value: "¡Sí! Ese gol en el último minuto fue espectacular."}
+              - column: {name: fecha_envio, valueDate: "2026-06-11 20:35:00"}
+              - column: {name: timestamp, valueDate: "2026-06-11 20:35:00"}
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 5}
+              - column: {name: receiver_id, valueNumeric: 0}
+              - column: {name: nombre_emisor, value: "vicentito"}
+              - column: {name: contenido, value: "Buenas a todos, ¿alguien libre el viernes para la reunión de equipo?"}
+              - column: {name: fecha_envio, valueDate: "2026-06-12 10:00:00"}
+              - column: {name: timestamp, valueDate: "2026-06-12 10:00:00"}
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 6}
+              - column: {name: receiver_id, valueNumeric: 0}
+              - column: {name: nombre_emisor, value: "srbaes"}
+              - column: {name: contenido, value: "Yo puedo el viernes desde las 3 PM sin problema."}
+              - column: {name: fecha_envio, valueDate: "2026-06-12 10:10:00"}
+              - column: {name: timestamp, valueDate: "2026-06-12 10:10:00"}
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 7}
+              - column: {name: receiver_id, valueNumeric: 8}
+              - column: {name: nombre_emisor, value: "panxito"}
+              - column: {name: contenido, value: "¿Me pasas el link de la documentación del API?"}
+              - column: {name: fecha_envio, valueDate: "2026-06-13 14:20:00"}
+              - column: {name: timestamp, valueDate: "2026-06-13 14:20:00"}
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 8}
+              - column: {name: receiver_id, valueNumeric: 7}
+              - column: {name: nombre_emisor, value: "cristovalsito"}
+              - column: {name: contenido, value: "Claro, te lo mando en un momento al correo."}
+              - column: {name: fecha_envio, valueDate: "2026-06-13 14:25:00"}
+              - column: {name: timestamp, valueDate: "2026-06-13 14:25:00"}
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 9}
+              - column: {name: receiver_id, valueNumeric: 10}
+              - column: {name: nombre_emisor, value: "paulo"}
+              - column: {name: contenido, value: "Orlando, cerramos el sprint hoy ¿revisaste los últimos tickets?"}
+              - column: {name: fecha_envio, valueDate: "2026-06-14 17:00:00"}
+              - column: {name: timestamp, valueDate: "2026-06-14 17:00:00"}
+        - insert:
+            tableName: mensajes
+            columns:
+              - column: {name: sender_id, valueNumeric: 10}
+              - column: {name: receiver_id, valueNumeric: 9}
+              - column: {name: nombre_emisor, value: "orlangod"}
+              - column: {name: contenido, value: "Sí, los revisé todos. Quedan dos pendientes, los termino esta tarde."}
+              - column: {name: fecha_envio, valueDate: "2026-06-14 17:10:00"}
+              - column: {name: timestamp, valueDate: "2026-06-14 17:10:00"}

@@ -256,6 +256,24 @@ services:
     networks:
       - orion-network
 
+  chat-service:
+    build: ./chatService
+    container_name: chat-service
+    ports:
+      - "${PORT_CHAT_SERVICE}:${PORT_CHAT_SERVICE}"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_CHAT}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
+    networks:
+      - orion-network
+
 #  post-service:
 #    build: ./Post_service
 #    ports:

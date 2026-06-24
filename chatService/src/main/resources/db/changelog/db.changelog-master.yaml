@@ -1,7 +1,7 @@
 databaseChangeLog:
   - include:
-      file: changes/001-estructura-inicial-posts.yaml
+      file: changes/001-create-tables.yaml
       relativeToChangelogFile: true
   - include:
-      file: changes/002-seed-data.yaml
+      file: changes/002-seed-mensajes.yaml
       relativeToChangelogFile: true

@@ -1,0 +1,140 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-seed-grupos
+      author: orion-system
+      preConditions:
+        - onFail: MARK_RAN
+          sqlCheck:
+            expectedResult: "0"
+            sql: SELECT COUNT(*) FROM grupo
+      changes:
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 1 }
+              - column: { name: nombre, value: "Orion Photography" }
+              - column: { name: descripcion, value: "Comunidad de fotógrafos apasionados por capturar los paisajes y la cultura latinoamericana." }
+              - column: { name: creado_el, valueDate: "2026-05-01T10:00:00" }
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 2 }
+              - column: { name: nombre, value: "Programadores Python Chile" }
+              - column: { name: descripcion, value: "Espacio de aprendizaje y colaboración para desarrolladores Python de todos los niveles en Chile." }
+              - column: { name: creado_el, valueDate: "2026-05-03T11:30:00" }
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 3 }
+              - column: { name: nombre, value: "Runners Santiago" }
+              - column: { name: descripcion, value: "Grupo de corredores que organizan rutas, entrenamientos y carreras por la región metropolitana." }
+              - column: { name: creado_el, valueDate: "2026-05-05T08:00:00" }
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 4 }
+              - column: { name: nombre, value: "Foodies Valparaíso" }
+              - column: { name: descripcion, value: "Amantes de la gastronomía porteña que comparten restaurantes, recetas y experiencias culinarias." }
+              - column: { name: creado_el, valueDate: "2026-05-07T13:00:00" }
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 5 }
+              - column: { name: nombre, value: "Gamers Hispanos" }
+              - column: { name: descripcion, value: "Comunidad gaming en español para compartir logros, reviews y partidas multijugador." }
+              - column: { name: creado_el, valueDate: "2026-05-09T20:00:00" }
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 6 }
+              - column: { name: nombre, value: "Bookclub Clásicos" }
+              - column: { name: descripcion, value: "Club de lectura mensual enfocado en grandes obras de la literatura universal y latinoamericana." }
+              - column: { name: creado_el, valueDate: "2026-05-11T19:00:00" }
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 7 }
+              - column: { name: nombre, value: "Yoga y Meditación Online" }
+              - column: { name: descripcion, value: "Practicamos yoga y meditación guiada de forma virtual para conectar mente, cuerpo y espíritu." }
+              - column: { name: creado_el, valueDate: "2026-05-13T06:30:00" }
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 8 }
+              - column: { name: nombre, value: "Diseñadores UX/UI Chile" }
+              - column: { name: descripcion, value: "Profesionales del diseño de experiencia e interfaz que comparten recursos, portfolio y oportunidades." }
+              - column: { name: creado_el, valueDate: "2026-05-15T10:00:00" }
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 9 }
+              - column: { name: nombre, value: "Emprendedores LATAM" }
+              - column: { name: descripcion, value: "Red de emprendedores latinoamericanos que comparten experiencias, contactos y oportunidades de negocio." }
+              - column: { name: creado_el, valueDate: "2026-05-17T09:00:00" }
+        - insert:
+            tableName: grupo
+            columns:
+              - column: { name: id_creador, valueNumeric: 10 }
+              - column: { name: nombre, value: "Música Indie Chile" }
+              - column: { name: descripcion, value: "Fanáticos de la música indie y alternativa chilena que comparten novedades, conciertos y artistas." }
+              - column: { name: creado_el, valueDate: "2026-05-19T18:00:00" }
+
+  - changeSet:
+      id: 002-seed-grupo-miembros
+      author: orion-system
+      preConditions:
+        - onFail: MARK_RAN
+          sqlCheck:
+            expectedResult: "0"
+            sql: SELECT COUNT(*) FROM grupo_miembros
+      changes:
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 1 }
+              - column: { name: usuario_id, valueNumeric: 2 }
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 1 }
+              - column: { name: usuario_id, valueNumeric: 5 }
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 2 }
+              - column: { name: usuario_id, valueNumeric: 1 }
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 3 }
+              - column: { name: usuario_id, valueNumeric: 7 }
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 4 }
+              - column: { name: usuario_id, valueNumeric: 1 }
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 5 }
+              - column: { name: usuario_id, valueNumeric: 3 }
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 6 }
+              - column: { name: usuario_id, valueNumeric: 9 }
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 7 }
+              - column: { name: usuario_id, valueNumeric: 3 }
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 8 }
+              - column: { name: usuario_id, valueNumeric: 4 }
+        - insert:
+            tableName: grupo_miembros
+            columns:
+              - column: { name: grupo_id, valueNumeric: 9 }
+              - column: { name: usuario_id, valueNumeric: 2 }

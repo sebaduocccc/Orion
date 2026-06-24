@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
 
 @RestController
 @RequestMapping("/api/chat")
@@ -26,7 +24,8 @@ public class HistorialController {
             @RequestParam Long user1,
             @RequestParam Long user2,
             @RequestParam int page,
-            @RequestParam int size
+            @RequestParam int size,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId
     ){
 
 
@@ -41,9 +40,9 @@ public class HistorialController {
     @GetMapping("/historial/global")
     public Page<Mensaje> obtenerHistorialGlobal(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "20") int size){
+            @RequestParam(defaultValue = "20") int size,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId){
         return repo.findByReceiverIdOrderByFechaEnvioDesc(0L, PageRequest.of(page, size));
-
     }
 
 

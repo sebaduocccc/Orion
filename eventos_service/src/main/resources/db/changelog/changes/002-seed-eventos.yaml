@@ -1,0 +1,150 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-seed-eventos
+      author: orion-system
+      preConditions:
+        - onFail: MARK_RAN
+          sqlCheck:
+            expectedResult: "0"
+            sql: SELECT COUNT(*) FROM evento
+      changes:
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 1 }
+              - column: { name: nombre, value: "Hackathon Orion 2026" }
+              - column: { name: lugar, value: "Santiago Centro, Edificio Telefónica" }
+              - column: { name: fecha, valueDate: "2026-07-15T09:00:00" }
+              - column: { name: creado_el, valueDate: "2026-06-01T10:00:00" }
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 2 }
+              - column: { name: nombre, value: "Exposición de Arte Digital Latinoamericano" }
+              - column: { name: lugar, value: "Valparaíso, Museo de Arte Contemporáneo" }
+              - column: { name: fecha, valueDate: "2026-07-20T11:00:00" }
+              - column: { name: creado_el, valueDate: "2026-06-02T09:30:00" }
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 3 }
+              - column: { name: nombre, value: "Maratón Urbana Santiago 10K" }
+              - column: { name: lugar, value: "Parque O'Higgins, Santiago" }
+              - column: { name: fecha, valueDate: "2026-08-01T07:30:00" }
+              - column: { name: creado_el, valueDate: "2026-06-03T08:00:00" }
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 4 }
+              - column: { name: nombre, value: "Festival Gastronómico del Pacífico" }
+              - column: { name: lugar, value: "Viña del Mar, Casino Municipal" }
+              - column: { name: fecha, valueDate: "2026-08-10T12:00:00" }
+              - column: { name: creado_el, valueDate: "2026-06-04T11:00:00" }
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 5 }
+              - column: { name: nombre, value: "Torneo Nacional eSports Chile 2026" }
+              - column: { name: lugar, value: "Centro de Eventos Movistar Arena, Santiago" }
+              - column: { name: fecha, valueDate: "2026-08-15T10:00:00" }
+              - column: { name: creado_el, valueDate: "2026-06-05T20:00:00" }
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 6 }
+              - column: { name: nombre, value: "Noche de Presentaciones de Libros Indie" }
+              - column: { name: lugar, value: "Librería Metales Pesados, Santiago" }
+              - column: { name: fecha, valueDate: "2026-09-05T19:00:00" }
+              - column: { name: creado_el, valueDate: "2026-06-06T17:00:00" }
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 7 }
+              - column: { name: nombre, value: "Retiro de Yoga y Meditación en la Naturaleza" }
+              - column: { name: lugar, value: "Olmué, Región de Valparaíso" }
+              - column: { name: fecha, valueDate: "2026-09-12T08:00:00" }
+              - column: { name: creado_el, valueDate: "2026-06-07T07:00:00" }
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 8 }
+              - column: { name: nombre, value: "Workshop UX/UI Avanzado: Diseño para Accesibilidad" }
+              - column: { name: lugar, value: "WeWork Las Condes, Santiago" }
+              - column: { name: fecha, valueDate: "2026-09-20T09:00:00" }
+              - column: { name: creado_el, valueDate: "2026-06-08T10:30:00" }
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 9 }
+              - column: { name: nombre, value: "Cumbre de Emprendimiento LATAM 2026" }
+              - column: { name: lugar, value: "Hotel W Santiago, Las Condes" }
+              - column: { name: fecha, valueDate: "2026-10-01T08:30:00" }
+              - column: { name: creado_el, valueDate: "2026-06-09T09:00:00" }
+        - insert:
+            tableName: evento
+            columns:
+              - column: { name: id_creador, valueNumeric: 10 }
+              - column: { name: nombre, value: "Festival Indie Fest: Música Alternativa Chilena" }
+              - column: { name: lugar, value: "Club Blondie, Santiago" }
+              - column: { name: fecha, valueDate: "2026-10-15T20:00:00" }
+              - column: { name: creado_el, valueDate: "2026-06-10T18:00:00" }
+
+  - changeSet:
+      id: 002-seed-evento-asistentes
+      author: orion-system
+      preConditions:
+        - onFail: MARK_RAN
+          sqlCheck:
+            expectedResult: "0"
+            sql: SELECT COUNT(*) FROM evento_asistentes
+      changes:
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 1 }
+              - column: { name: usuario_id, valueNumeric: 2 }
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 1 }
+              - column: { name: usuario_id, valueNumeric: 8 }
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 2 }
+              - column: { name: usuario_id, valueNumeric: 1 }
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 3 }
+              - column: { name: usuario_id, valueNumeric: 7 }
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 4 }
+              - column: { name: usuario_id, valueNumeric: 1 }
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 5 }
+              - column: { name: usuario_id, valueNumeric: 3 }
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 6 }
+              - column: { name: usuario_id, valueNumeric: 4 }
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 7 }
+              - column: { name: usuario_id, valueNumeric: 3 }
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 8 }
+              - column: { name: usuario_id, valueNumeric: 9 }
+        - insert:
+            tableName: evento_asistentes
+            columns:
+              - column: { name: evento_id, valueNumeric: 9 }
+              - column: { name: usuario_id, valueNumeric: 6 }

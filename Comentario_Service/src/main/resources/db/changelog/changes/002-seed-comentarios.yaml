@@ -1,0 +1,65 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-seed-comentarios
+      author: orion-system
+      changes:
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 1 }
+              - column: { name: user_id, valueNumeric: 2 }
+              - column: { name: contenido, value: "Increíble foto, Los Andes siempre impresionan. ¿Qué cámara usaste?" }
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 1 }
+              - column: { name: user_id, valueNumeric: 5 }
+              - column: { name: contenido, value: "Que hermoso paisaje, envidio que puedas estar ahí. Guardé la imagen!" }
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 2 }
+              - column: { name: user_id, valueNumeric: 3 }
+              - column: { name: contenido, value: "Total, los bugs de Python son los que más tiempo roban. Buen que lo resolviste!" }
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 3 }
+              - column: { name: user_id, valueNumeric: 7 }
+              - column: { name: contenido, value: "10 km es un logro enorme para empezar. Sigue así, el cuerpo se adapta rápido." }
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 4 }
+              - column: { name: user_id, valueNumeric: 1 }
+              - column: { name: contenido, value: "El mercado de Valpo es un tesoro gastronómico. Tienes que probar la empanada de mariscos también." }
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 5 }
+              - column: { name: user_id, valueNumeric: 9 }
+              - column: { name: contenido, value: "¿Qué RPG fue? Ando buscando uno en español para el fin de semana." }
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 6 }
+              - column: { name: user_id, valueNumeric: 4 }
+              - column: { name: contenido, value: "Segunda lectura del Quijote es otro nivel. Yo lo tengo pendiente, inspiraste a retomarlo." }
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 7 }
+              - column: { name: user_id, valueNumeric: 3 }
+              - column: { name: contenido, value: "El yoga al amanecer cambia completamente el resto del día. Lo hago hace un año y no lo cambio por nada." }
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 8 }
+              - column: { name: user_id, valueNumeric: 10 }
+              - column: { name: contenido, value: "El rediseño se ve limpio y moderno. Los usuarios van a notar la diferencia inmediatamente." }
+        - insert:
+            tableName: comentario
+            columns:
+              - column: { name: post_id, valueNumeric: 10 }
+              - column: { name: user_id, valueNumeric: 6 }
+              - column: { name: contenido, value: "Los Jaivas son historia viva de Chile. Cada show es una experiencia única e irrepetible." }

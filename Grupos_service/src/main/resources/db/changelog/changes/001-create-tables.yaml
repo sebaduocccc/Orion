@@ -1,0 +1,61 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-grupo
+      author: orion-system
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: grupo
+      changes:
+        - createTable:
+            tableName: grupo
+            columns:
+              - column:
+                  name: id_grupo
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: id_creador
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nombre
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: descripcion
+                  type: varchar(500)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: creado_el
+                  type: datetime(6)
+
+  - changeSet:
+      id: 001-create-grupo-miembros
+      author: orion-system
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: grupo_miembros
+      changes:
+        - createTable:
+            tableName: grupo_miembros
+            columns:
+              - column:
+                  name: grupo_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_grupo_miembros_grupo
+                    references: grupo(id_grupo)
+              - column:
+                  name: usuario_id
+                  type: bigint

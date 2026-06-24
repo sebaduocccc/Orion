@@ -1,0 +1,75 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-seed-posts
+      author: orion-system
+      changes:
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 1 }
+              - column: { name: content, value: "Hoy compartí mi primera fotografía de las montañas de Los Andes. El paisaje era absolutamente increíble, no hay palabras para describirlo." }
+              - column: { name: media_url, value: "https://media.orion.app/posts/andes_photo_001.jpg" }
+              - column: { name: creado_el, valueDate: "2026-06-01T09:15:00" }
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 2 }
+              - column: { name: content, value: "Acabo de resolver un bug de Python que me tenía loco desde hace días. A veces el error más pequeño cuesta horas de depuración." }
+              - column: { name: media_url, valueNull: true }
+              - column: { name: creado_el, valueDate: "2026-06-03T14:22:00" }
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 3 }
+              - column: { name: content, value: "Corrí 10 km esta mañana por el parque. El cuerpo aguanta mucho más de lo que uno cree cuando entrenas con constancia." }
+              - column: { name: media_url, value: "https://media.orion.app/posts/running_parque_003.jpg" }
+              - column: { name: creado_el, valueDate: "2026-06-05T07:45:00" }
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 4 }
+              - column: { name: content, value: "Probé un ceviche espectacular en el mercado de Valparaíso. La gastronomía chilena sigue sorprendiéndome con cada visita." }
+              - column: { name: media_url, value: "https://media.orion.app/posts/ceviche_valpo_004.jpg" }
+              - column: { name: creado_el, valueDate: "2026-06-07T13:00:00" }
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 5 }
+              - column: { name: content, value: "Nueva partida de RPG completada en el modo difícil. Los juegos en español cada vez tienen mejor narrativa y doblaje." }
+              - column: { name: media_url, valueNull: true }
+              - column: { name: creado_el, valueDate: "2026-06-09T22:10:00" }
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 6 }
+              - column: { name: content, value: "Terminé El Quijote por segunda vez. Cada lectura revela algo completamente nuevo que antes había pasado por alto." }
+              - column: { name: media_url, valueNull: true }
+              - column: { name: creado_el, valueDate: "2026-06-11T20:30:00" }
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 7 }
+              - column: { name: content, value: "Primera sesión de yoga al amanecer en la terraza. La paz que transmite el silencio de la mañana es absolutamente incomparable." }
+              - column: { name: media_url, value: "https://media.orion.app/posts/yoga_amanecer_007.jpg" }
+              - column: { name: creado_el, valueDate: "2026-06-13T06:00:00" }
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 8 }
+              - column: { name: content, value: "Lanzamos el rediseño completo de nuestra app después de semanas de iteraciones con usuarios reales. El feedback fue clave." }
+              - column: { name: media_url, value: "https://media.orion.app/posts/app_redesign_008.jpg" }
+              - column: { name: creado_el, valueDate: "2026-06-15T11:45:00" }
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 9 }
+              - column: { name: content, value: "Cerré mi primera ronda de inversión semilla. Muchos años de trabajo y sacrificio condensados en este momento histórico para mi startup." }
+              - column: { name: media_url, valueNull: true }
+              - column: { name: creado_el, valueDate: "2026-06-17T16:20:00" }
+        - insert:
+            tableName: post
+            columns:
+              - column: { name: user_id, valueNumeric: 10 }
+              - column: { name: content, value: "El concierto de Los Jaivas fue absolutamente increíble. Música en vivo que eriza la piel y conecta generaciones." }
+              - column: { name: media_url, value: "https://media.orion.app/posts/jaivas_concierto_010.jpg" }
+              - column: { name: creado_el, valueDate: "2026-06-19T23:00:00" }

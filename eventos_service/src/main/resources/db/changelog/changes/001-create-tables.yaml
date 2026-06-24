@@ -1,0 +1,66 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-evento
+      author: orion-system
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: evento
+      changes:
+        - createTable:
+            tableName: evento
+            columns:
+              - column:
+                  name: id_evento
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: id_creador
+                  type: bigint
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nombre
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lugar
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: fecha
+                  type: datetime(6)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: creado_el
+                  type: datetime(6)
+
+  - changeSet:
+      id: 001-create-evento-asistentes
+      author: orion-system
+      preConditions:
+        - onFail: MARK_RAN
+          not:
+            tableExists:
+              tableName: evento_asistentes
+      changes:
+        - createTable:
+            tableName: evento_asistentes
+            columns:
+              - column:
+                  name: evento_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_evento_asistentes_evento
+                    references: evento(id_evento)
+              - column:
+                  name: usuario_id
+                  type: bigint

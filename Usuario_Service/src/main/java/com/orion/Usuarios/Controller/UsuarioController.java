@@ -45,6 +45,12 @@ public class UsuarioController {
 
 
     // READ
+    @GetMapping("/nombre/{id}")
+    public ResponseEntity<String> obtenerNombrePorId(@PathVariable Long id) {
+        log.info("GET /api/usuarios/nombre/{}", id);
+        return ResponseEntity.ok(usuarioService.obtenerUsuarioPorId(id).getUsername());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<UsuarioResponseDTO> buscar(@PathVariable Long id) {
         log.info("GET /api/usuarios/{}", id);
