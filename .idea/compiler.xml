@@ -10,6 +10,27 @@
         <module name="chatService" />
         <module name="eureka-server" />
       </profile>
+      <profile name="Annotation profile for Comentarios" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
+        </processorPath>
+        <module name="Comentarios" />
+      </profile>
+      <profile name="Annotation profile for Interaccion" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
+        </processorPath>
+        <module name="MediaService" />
+        <module name="Posteos" />
+      </profile>
       <profile name="Annotation profile for Usuarios" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
@@ -19,19 +40,16 @@
         </processorPath>
         <module name="PosteoService" />
         <module name="Usuarios" />
-        <module name="MediaService" />
-        <module name="Interaccion_Service" />
         <module name="ApiGateway" />
-        <module name="Posteos" />
       </profile>
-      <profile name="Annotation profile for Comentarios" enabled="true">
+      <profile name="Annotation profile for Interaccion_Service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
-          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.46/lombok-1.18.46.jar" />
         </processorPath>
-        <module name="Comentarios" />
+        <module name="Interaccion_Service" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

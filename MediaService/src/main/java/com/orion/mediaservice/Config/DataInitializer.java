@@ -5,6 +5,7 @@ import com.orion.mediaservice.Repository.MediaRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
 
 import java.util.Set;
 
@@ -12,6 +13,7 @@ import java.util.Set;
 public class DataInitializer {
 
     @Bean
+    @DependsOn("liquibase")
     public CommandLineRunner init(MediaRepository mediaRepository){
         return args -> {
 

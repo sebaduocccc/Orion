@@ -194,19 +194,23 @@ services:
 
   media-service:
     build: ./MediaService
-    profiles: ["social","complete"]
+    container_name: media-service
     ports:
-      - "9093:9093"
+      - "${PORT_MEDIA_SERVICE}:${PORT_MEDIA_SERVICE}"
     depends_on:
+      eureka-server:
+        condition: service_healthy
       db:
         condition: service_healthy
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/media_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_MEDIA}?allowPublicKeyRetrieval=true&useSSL=false
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
       MEDIA_STORAGE_LOCATION: /app/media_data
     volumes:
       - ./media_volumen:/app/media_data
+    networks:
+      - orion-network
 
 #  interaccion-service:
 #    build: ./Interaccion_Service
