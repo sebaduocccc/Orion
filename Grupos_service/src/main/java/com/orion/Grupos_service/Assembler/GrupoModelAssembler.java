@@ -17,10 +17,10 @@ public class GrupoModelAssembler implements RepresentationModelAssembler<Respons
                 linkTo(methodOn(ControllerGrupo.class)
                         .verGrupos(grupo.getIdGrupo())).withRel("Viendo todos los grupos"),
                 linkTo(methodOn(ControllerGrupo.class)
-                        .actualizar(grupo.getIdGrupo(), null, null)).withRel("Actualizando grupo "),
+                        .actualizar(grupo.getIdGrupo(), null)).withRel("Actualizando grupo "),
                 linkTo(methodOn(ControllerGrupo.class)
-                        .borrar(grupo.getIdGrupo(), null)).withRel("Eliminar Grupo "),
-                linkTo(methodOn(ControllerGrupo.class).unirse(grupo.getIdGrupo(), null)).withRel("Unirse a grupo")
+                        .borrar(grupo.getIdGrupo())).withRel("Eliminar Grupo "),
+                linkTo(methodOn(ControllerGrupo.class).unirse(grupo.getIdGrupo())).withRel("Unirse a grupo")
         );
     }
 }

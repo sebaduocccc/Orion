@@ -11,6 +11,8 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,8 +32,8 @@ public class EventoController {
 
     @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<EntityModel<EventoResponse>> crear(
-            @Valid @RequestBody EventoRequest dto,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @Valid @RequestBody EventoRequest dto) {
+        Long userId = extractUserId();
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         EventoResponse nuevo = service.guardar(dto, userId);
         return ResponseEntity
@@ -40,9 +42,8 @@ public class EventoController {
     }
 
     @PostMapping("/{id}/unirse")
-    public ResponseEntity<EntityModel<EventoResponse>> unirse(
-            @PathVariable Long id,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+    public ResponseEntity<EntityModel<EventoResponse>> unirse(@PathVariable Long id) {
+        Long userId = extractUserId();
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         EventoResponse actualizado = service.unirseAEvento(id, userId);
         return ResponseEntity.ok(assembler.toModel(actualizado));
@@ -65,9 +66,8 @@ public class EventoController {
     }
 
     @DeleteMapping("/borrar/{id}")
-    public ResponseEntity<Void> borrar(
-            @PathVariable Long id,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+    public ResponseEntity<Void> borrar(@PathVariable Long id) {
+        Long userId = extractUserId();
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         service.eliminar(id, userId);
         return ResponseEntity.noContent().build();
@@ -76,10 +76,20 @@ public class EventoController {
     @PutMapping("/actualizarevento/{id}")
     public ResponseEntity<EntityModel<EventoResponse>> actualizar(
             @PathVariable Long id,
-            @Valid @RequestBody EventoRequest dto,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @Valid @RequestBody EventoRequest dto) {
+        Long userId = extractUserId();
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         EventoResponse actualizado = service.actualizar(id, dto, userId);
         return ResponseEntity.ok(assembler.toModel(actualizado));
+    }
+
+    private Long extractUserId() {
+        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+        if (auth == null || auth.getPrincipal() == null) return null;
+        try {
+            return Long.parseLong(auth.getPrincipal().toString());
+        } catch (NumberFormatException e) {
+            return null;
+        }
     }
 }
