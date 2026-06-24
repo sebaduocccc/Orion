@@ -18,7 +18,6 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.32/lombok-1.18.32.jar" />
         </processorPath>
-        <module name="Comentarios" />
       </profile>
       <profile name="Annotation profile for Interaccion" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
@@ -53,6 +52,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="Comentarios" target="17" />
       <module name="Interacciones" target="17" />
       <module name="Notificacion_Service" target="17" />
       <module name="Orion" target="17" />
