@@ -11,8 +11,6 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,8 +29,8 @@ public class ControllerGrupo {
 
     @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
     public ResponseEntity<EntityModel<ResponseGrupo>> crearGrupo(
-            @Valid @RequestBody RequestGrupo dto) {
-        Long userId = extractUserId();
+            @Valid @RequestBody RequestGrupo dto,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         ResponseGrupo nuevo = service.guardar(dto, userId);
         return ResponseEntity
@@ -53,8 +51,9 @@ public class ControllerGrupo {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> borrar(@PathVariable Long id) {
-        Long userId = extractUserId();
+    public ResponseEntity<Void> borrar(
+            @PathVariable Long id,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         service.eliminar(id, userId);
         return ResponseEntity.noContent().build();
@@ -63,28 +62,19 @@ public class ControllerGrupo {
     @PutMapping("/{id}")
     public ResponseEntity<EntityModel<ResponseGrupo>> actualizar(
             @PathVariable Long id,
-            @Valid @RequestBody RequestGrupo dto) {
-        Long userId = extractUserId();
+            @Valid @RequestBody RequestGrupo dto,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         ResponseGrupo actualizado = service.actualizar(id, dto, userId);
         return ResponseEntity.ok(assembler.toModel(actualizado));
     }
 
     @PostMapping("/{id}/unirse")
-    public ResponseEntity<EntityModel<ResponseGrupo>> unirse(@PathVariable Long id) {
-        Long userId = extractUserId();
+    public ResponseEntity<EntityModel<ResponseGrupo>> unirse(
+            @PathVariable Long id,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         ResponseGrupo actualizado = service.unirseAGrupo(id, userId);
         return ResponseEntity.ok(assembler.toModel(actualizado));
-    }
-
-    private Long extractUserId() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth == null || auth.getPrincipal() == null) return null;
-        try {
-            return (Long) auth.getPrincipal();
-        } catch (ClassCastException e) {
-            return Long.parseLong(auth.getPrincipal().toString());
-        }
     }
 }

@@ -19,10 +19,10 @@ public class EventoModelAssembler implements RepresentationModelAssembler<Evento
                 linkTo(methodOn(EventoController.class)
                         .verEventosGlobales()).withRel("todos"),
                 linkTo(methodOn(EventoController.class)
-                        .actualizar(evento.getIdEvento(), null)).withRel("actualizar"),
+                        .actualizar(evento.getIdEvento(), null, null)).withRel("actualizar"),
                 linkTo(methodOn(EventoController.class)
-                        .borrar(evento.getIdEvento())).withRel("eliminar"),
-                linkTo(methodOn(EventoController.class).unirse(evento.getIdEvento())).withRel("unirse")
+                        .borrar(evento.getIdEvento(), null)).withRel("eliminar"),
+                linkTo(methodOn(EventoController.class).unirse(evento.getIdEvento(), null)).withRel("unirse")
         );
     }
 }
