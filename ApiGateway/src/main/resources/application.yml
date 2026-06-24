@@ -31,7 +31,7 @@ spring:
                 - Path=/api/usuarios/**, /api/auth/**
 
             - id: comentario-service
-              uri: http://comentario-service:8008
+              uri: lb://Comentarios
               predicates:
                 - Path=/api/comentarios/**
 
@@ -41,9 +41,19 @@ spring:
                 - Path=/api/posts/**
 
             - id: media-service
-              uri: http://media-service:9093
+              uri: lb://media-service
               predicates:
                 - Path=/api/media/**
+
+            - id: eventos-service
+              uri: lb://eventos_service
+              predicates:
+                - Path=/api/evento/**
+
+            - id: grupos-service
+              uri: lb://Grupos_service
+              predicates:
+                - Path=/api/grupo/**
 
             - id: interacciones_service
               uri: http://interaccion-service:9095

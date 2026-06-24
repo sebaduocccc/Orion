@@ -19,7 +19,6 @@ import java.security.Key;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Component
 public class JwtValidationFilter extends OncePerRequestFilter {
 
     private static final String SECRET_KEY =

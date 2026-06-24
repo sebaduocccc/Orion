@@ -11,8 +11,6 @@ import org.springframework.hateoas.EntityModel;
 import org.springframework.hateoas.MediaTypes;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,43 +22,38 @@ import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 @RestController
 @RequestMapping("/api/evento")
 public class EventoController {
+
     @Autowired
     private EventoService service;
     @Autowired
     private EventoModelAssembler assembler;
 
-    //Crear Evento
     @PostMapping(produces = MediaTypes.HAL_JSON_VALUE)
-    public ResponseEntity<EntityModel<EventoResponse>> crear(@Valid @RequestBody EventoRequest dto) {
-        UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        Long userId = Long.parseLong(auth.getPrincipal().toString());
-
+    public ResponseEntity<EntityModel<EventoResponse>> crear(
+            @Valid @RequestBody EventoRequest dto,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         EventoResponse nuevo = service.guardar(dto, userId);
-
         return ResponseEntity
                 .created(linkTo(methodOn(EventoController.class).verEvento(nuevo.getIdEvento())).toUri())
                 .body(assembler.toModel(nuevo));
     }
 
-    //Unirse a evento
     @PostMapping("/{id}/unirse")
-    public ResponseEntity<EntityModel<EventoResponse>> unirse(@PathVariable Long id) {
-        UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        Long userId = Long.parseLong(auth.getPrincipal().toString());
-
+    public ResponseEntity<EntityModel<EventoResponse>> unirse(
+            @PathVariable Long id,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         EventoResponse actualizado = service.unirseAEvento(id, userId);
-
         return ResponseEntity.ok(assembler.toModel(actualizado));
     }
 
-   //Buscar evento por id
     @GetMapping(value = "/ver/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public EntityModel<EventoResponse> verEvento(@PathVariable Long id) {
         EventoResponse evento = service.obtenerPorId(id);
         return assembler.toModel(evento);
     }
 
-    //VER TODOS LOS EEVENTOS
     @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
     public CollectionModel<EntityModel<EventoResponse>> verEventosGlobales() {
         List<EntityModel<EventoResponse>> lista = service.obtenerTodos()
@@ -70,25 +63,22 @@ public class EventoController {
         return CollectionModel.of(lista,
                 linkTo(methodOn(EventoController.class).verEventosGlobales()).withSelfRel());
     }
-    //Borrar evento
-    @DeleteMapping("/borrar/{id}")
-    public ResponseEntity<Void> borrar(@PathVariable Long id) {
-        UsernamePasswordAuthenticationToken auth = (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        Long userId = Long.parseLong(auth.getPrincipal().toString());
-        service.eliminar(id, userId);
 
+    @DeleteMapping("/borrar/{id}")
+    public ResponseEntity<Void> borrar(
+            @PathVariable Long id,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        service.eliminar(id, userId);
         return ResponseEntity.noContent().build();
     }
 
-  //Actualizar evento
     @PutMapping("/actualizarevento/{id}")
     public ResponseEntity<EntityModel<EventoResponse>> actualizar(
             @PathVariable Long id,
-            @Valid @RequestBody EventoRequest dto) {
-
-        UsernamePasswordAuthenticationToken auth =
-                (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        Long userId = Long.parseLong(auth.getPrincipal().toString());
+            @Valid @RequestBody EventoRequest dto,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         EventoResponse actualizado = service.actualizar(id, dto, userId);
         return ResponseEntity.ok(assembler.toModel(actualizado));
     }

@@ -9,8 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,16 +23,20 @@ public class ControllerComentario {
 
     @GetMapping("/{postId}/comentarios")
     public ResponseEntity<List<ResponseComentario>> comentariosPost(@PathVariable Long postId) {
-        log.info("Get /api/comentarios/{}/comentarios - ViendoComentarios post", postId);
+        log.info("GET /api/comentarios/{}/comentarios - Viendo comentarios del post", postId);
         return ResponseEntity.ok(service.buscarPorPost(postId));
     }
 
     @PostMapping("/{postId}/comentar")
     public ResponseEntity<ResponseComentario> comentar(
             @PathVariable Long postId,
-            @Valid @RequestBody RequestComentario r) {
-        log.info("POST /api/comentarios/{}/comentar - Comentando", postId);
-        Long userId = obtenerUserId();
+            @Valid @RequestBody RequestComentario r,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        if (userId == null) {
+            log.warn("POST /api/comentarios/{}/comentar - Acceso denegado: X-Auth-User-Id ausente", postId);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        log.info("POST /api/comentarios/{}/comentar - userId={}", postId, userId);
         ResponseComentario creado = service.guardar(postId, r, userId);
         return ResponseEntity.status(HttpStatus.CREATED).body(creado);
     }
@@ -42,16 +44,14 @@ public class ControllerComentario {
     @PutMapping("/actualizar/{id}")
     public ResponseEntity<ResponseComentario> actualizar(
             @PathVariable Long id,
-            @Valid @RequestBody RequestComentario r) {
-        log.info("PUT /api/comentarios/actualizar/{} - Actualizando", id);
-        Long userId = obtenerUserId();
+            @Valid @RequestBody RequestComentario r,
+            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+        if (userId == null) {
+            log.warn("PUT /api/comentarios/actualizar/{} - Acceso denegado: X-Auth-User-Id ausente", id);
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        log.info("PUT /api/comentarios/actualizar/{} - userId={}", id, userId);
         ResponseComentario actualizado = service.actualizar(id, r, userId);
         return ResponseEntity.ok(actualizado);
-    }
-
-    private Long obtenerUserId() {
-        UsernamePasswordAuthenticationToken auth =
-                (UsernamePasswordAuthenticationToken) SecurityContextHolder.getContext().getAuthentication();
-        return (Long) auth.getPrincipal();
     }
 }
