@@ -1,0 +1,35 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-media
+      author: orion
+      changes:
+        - createTable:
+            tableName: media
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: user_id
+                  type: bigint
+              - column:
+                  name: tipo
+                  type: varchar(20)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: nombre_original
+                  type: varchar(255)
+              - column:
+                  name: nombre_generado
+                  type: varchar(255)
+              - column:
+                  name: url_acceso
+                  type: varchar(255)
+              - column:
+                  name: subido_el
+                  type: datetime(6)

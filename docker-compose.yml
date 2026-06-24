@@ -66,43 +66,118 @@ services:
     networks:
       - orion-network
 
-#  post-service:
-#    build: ./Post_service
-#    container_name: posts-service
+#  media-service:
+#    build: ./MediaService
+#    container_name: media-service
 #    ports:
-#      - "${PORT_POST_SERVICE}:${PORT_POST_SERVICE}"
+#      - "${PORT_MEDIA_SERVICE}:${PORT_MEDIA_SERVICE}"
 #    depends_on:
 #      eureka-server:
-#        condition: service_started
+#        condition: service_healthy
 #      db:
 #        condition: service_healthy
 #    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_POSTS}?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_MEDIA}?allowPublicKeyRetrieval=true&useSSL=false
 #      SPRING_DATASOURCE_USERNAME: root
 #      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
 #      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
-#      JWT_SECRET: ${JWT_SECRET}
+#      MEDIA_STORAGE_LOCATION: /app/media_data
+#    volumes:
+#      - orion_media_data:/app/media_data
 #    networks:
 #      - orion-network
 #
-#  interaccion-service:
-#    build: ./Interaccion_Service
-#    container_name: interaccion-service
+#  eventos-service:
+#    build: ./eventos_service
+#    container_name: eventos-service
 #    ports:
-#      - "${PORT_INTERACCION_SERVICE}:${PORT_INTERACCION_SERVICE}"
+#      - "${PORT_EVENTOS_SERVICE}:${PORT_EVENTOS_SERVICE}"
 #    depends_on:
 #      eureka-server:
 #        condition: service_healthy
 #      db:
 #        condition: service_healthy
 #    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_INTERACCION}?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_EVENTOS}?allowPublicKeyRetrieval=true&useSSL=false
 #      SPRING_DATASOURCE_USERNAME: root
 #      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
 #      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
-#      JWT_SECRET: ${JWT_SECRET}
 #    networks:
 #      - orion-network
+#
+#  comentario-service:
+#    build: ./Comentario_Service
+#    container_name: comentario-service
+#    ports:
+#      - "${PORT_COMENTARIO_SERVICE}:${PORT_COMENTARIO_SERVICE}"
+#    depends_on:
+#      eureka-server:
+#        condition: service_healthy
+#      db:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_COMENTARIOS}?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+#      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
+#    networks:
+#      - orion-network
+#
+#  grupos-service:
+#    build: ./Grupos_service
+#    container_name: grupos-service
+#    ports:
+#      - "${PORT_GRUPOS_SERVICE}:${PORT_GRUPOS_SERVICE}"
+#    depends_on:
+#      eureka-server:
+#        condition: service_healthy
+#      db:
+#        condition: service_healthy
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_GRUPOS}?allowPublicKeyRetrieval=true&useSSL=false
+#      SPRING_DATASOURCE_USERNAME: root
+#      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+#      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
+#    networks:
+#      - orion-network
+
+  post-service:
+    build: ./Post_service
+    container_name: posts-service
+    ports:
+      - "${PORT_POST_SERVICE}:${PORT_POST_SERVICE}"
+    depends_on:
+      eureka-server:
+        condition: service_started
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_POSTS}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
+      JWT_SECRET: ${JWT_SECRET}
+    networks:
+      - orion-network
+
+  interaccion-service:
+    build: ./Interaccion_Service
+    container_name: interaccion-service
+    ports:
+      - "${PORT_INTERACCION_SERVICE}:${PORT_INTERACCION_SERVICE}"
+    depends_on:
+      eureka-server:
+        condition: service_healthy
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/${DB_NAME_INTERACCION}?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: ${DB_ROOT_PASSWORD}
+      EUREKA_CLIENT_SERVICEURL_DEFAULTZONE: ${EUREKA_DEFAULT_ZONE}
+      JWT_SECRET: ${JWT_SECRET}
+    networks:
+      - orion-network
 
 #  post-service:
 #    build: ./Post_service
@@ -117,21 +192,21 @@ services:
 #      SPRING_DATASOURCE_PASSWORD: root
 
 
-#  media-service:
-#    build: ./MediaService
-#    profiles: ["social","complete"]
-#    ports:
-#      - "9093:9093"
-#    depends_on:
-#      db:
-#        condition: service_healthy
-#    environment:
-#      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/media_db?allowPublicKeyRetrieval=true&useSSL=false
-#      SPRING_DATASOURCE_USERNAME: root
-#      SPRING_DATASOURCE_PASSWORD: root
-#      MEDIA_STORAGE_LOCATION: /app/media_data
-#    volumes:
-#      - ./media_volumen:/app/media_data
+  media-service:
+    build: ./MediaService
+    profiles: ["social","complete"]
+    ports:
+      - "9093:9093"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/media_db?allowPublicKeyRetrieval=true&useSSL=false
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+      MEDIA_STORAGE_LOCATION: /app/media_data
+    volumes:
+      - ./media_volumen:/app/media_data
 
 #  interaccion-service:
 #    build: ./Interaccion_Service
@@ -190,6 +265,7 @@ services:
 
 volumes:
   orion_db_data:
+  orion_media_data:
 
 networks:
   orion-network:
