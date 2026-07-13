@@ -5,6 +5,7 @@ import com.orion.eventos_service.DTO.EventoRequest;
 import com.orion.eventos_service.DTO.EventoResponse;
 import com.orion.eventos_service.Service.EventoService;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -20,6 +21,7 @@ import java.util.stream.Collectors;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/evento")
 public class EventoController {
@@ -34,6 +36,7 @@ public class EventoController {
             @Valid @RequestBody EventoRequest dto,
             @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        log.info("POST /api/evento - Creando evento solicitado por usuario={}", userId);
         EventoResponse nuevo = service.guardar(dto, userId);
         return ResponseEntity
                 .created(linkTo(methodOn(EventoController.class).verEvento(nuevo.getIdEvento())).toUri())
@@ -45,18 +48,21 @@ public class EventoController {
             @PathVariable Long id,
             @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        log.info("POST /api/evento/{}/unirse - Usuario={}", id, userId);
         EventoResponse actualizado = service.unirseAEvento(id, userId);
         return ResponseEntity.ok(assembler.toModel(actualizado));
     }
 
     @GetMapping(value = "/ver/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public EntityModel<EventoResponse> verEvento(@PathVariable Long id) {
+        log.info("GET /api/evento/ver/{}", id);
         EventoResponse evento = service.obtenerPorId(id);
         return assembler.toModel(evento);
     }
 
     @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
     public CollectionModel<EntityModel<EventoResponse>> verEventosGlobales() {
+        log.info("GET /api/evento - Listando eventos");
         List<EntityModel<EventoResponse>> lista = service.obtenerTodos()
                 .stream()
                 .map(assembler::toModel)
@@ -70,6 +76,7 @@ public class EventoController {
             @PathVariable Long id,
             @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        log.info("DELETE /api/evento/borrar/{} - Solicitado por usuario={}", id, userId);
         service.eliminar(id, userId);
         return ResponseEntity.noContent().build();
     }
@@ -80,6 +87,7 @@ public class EventoController {
             @Valid @RequestBody EventoRequest dto,
             @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        log.info("PUT /api/evento/actualizarevento/{} - Solicitado por usuario={}", id, userId);
         EventoResponse actualizado = service.actualizar(id, dto, userId);
         return ResponseEntity.ok(assembler.toModel(actualizado));
     }

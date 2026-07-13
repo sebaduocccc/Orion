@@ -21,8 +21,8 @@
         <module name="PosteoService" />
         <module name="Interaccion_Service" />
         <module name="Usuarios" />
-        <module name="Posteos" />
         <module name="ApiGateway" />
+        <module name="Posteos" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

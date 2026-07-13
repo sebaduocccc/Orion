@@ -1,0 +1,68 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-create-likes
+      author: orion-system
+      preConditions:
+        onFail: MARK_RAN
+        not:
+          - tableExists:
+              tableName: likes
+      changes:
+        - createTable:
+            tableName: likes
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: usuario_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: post_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            tableName: likes
+            columnNames: usuario_id, post_id
+            constraintName: uk_likes_usuario_post
+
+  - changeSet:
+      id: 002-create-follows
+      author: orion-system
+      preConditions:
+        onFail: MARK_RAN
+        not:
+          - tableExists:
+              tableName: follows
+      changes:
+        - createTable:
+            tableName: follows
+            columns:
+              - column:
+                  name: id
+                  type: BIGINT
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: seguidor_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+              - column:
+                  name: seguido_id
+                  type: BIGINT
+                  constraints:
+                    nullable: false
+        - addUniqueConstraint:
+            tableName: follows
+            columnNames: seguidor_id, seguido_id
+            constraintName: uk_follows_seguidor_seguido

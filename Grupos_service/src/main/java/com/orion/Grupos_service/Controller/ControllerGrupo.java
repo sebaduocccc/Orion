@@ -5,6 +5,7 @@ import com.orion.Grupos_service.Dto.RequestGrupo;
 import com.orion.Grupos_service.Dto.ResponseGrupo;
 import com.orion.Grupos_service.Service.ServiceGrupo;
 import jakarta.validation.Valid;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -19,6 +20,7 @@ import java.util.List;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.linkTo;
 import static org.springframework.hateoas.server.mvc.WebMvcLinkBuilder.methodOn;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/grupo")
 public class ControllerGrupo {
@@ -33,6 +35,7 @@ public class ControllerGrupo {
             @Valid @RequestBody RequestGrupo dto,
             @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        log.info("POST /api/grupo - Creando grupo solicitado por usuario={}", userId);
         ResponseGrupo nuevo = service.guardar(dto, userId);
         return ResponseEntity
                 .created(linkTo(methodOn(ControllerGrupo.class).verGrupos(nuevo.getIdGrupo())).toUri())
@@ -41,12 +44,14 @@ public class ControllerGrupo {
 
     @GetMapping(value = "/{id}", produces = MediaTypes.HAL_JSON_VALUE)
     public EntityModel<ResponseGrupo> verGrupos(@PathVariable Long id) {
+        log.info("GET /api/grupo/{}", id);
         ResponseGrupo grupo = service.obtenerPorId(id);
         return assembler.toModel(grupo);
     }
 
     @GetMapping(produces = MediaTypes.HAL_JSON_VALUE)
     public CollectionModel<EntityModel<ResponseGrupo>> verTodosLosGrupos() {
+        log.info("GET /api/grupo - Listando grupos");
         List<ResponseGrupo> grupos = service.obtenerTodos();
         return assembler.toCollectionModel(grupos);
     }
@@ -56,6 +61,7 @@ public class ControllerGrupo {
             @PathVariable Long id,
             @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        log.info("DELETE /api/grupo/{} - Solicitado por usuario={}", id, userId);
         service.eliminar(id, userId);
         return ResponseEntity.noContent().build();
     }
@@ -66,6 +72,7 @@ public class ControllerGrupo {
             @Valid @RequestBody RequestGrupo dto,
             @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        log.info("PUT /api/grupo/{} - Solicitado por usuario={}", id, userId);
         ResponseGrupo actualizado = service.actualizar(id, dto, userId);
         return ResponseEntity.ok(assembler.toModel(actualizado));
     }
@@ -75,6 +82,7 @@ public class ControllerGrupo {
             @PathVariable Long id,
             @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        log.info("POST /api/grupo/{}/unirse - Usuario={}", id, userId);
         ResponseGrupo actualizado = service.unirseAGrupo(id, userId);
         return ResponseEntity.ok(assembler.toModel(actualizado));
     }

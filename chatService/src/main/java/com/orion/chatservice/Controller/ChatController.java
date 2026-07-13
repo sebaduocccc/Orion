@@ -2,13 +2,15 @@ package com.orion.chatservice.Controller;
 
 
 import com.orion.chatservice.Entity.Mensaje;
-import com.orion.chatservice.Repository.MensajeRepository;
+import com.orion.chatservice.Service.MensajeService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
+@Slf4j
 @Controller
 public class ChatController {
 
@@ -17,35 +19,33 @@ public class ChatController {
     private SimpMessagingTemplate messagingTemplate;
 
     @Autowired
-    private MensajeRepository repo;
+    private MensajeService mensajeService;
 
 
     // react enviara mensajes a la ruta: /app/chat.enviar
     @MessageMapping("/chat.enviar")
     public void procesarMensaje(@Payload Mensaje mensaje) {
 
-        Mensaje mensajeGuardado = repo.save(mensaje);
+        Mensaje mensajeGuardado = mensajeService.guardarMensajePrivado(mensaje);
 
         // Se le envia en vivo el mensaje al receptor
         // SI el reciverId es '5' esto lo envia al canal especial con el usuario
         messagingTemplate.convertAndSendToUser(
                 String.valueOf(mensaje.getReceiverId()),
                 "/queue/mensajes",
-                mensaje
+                mensajeGuardado
         );
 
-        System.out.println("Mensaje enviado a: " + mensaje.getReceiverId());
-
+        log.info("Mensaje privado enviado a usuario={}", mensaje.getReceiverId());
     }
 
 
 
     @MessageMapping("/chat.global")
     public void procesarGlobalMensaje(@Payload Mensaje mensaje) {
-        mensaje.setReceiverId(0L);
-        Mensaje mensajeGuardado = repo.save(mensaje);
+        Mensaje mensajeGuardado = mensajeService.guardarMensajeGlobal(mensaje);
         messagingTemplate.convertAndSend("/topic/publico", mensajeGuardado);
-        System.out.println("Mensaje global enviado por " + mensaje.getNombreEmisor());
+        log.info("Mensaje global enviado por {}", mensaje.getNombreEmisor());
     }
 
 

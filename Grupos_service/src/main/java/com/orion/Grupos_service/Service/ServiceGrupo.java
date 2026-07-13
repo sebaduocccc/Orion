@@ -6,6 +6,7 @@ import com.orion.Grupos_service.Dto.ResponseGrupo;
 import com.orion.Grupos_service.Entity.Grupo;
 import com.orion.Grupos_service.Exceptions.ResourceNotFound;
 import com.orion.Grupos_service.Repository.Repository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Slf4j
 @Service
 public class ServiceGrupo {
     @Autowired
@@ -23,11 +25,12 @@ public class ServiceGrupo {
     public ResponseGrupo guardar(RequestGrupo dto, Long idCreador) {
         Grupo grupo = mapper.toEntity(dto,idCreador);
         Grupo guardado = repo.save(grupo);
+        log.info("Grupo creado: id={} nombre='{}' creador={}", guardado.getIdGrupo(), guardado.getNombre(), idCreador);
         return mapper.toResponse(guardado);
     }
     @Transactional(readOnly = true)
     public List<ResponseGrupo> obtenerTodos() {
-
+        log.info("Listando todos los grupos");
         return repo.findAll()
                 .stream()
                 .map(mapper::toResponse)
@@ -40,6 +43,7 @@ public class ServiceGrupo {
                 .orElseThrow(() -> new ResourceNotFound("Grupo no encontrado con id: " + id));
 
         if (!grupo.getIdCreador().equals(idUsuario)) {
+            log.warn("Actualización rechazada: usuario={} no es creador del grupo={}", idUsuario, id);
             throw new RuntimeException("No tienes permiso para editar este grupo");
         }
 
@@ -48,6 +52,7 @@ public class ServiceGrupo {
 
 
         Grupo actualizado = repo.save(grupo);
+        log.info("Grupo actualizado: id={} por usuario={}", id, idUsuario);
         return mapper.toResponse(actualizado);
     }
     @Transactional
@@ -57,13 +62,16 @@ public class ServiceGrupo {
                 .orElseThrow(() -> new ResourceNotFound("Grupo no encontrado con id: " + id));
 
         if (!grupo.getIdCreador().equals(idUsuario)) {
+            log.warn("Eliminación rechazada: usuario={} no es creador del grupo={}", idUsuario, id);
             throw new RuntimeException("No tienes permiso para eliminar este grupo");
         }
 
         repo.deleteById(id);
+        log.info("Grupo eliminado: id={} por usuario={}", id, idUsuario);
     }
     @Transactional(readOnly = true)
     public ResponseGrupo obtenerPorId(Long id) {
+        log.info("Buscando grupo por id={}", id);
         Grupo grupo = repo.findById(id)
                 .orElseThrow(() -> new ResourceNotFound("Grupo no encontrado con id: " + id));
         return mapper.toResponse(grupo);
@@ -74,12 +82,14 @@ public class ServiceGrupo {
                 .orElseThrow(() -> new ResourceNotFound("Grupo no encontrado con id: " + id));
 
         if (grupo.getMiembros().contains(idUsuario)) {
+            log.warn("Unión rechazada: usuario={} ya es miembro del grupo={}", idUsuario, id);
             throw new RuntimeException("Ya estás registrado en este grupo");
         }
 
         grupo.getMiembros().add(idUsuario);
 
         Grupo actualizado = repo.save(grupo);
+        log.info("Usuario={} se unió al grupo={}", idUsuario, id);
         return mapper.toResponse(actualizado);
     }
 }
