@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -75,7 +76,7 @@ public class UsuarioController {
     public ResponseEntity<UsuarioResponseDTO> actualizarUsuario(
             @PathVariable Long id,
             @RequestBody UsuarioUpdateDTO updateDTO,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         log.info("PUT /api/usuarios/{} - Solicitado por userId={}", id, userId);
         UsuarioResponseDTO actualizado = usuarioService.actualizarUsuario(id, updateDTO);
         log.info("Usuario id={} actualizado correctamente", id);
@@ -86,7 +87,7 @@ public class UsuarioController {
     @DeleteMapping("/{id}")
     public ResponseEntity<String> eliminarUsuario(
             @PathVariable Long id,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         log.info("DELETE /api/usuarios/{} - Solicitado por userId={}", id, userId);
         usuarioService.eliminarUsuario(id);
         log.info("Usuario id={} eliminado correctamente", id);
@@ -120,7 +121,7 @@ public class UsuarioController {
     public ResponseEntity<UsuarioPerfil> actualizarUrlAvatar(
             @PathVariable Long id,
             @RequestBody Map<String, String> body,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         log.info("PUT /api/usuarios/{}/avatar - Solicitado por userId={}", id, userId);
         String nuevaUrl = body.get("avatarUrl");
         UsuarioPerfil perfilActualizado = usuarioService.actualizarUrlAvatar(id, nuevaUrl);

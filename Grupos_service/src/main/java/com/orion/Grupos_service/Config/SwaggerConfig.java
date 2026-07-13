@@ -1,10 +1,10 @@
 package com.orion.Grupos_service.Config;
 
+import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Info;
-import io.swagger.v3.oas.models.media.StringSchema;
-import io.swagger.v3.oas.models.parameters.Parameter;
-import org.springdoc.core.customizers.OperationCustomizer;
+import io.swagger.v3.oas.models.security.SecurityRequirement;
+import io.swagger.v3.oas.models.security.SecurityScheme;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -17,21 +17,13 @@ public class SwaggerConfig {
                 .info(new Info()
                         .title("Microservicio Grupos de red social Orion")
                         .version("1.0")
-                        .description("Documentación de microservicio grupo"));
-    }
-
-    @Bean
-    public OperationCustomizer globalHeaderCustomizer() {
-        return (operation, handlerMethod) -> {
-            operation.addParametersItem(
-                new Parameter()
-                    .in("header")
-                    .name("X-Auth-User-Id")
-                    .required(false)
-                    .schema(new StringSchema())
-                    .description("ID del usuario autenticado (propagado por el API Gateway)")
-            );
-            return operation;
-        };
+                        .description("Documentación de microservicio grupo"))
+                .components(new Components().addSecuritySchemes("bearerAuth",
+                        new SecurityScheme()
+                                .type(SecurityScheme.Type.HTTP)
+                                .scheme("bearer")
+                                .bearerFormat("JWT")
+                                .description("Token JWT emitido por Usuario_Service (login)")))
+                .addSecurityItem(new SecurityRequirement().addList("bearerAuth"));
     }
 }

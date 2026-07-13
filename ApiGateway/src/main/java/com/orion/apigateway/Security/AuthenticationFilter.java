@@ -36,14 +36,10 @@ public class AuthenticationFilter extends AbstractGatewayFilterFactory<Authentic
                 String token = authHeader.substring(7);
 
                 try {
+                    // El Gateway solo valida el token; cada microservicio extrae
+                    // la identidad directamente del JWT que se reenvía intacto.
                     jwtUtil.validateToken(token);
-                    Long userId = jwtUtil.extractUserId(token);
-
-                    ServerHttpRequest mutatedRequest = exchange.getRequest().mutate()
-                            .header("X-Auth-User-Id", String.valueOf(userId))
-                            .build();
-
-                    return chain.filter(exchange.mutate().request(mutatedRequest).build());
+                    return chain.filter(exchange);
                 } catch (JwtException | IllegalArgumentException e) {
                     exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);
                     return exchange.getResponse().setComplete();

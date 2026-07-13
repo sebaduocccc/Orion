@@ -28,6 +28,9 @@ media:
   storage:
     location: ${MEDIA_STORAGE_LOCATION:./uploads}
 
+jwt:
+  secret: ${JWT_SECRET:0mfQfctbNBt7Tb4Ej8aXQQebUc8zmnhpkZKObqzxUCi}
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html

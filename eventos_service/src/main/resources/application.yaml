@@ -3,7 +3,7 @@ server:
 
 spring:
   application:
-    name: eventos_service
+    name: eventos-service
   datasource:
     url: ${SPRING_DATASOURCE_URL:jdbc:mysql://db:3306/eventos_db?allowPublicKeyRetrieval=true&useSSL=false}
     username: ${SPRING_DATASOURCE_USERNAME:root}
@@ -16,6 +16,9 @@ spring:
   liquibase:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
+
+jwt:
+  secret: ${JWT_SECRET:0mfQfctbNBt7Tb4Ej8aXQQebUc8zmnhpkZKObqzxUCi}
 
 springdoc:
   swagger-ui:

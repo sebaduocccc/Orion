@@ -12,6 +12,7 @@ public class RouteValidator {
     public static final List<String> PUBLIC_ENDPOINTS = List.of(
             "/api/usuarios/login",
             "/api/usuarios/register",
+            "/api/usuarios/registro",
             "/api/auth/login",
             "/api/auth/register",
             "/eureka"

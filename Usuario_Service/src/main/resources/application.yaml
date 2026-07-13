@@ -24,8 +24,8 @@ server:
 
 
 jwt:
-  secret: ${JWT_SECRET}
-  expiration_time: ${JWT_EXPIRATION_TIME}
+  secret: ${JWT_SECRET:0mfQfctbNBt7Tb4Ej8aXQQebUc8zmnhpkZKObqzxUCi}
+  expiration_time: ${JWT_EXPIRATION_TIME:86400000}
 eureka:
   client:
     service-url:

@@ -10,7 +10,7 @@ import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -29,7 +29,7 @@ public class InteraccionController {
     @PostMapping("/post/{postId}/like")
     public ResponseEntity<?> toggleLike(
             @PathVariable Long postId,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acceso denegado");
         log.info("POST /interacciones/post/{}/like - Usuario id={}", postId, userId);
         boolean isLiked = interaccionService.toggleLike(userId, postId);
@@ -48,7 +48,7 @@ public class InteraccionController {
     @GetMapping("/post/{postId}/like/status")
     public ResponseEntity<?> checkIsLikedByMe(
             @PathVariable Long postId,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acceso denegado");
         log.info("GET /interacciones/post/{}/like/status - Usuario id={}", postId, userId);
         return ResponseEntity.ok(interaccionService.verificarSiLikeo(userId, postId));
@@ -58,7 +58,7 @@ public class InteraccionController {
     @PostMapping("/usuarios/{seguidoId}/follow")
     public ResponseEntity<?> toggleFollow(
             @PathVariable Long seguidoId,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acceso denegado");
         log.info("POST /interacciones/usuarios/{}/follow - Usuario id={}", seguidoId, userId);
         boolean isFollowing = followService.toggleFollow(userId, seguidoId);
@@ -82,7 +82,7 @@ public class InteraccionController {
     @GetMapping("/usuarios/{seguidoId}/siguiendo")
     public ResponseEntity<?> checkFollowingStatus(
             @PathVariable Long seguidoId,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acceso denegado");
         log.info("GET /interacciones/usuarios/{}/siguiendo - Usuario id={}", seguidoId, userId);
         return ResponseEntity.ok(followService.verificarSiSigue(userId, seguidoId));

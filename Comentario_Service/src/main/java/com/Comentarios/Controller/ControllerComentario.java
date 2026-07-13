@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class ControllerComentario {
     public ResponseEntity<ResponseComentario> comentar(
             @PathVariable Long postId,
             @Valid @RequestBody RequestComentario r,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         if (userId == null) {
             log.warn("POST /api/comentarios/{}/comentar - Acceso denegado: usuario no autenticado", postId);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
@@ -45,7 +46,7 @@ public class ControllerComentario {
     public ResponseEntity<ResponseComentario> actualizar(
             @PathVariable Long id,
             @Valid @RequestBody RequestComentario r,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         if (userId == null) {
             log.warn("PUT /api/comentarios/actualizar/{} - Acceso denegado: usuario no autenticado", id);
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

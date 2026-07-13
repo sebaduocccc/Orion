@@ -10,6 +10,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -26,9 +27,9 @@ public class MediaController {
     @PostMapping("/avatar/upload")
     public ResponseEntity<Media> subirAvatar(
             @RequestParam("file") MultipartFile file,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         if (userId == null) {
-            log.warn("POST /api/media/avatar/upload - Acceso denegado: X-Auth-User-Id ausente");
+            log.warn("POST /api/media/avatar/upload - Acceso denegado: usuario no autenticado");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         log.info("POST /api/media/avatar/upload - Usuario id={}", userId);
@@ -52,9 +53,9 @@ public class MediaController {
     @PostMapping("/post/upload")
     public ResponseEntity<Media> subirFotoPost(
             @RequestParam("file") MultipartFile file,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         if (userId == null) {
-            log.warn("POST /api/media/post/upload - Acceso denegado: X-Auth-User-Id ausente");
+            log.warn("POST /api/media/post/upload - Acceso denegado: usuario no autenticado");
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         log.info("POST /api/media/post/upload - Usuario id={}", userId);

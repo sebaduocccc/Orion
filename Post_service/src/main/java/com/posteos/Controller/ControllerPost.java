@@ -16,7 +16,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -41,7 +41,7 @@ public class ControllerPost {
     @PostMapping
     public ResponseEntity<?> guardar(
             @Valid @RequestBody PostRequestDTO dto,
-            @RequestHeader(value = "X-Auth-User-Id", required = false) Long userId) {
+            @AuthenticationPrincipal Long userId) {
         if (userId == null) return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Acceso denegado");
         log.info("POST /api/posts - Creando post para usuario id={}", userId);
         dto.setUserId(userId);

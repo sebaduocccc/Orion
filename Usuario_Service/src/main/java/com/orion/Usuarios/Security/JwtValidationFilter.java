@@ -1,4 +1,4 @@
-package com.orion.interaccion.Security;
+package com.orion.Usuarios.Security;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

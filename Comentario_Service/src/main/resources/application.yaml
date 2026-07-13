@@ -21,6 +21,9 @@ spring:
     enabled: true
     change-log: classpath:db/changelog/db.changelog-master.yaml
 
+jwt:
+  secret: ${JWT_SECRET:0mfQfctbNBt7Tb4Ej8aXQQebUc8zmnhpkZKObqzxUCi}
+
 springdoc:
   packages-to-scan: com.Comentarios.Controller
   api-docs:
