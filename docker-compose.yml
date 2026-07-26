@@ -11,6 +11,30 @@ services:
       - "${POSTGRES_PORT}:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
+    networks:
+      - orion-network
+
+
+  orion-backend:
+    build: .
+    container_name: orion-backend
+    ports:
+      - "${PORT_ORION_BACKEND}:${PORT_ORION_BACKEND}"
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/${POSTGRES_DB}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      JWT_EXPIRATION_TIME: ${JWT_EXPIRATION_TIME}
+    networks:
+      - orion-network
 
 volumes:
   postgres_data:
+
+networks:
+  orion-network:
+    driver: bridge
