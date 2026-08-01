@@ -9,3 +9,11 @@ spring:
       url: ${SPRING_DATASOURCE_URL}:jdbc:postgresql://db:5432/${POSTGRES_DB}
       username: ${POSTGRES_USER}:root
       password: ${POSTGRES_PASSWORD}:root
+
+  security:
+    user:
+      name: akomi
+      password: akomi
+server:
+  port: 8000
+
