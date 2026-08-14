@@ -1,6 +1,5 @@
 package com.treeaxes.Orion.Controller;
 
-import com.treeaxes.Orion.Model.Usuario;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +12,7 @@ public class UserController {
 
     @GetMapping("/alo")
     public String alo() {
+        log.debug("El endpoint /alo ha sido llamado");
         return "Hola Buenaaassss";
     }
 
