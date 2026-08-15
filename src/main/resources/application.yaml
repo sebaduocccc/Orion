@@ -2,14 +2,16 @@
 spring:
   application:
     name: Orion
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/orion_db}
+    username: ${SPRING_DATASOURCE_USERNAME:orion}
+    password: ${SPRING_DATASOURCE_PASSWORD:orion}
+
   jpa:
     hibernate:
-      ddl-auto: none
+      ddl-auto: update
     show-sql: true
-    datasource:
-      url: ${SPRING_DATASOURCE_URL}:jdbc:postgresql://db:5432/${POSTGRES_DB}
-      username: ${POSTGRES_USER}:root
-      password: ${POSTGRES_PASSWORD}:root
+    open-in-view: false
 
   security:
     user:

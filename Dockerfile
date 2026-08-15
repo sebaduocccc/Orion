@@ -12,6 +12,8 @@ RUN mvn clean package -DskipTests
 FROM  eclipse-temurin:17-jdk-jammy
 WORKDIR /app
 
+ARG PORT_ORION_BACKEND=8000
+
 COPY --from=builder /app/target/*.jar app.jar
 
 EXPOSE ${PORT_ORION_BACKEND}

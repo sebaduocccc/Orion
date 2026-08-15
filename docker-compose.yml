@@ -21,7 +21,10 @@ services:
 
 
   orion-backend:
-    build: ./
+    build:
+      context: ./
+      args:
+        PORT_ORION_BACKEND: ${PORT_ORION_BACKEND}
     container_name: orion-backend
     ports:
       - "${PORT_ORION_BACKEND}:${PORT_ORION_BACKEND}"
