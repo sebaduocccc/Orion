@@ -5,10 +5,7 @@ import com.treeaxes.Orion.DTO.UsuarioResponse;
 import com.treeaxes.Orion.Service.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/user")
@@ -22,4 +19,11 @@ public class UsuarioController {
         UsuarioResponse response = usuarioService.agregarUsuario(u);
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<UsuarioResponse> obtenerUsuario(@PathVariable Long id){
+        UsuarioResponse response = usuarioService.obtenerUsuario(id);
+        return ResponseEntity.ok(response);
+    }
+
 }

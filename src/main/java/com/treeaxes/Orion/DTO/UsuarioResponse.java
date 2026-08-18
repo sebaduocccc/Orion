@@ -10,6 +10,7 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 public class UsuarioResponse {
+    private Long id;
     private String username;
     private LocalDateTime createdAt;
 }

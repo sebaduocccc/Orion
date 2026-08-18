@@ -19,7 +19,18 @@ public class UsuarioService {
         usuario.setUsername(u.getUsername());
         usuario.setPassword(u.getPassword());
         usuarioRepository.save(usuario);
-        UsuarioResponse r = new UsuarioResponse(usuario.getUsername(),usuario.getCreatedAt());
-        return r;
+
+        UsuarioResponse res = new UsuarioResponse(usuario.getId(),usuario.getUsername(),usuario.getCreatedAt());
+        return res;
+    }
+
+    public UsuarioResponse obtenerUsuario(Long id){
+        Usuario usuario = usuarioRepository.findById(id).orElse(null);
+        if(usuario == null){
+            return null;
+        }
+
+        UsuarioResponse res = new UsuarioResponse(usuario.getId(),usuario.getUsername(),usuario.getCreatedAt());
+        return res;
     }
 }
