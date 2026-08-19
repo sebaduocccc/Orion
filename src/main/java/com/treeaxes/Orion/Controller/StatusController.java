@@ -10,6 +10,7 @@ public class StatusController {
 
     @GetMapping("/health")
     public String health() {
-        return "La API está funcionando correctamente.";
+
+        return "API de Orion funcionando correctamente";
     }
 }
