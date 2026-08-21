@@ -1,9 +1,11 @@
 # Folders
 .idea/
-.env
+.codex/
+.claude/
 
 # Files
 .idea/workspace.xml
+.env
 
 
 # Default
