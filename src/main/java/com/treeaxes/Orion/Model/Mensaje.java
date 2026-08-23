@@ -20,7 +20,7 @@ public class Mensaje {
     @Column(nullable = false)
     private Long id_receiver;
 
-    @Column(nullable = false, length = 255)
+    @Column(nullable = false, length = 1000)
     private String mensaje;
 
     @Column(name = "created_at", updatable = false)
