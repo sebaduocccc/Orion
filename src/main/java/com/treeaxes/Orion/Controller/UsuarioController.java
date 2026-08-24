@@ -1,5 +1,6 @@
 package com.treeaxes.Orion.Controller;
 
+import com.treeaxes.Orion.DTO.ErrorResponse;
 import com.treeaxes.Orion.DTO.UsuarioRequest;
 import com.treeaxes.Orion.DTO.UsuarioResponse;
 import com.treeaxes.Orion.Service.UsuarioService;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -31,7 +33,7 @@ public class UsuarioController {
     public ResponseEntity<UsuarioResponse> obtenerUsuario(@PathVariable Long id){
         UsuarioResponse response = usuarioService.obtenerUsuario(id);
         if(response == null){
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.noContent().build();
         }
         return ResponseEntity.ok(response);
     }
