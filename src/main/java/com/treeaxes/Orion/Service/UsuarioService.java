@@ -3,6 +3,7 @@ package com.treeaxes.Orion.Service;
 import com.treeaxes.Orion.DTO.UsuarioRequest;
 import com.treeaxes.Orion.DTO.UsuarioResponse;
 import com.treeaxes.Orion.Exception.ResourceAlreadyExistsException;
+import com.treeaxes.Orion.Exception.ResourceNotFoundException;
 import com.treeaxes.Orion.Model.Usuario;
 import com.treeaxes.Orion.Repository.UsuarioRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -40,9 +41,13 @@ public class UsuarioService {
     // Metodo para obtener un usuario por su ID
     public UsuarioResponse obtenerUsuario(Long id){
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
-        if(usuario == null) return null; // Si el usuario es Null, retornamos null para indicar que no se encontró
+        if(usuario == null) throw new ResourceNotFoundException("El usuario con ID '" + id + "' no existe.");
 
-        UsuarioResponse res = new UsuarioResponse(usuario.getId(),usuario.getUsername(),usuario.getCreatedAt());
+        UsuarioResponse res = new UsuarioResponse(
+                usuario.getId(),
+                usuario.getUsername(),
+                usuario.getCreatedAt()
+        );
         return res;
     }
 
@@ -61,10 +66,14 @@ public class UsuarioService {
     // Metodo para eliminar un usuario por su ID
     public UsuarioResponse eliminarUsuario(Long id){
         Usuario usuario = usuarioRepository.findById(id).orElse(null);
-        if(usuario == null) return null;
+        if(usuario == null) throw new ResourceNotFoundException("El usuario con ID '" + id + "' no existe.");
 
         usuarioRepository.delete(usuario);
-        UsuarioResponse res = new UsuarioResponse(usuario.getId(),usuario.getUsername(),usuario.getCreatedAt());
+        UsuarioResponse res = new UsuarioResponse(
+                usuario.getId(),
+                usuario.getUsername(),
+                usuario.getCreatedAt()
+        );
         return res;
     }
 }
