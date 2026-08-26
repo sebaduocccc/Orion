@@ -2,14 +2,17 @@ package com.treeaxes.Orion.Service;
 
 import com.treeaxes.Orion.DTO.UsuarioRequest;
 import com.treeaxes.Orion.DTO.UsuarioResponse;
+import com.treeaxes.Orion.Exception.ResourceAlreadyExistsException;
 import com.treeaxes.Orion.Model.Usuario;
 import com.treeaxes.Orion.Repository.UsuarioRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Slf4j
 @Service
 public class UsuarioService {
 
@@ -18,6 +21,13 @@ public class UsuarioService {
 
     // Metodo para agregar un nuevo usuario
     public UsuarioResponse agregarUsuario(UsuarioRequest u){
+        log.info("Iniciando registro de usuario {}", u.getUsername());
+
+        if(usuarioRepository.existsByName(u.getUsername())){
+            log.warn("Registro rechazado: el usuario '{}' ya existe.", u.getUsername());
+            throw new ResourceAlreadyExistsException("El nombre de Usuario: " + u.getUsername() + " Ya esta registrado.");
+        }
+
         Usuario usuario = new Usuario();
         usuario.setUsername(u.getUsername());
         usuario.setPassword(u.getPassword());
