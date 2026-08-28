@@ -10,6 +10,7 @@ Este proyecto fue creado utilizando las siguientes tecnologias:
 - Java 17
 - Maven
 - Spring Boot
+- JsonWebToken
     
 
 ### Frontend
@@ -18,6 +19,8 @@ Este proyecto fue creado utilizando las siguientes tecnologias:
 - TypeScript
 - Tailwind
 
+### Otros
+- PostgreSQL
+- Docker Compose
 
-
-&copy; TreeAxes Corp. 
+*Todos los derechos reservados &copy; TreeAxes Corp.*
