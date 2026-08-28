@@ -40,7 +40,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
                     .parseClaimsJws(token)
                     .getBody();
 
-            Long userId = Long.valueOf(claims.get("userId").toString());
+            Long userId = Long.valueOf(claims.get("id").toString());
             String username = claims.getSubject();
 
             UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userId, username, null);

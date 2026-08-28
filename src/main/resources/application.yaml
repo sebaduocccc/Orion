@@ -17,6 +17,11 @@ spring:
     user:
       name: akomi
       password: akomi
+
+jwt:
+  secret: ${JWT_SECRET:treeaxes}
+  expiration_time: ${JWT_EXPIRATION_TIME:86400000}
+
 server:
   port: 8000
 

@@ -28,7 +28,7 @@ public class UsuarioService {
         log.info("Iniciando registro de usuario {}", u.getUsername());
 
         // Validar si el usuario ya existe para evitar duplicaciones.
-        if(usuarioRepository.existsByName(u.getUsername())){
+        if(usuarioRepository.existsByUsername(u.getUsername())){
             log.warn("Registro rechazado: el usuario '{}' ya existe.", u.getUsername());
             throw new ResourceAlreadyExistsException("El nombre de Usuario: " + u.getUsername() + " Ya esta registrado.");
         }
@@ -38,7 +38,11 @@ public class UsuarioService {
         usuario.setPassword(passwordEncoder.encode(u.getPassword()));
         usuarioRepository.save(usuario);
 
-        UsuarioResponse res = new UsuarioResponse(usuario.getId(),usuario.getUsername(),usuario.getCreatedAt());
+        UsuarioResponse res = new UsuarioResponse(
+                usuario.getId(),
+                usuario.getUsername(),
+                usuario.getCreatedAt()
+        );
         return res;
     }
 
