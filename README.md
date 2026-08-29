@@ -1,9 +1,13 @@
 # Orion: Red Social Distribuida
 
-Orion es una Red Social creada por TreeAxes Corp.
+*Orion es una Red Social creada por TreeAxes Corp.*
+
+---
 
 ## Stack
-Este proyecto fue creado utilizando las siguientes tecnologias:
+Este proyecto fue creado utilizando las siguientes tecnologías:
+
+---
 
 ### Backend
 
@@ -11,7 +15,8 @@ Este proyecto fue creado utilizando las siguientes tecnologias:
 - Maven
 - Spring Boot
 - JsonWebToken
-    
+
+---    
 
 ### Frontend
 
@@ -19,8 +24,11 @@ Este proyecto fue creado utilizando las siguientes tecnologias:
 - TypeScript
 - Tailwind
 
+---
+
 ### Otros
 - PostgreSQL
 - Docker Compose
 
-*Todos los derechos reservados &copy; TreeAxes Corp.*
+---
+***Todos los derechos reservados &copy;TreeAxes Corp.***
