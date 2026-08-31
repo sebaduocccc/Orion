@@ -23,7 +23,11 @@ public class JwtValidationFilter extends OncePerRequestFilter {
     @Value("${jwt.secret}")
     private String secret;
 
-    protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(
+            HttpServletRequest request,
+            HttpServletResponse response,
+            FilterChain filterChain
+    ) throws ServletException, IOException {
         final String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -43,7 +47,7 @@ public class JwtValidationFilter extends OncePerRequestFilter {
             Long userId = Long.valueOf(claims.get("id").toString());
             String username = claims.getSubject();
 
-            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userId, username, null);
+            UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(userId, username);
             SecurityContextHolder.getContext().setAuthentication(authentication);
 
         } catch (Exception e) {
