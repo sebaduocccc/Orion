@@ -5,9 +5,7 @@ import com.treeaxes.Orion.DTO.UsuarioRequest;
 import com.treeaxes.Orion.Exception.ResourceNotFoundException;
 import com.treeaxes.Orion.Model.Usuario;
 import com.treeaxes.Orion.Repository.UsuarioRepository;
-import com.treeaxes.Orion.Security.JwtUtils;
-import com.treeaxes.Orion.Service.UsuarioService;
-import io.jsonwebtoken.Jwts;
+import com.treeaxes.Orion.Security.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,7 +25,7 @@ public class AuthController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
-    private JwtUtils jwtUtils;
+    private JwtUtil jwtUtil;
 
     @Autowired
     private UsuarioRepository usuarioRepository;
@@ -42,7 +40,7 @@ public class AuthController {
         Usuario usuario = usuarioRepository.findByUsername(u.getUsername())
                 .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
 
-        final String jwt = jwtUtils.generateToken(usuario);
+        final String jwt = jwtUtil.generateToken(usuario);
         log.info("Inicio de sesion exitoso para Usuario id={}", usuario.getId());
         return ResponseEntity.ok(new AuthResponse(jwt, usuario.getId()));
     }
