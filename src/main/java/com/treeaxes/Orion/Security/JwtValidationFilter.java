@@ -26,8 +26,9 @@ public class JwtValidationFilter extends OncePerRequestFilter {
     protected void doFilterInternal(
             HttpServletRequest request,
             HttpServletResponse response,
-            FilterChain filterChain
-    ) throws ServletException, IOException {
+            FilterChain filterChain)
+            throws ServletException, IOException {
+
         final String authHeader = request.getHeader("Authorization");
 
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -36,12 +37,12 @@ public class JwtValidationFilter extends OncePerRequestFilter {
         }
 
         try {
-            String token = authHeader.replaceFirst("(?i)^(bearer\\s+)+", "").trim();
+            String jwt = authHeader.replaceFirst("(?i)^(bearer\\s+)+", "").trim();
 
             Claims claims = Jwts.parserBuilder()
                     .setSigningKey(getSigningKey())
                     .build()
-                    .parseClaimsJws(token)
+                    .parseClaimsJws(jwt)
                     .getBody();
 
             Long userId = Long.valueOf(claims.get("id").toString());

@@ -2,6 +2,7 @@ package com.treeaxes.Orion.Controller;
 
 import com.treeaxes.Orion.DTO.AuthResponse;
 import com.treeaxes.Orion.DTO.UsuarioRequest;
+import com.treeaxes.Orion.Exception.ResourceNotFoundException;
 import com.treeaxes.Orion.Model.Usuario;
 import com.treeaxes.Orion.Repository.UsuarioRepository;
 import com.treeaxes.Orion.Security.JwtUtils;
@@ -32,18 +33,18 @@ public class AuthController {
     private UsuarioRepository usuarioRepository;
 
     @PostMapping("/login")
-    public ResponseEntity<AuthResponse> login(@RequestBody UsuarioRequest usuarioRequest) {
-        log.info("POST /api/auth/login - Intento de inicio de sesion para usuario: {}", usuarioRequest.getUsername());
+    public ResponseEntity<AuthResponse> login(@RequestBody UsuarioRequest u) {
+        log.info("POST /api/auth/login - Intento de inicio de sesion para usuario: {}", u.getUsername());
         authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(usuarioRequest.getUsername(), usuarioRequest.getPassword())
+                new UsernamePasswordAuthenticationToken(u.getUsername(), u.getPassword())
         );
 
-        Usuario usuario = usuarioRepository.findByUsername(usuarioRequest.getUsername())
-                .orElseThrow(() -> new RuntimeException("Usuario no encontrado"));
+        Usuario usuario = usuarioRepository.findByUsername(u.getUsername())
+                .orElseThrow(() -> new ResourceNotFoundException("Usuario no encontrado"));
 
         final String jwt = jwtUtils.generateToken(usuario);
         log.info("Inicio de sesion exitoso para Usuario id={}", usuario.getId());
-        return ResponseEntity.ok(new AuthResponse(usuario.getId(), jwt));
+        return ResponseEntity.ok(new AuthResponse(jwt, usuario.getId()));
     }
 
 }
