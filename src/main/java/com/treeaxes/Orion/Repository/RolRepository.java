@@ -1,14 +1,15 @@
 package com.treeaxes.Orion.Repository;
 
-import com.treeaxes.Orion.Model.Mensaje;
+import com.treeaxes.Orion.Model.Rol;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
 @Repository
-public interface MensajeRepository extends JpaRepository<Mensaje,Long> {
+public interface RolRepository extends JpaRepository<Rol,Long> {
 
-    Optional<Mensaje> findById(Long id);
+    // Encontrar rol por su nombre
+    Optional<Rol> findByName(String name);
 
 }

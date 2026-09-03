@@ -13,6 +13,6 @@ public class Permiso {
     private int id;
 
     @Column(unique = true, nullable = false)
-    private String nombre;
+    private String name;
 
 }

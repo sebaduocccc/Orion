@@ -16,7 +16,7 @@ public class Rol {
     private int id;
 
     @Column(unique = true, nullable = false)
-    private String nombre;
+    private String name;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
